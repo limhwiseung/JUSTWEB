@@ -21,7 +21,7 @@ button{cursor:pointer}
 .mark{width:36px;height:36px;border:1px solid #e6edf8;border-radius:11px;display:grid;place-items:center;color:#fff;font-size:15px;letter-spacing:-1px;box-shadow:inset 0 0 20px #ffffff10}
 .brand small{display:block;font-size:10px;letter-spacing:2.3px;color:#9ba7bb;font-weight:600;margin-top:-3px}
 .links{display:flex;align-items:center;gap:26px;color:#bac4d5;font-size:13px}
-.links a:hover{color:#fff}
+.links a:hover{color:#fff}.links a[aria-current="location"]:not(.navcta){color:#eef4ff}.links a[aria-current="location"]:not(.navcta):after{right:0}
 .navcta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #dce4f04a;border-radius:12px;padding:11px 16px;color:#0a0e17;background:var(--silver);font-size:13px;font-weight:800;transition:.2s}
 .navcta:hover,.btn:hover{transform:translateY(-2px);background:#fff}
 .btn.secondary{color:#eef3ff;background:#ffffff08;border-color:#ffffff28}
@@ -137,73 +137,684 @@ textarea{resize:vertical;min-height:96px}
 .footerin{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .footer b{color:#dbe3f1;letter-spacing:2px}
 .backtop{position:fixed;right:20px;bottom:20px;width:42px;height:42px;border-radius:13px;background:#dce4f0;color:#0b1020;display:grid;place-items:center;font-weight:800;box-shadow:0 8px 30px #0006;z-index:20}
-@media(max-width:850px){.heroGrid{grid-template-columns:1fr .7fr;gap:20px}.heroArt{min-height:300px}.core{width:170px}.core strong{font-size:56px}.orbit{width:290px}.sectionHead{align-items:start;flex-direction:column}.sectionHead p{max-width:620px}.applyIntro{grid-template-columns:1fr}.applyAside{position:static}.links{gap:14px}.links a:nth-child(2){display:none}}
+@media(max-width:850px){.links a:nth-child(2){display:inline}.heroGrid{grid-template-columns:1fr .7fr;gap:20px}.heroArt{min-height:300px}.core{width:170px}.core strong{font-size:56px}.orbit{width:290px}.sectionHead{align-items:start;flex-direction:column}.sectionHead p{max-width:620px}.applyIntro{grid-template-columns:1fr}.applyAside{position:static}.links{gap:14px}.links a:nth-child(2){display:none}}
 @media(max-width:620px){.wrap{width:calc(100% - 28px)}.navin{height:64px}.links a:not(.navcta){display:none}.brand{font-size:13px}.navcta{padding:9px 11px;font-size:11px}.hero{padding:70px 0 54px}.heroGrid{grid-template-columns:1fr}.heroArt{min-height:245px;margin-top:0}.core{width:145px;border-radius:28px}.core strong{font-size:48px}.orbit{width:245px}.tag1{top:5px;right:0}.tag2{bottom:20px;left:0}.tag3{bottom:0;right:0}.heroMeta{gap:17px;margin-top:29px}h1{letter-spacing:-4px}.section{padding:65px 0}.teamGrid,.values{grid-template-columns:1fr}.person{min-height:160px}.projectGrid{grid-template-columns:1fr}.projectTop{height:185px}.formShell{padding:17px}.formGrid{grid-template-columns:1fr}.field.full{grid-column:auto}.skillChoices{grid-template-columns:1fr}.qopts{grid-template-columns:1fr}.submitRow{flex-direction:column}.footerin{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* JUST motion upgrade */
+:root{--accent:#9bbcff;--line:#34415b}
+body{background:radial-gradient(ellipse at 50% -20%,#1b2b49 0,transparent 48%),var(--bg);overflow-x:hidden}
+::selection{background:#a9c5ff;color:#08101f}
+.nav{background:rgba(8,11,19,.76);box-shadow:0 10px 40px #0002}
+.mark{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.brand:hover .mark{transform:rotate(-10deg) scale(1.08);box-shadow:0 0 28px #9bbcff35,inset 0 0 20px #ffffff20}
+.links a{position:relative;transition:color .25s}
+.links a:not(.navcta):after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:#bcd0ff;transition:right .3s}
+.links a:not(.navcta):hover:after{right:0}
+.navcta,.btn{position:relative;overflow:hidden;isolation:isolate}
+.navcta:before,.btn:before{content:"";position:absolute;inset:0;transform:translateX(-120%);background:linear-gradient(105deg,transparent 25%,#fff9 48%,transparent 70%);transition:transform .65s;z-index:-1}
+.navcta:hover:before,.btn:hover:before{transform:translateX(120%)}
+.hero{isolation:isolate}
+.hero:after{content:"";position:absolute;width:480px;height:480px;right:-150px;top:-180px;border-radius:50%;border:1px solid #9bbcff12;box-shadow:0 0 0 45px #9bbcff05,0 0 0 95px #9bbcff03;animation:slowOrbit 32s linear infinite;pointer-events:none}
+.heroGrid{animation:heroEnter .9s both cubic-bezier(.2,.7,.2,1)}
+.kicker .dot{animation:pulseDot 2s ease-in-out infinite}
+h1{background:linear-gradient(100deg,#fff 5%,#c9d8f6 45%,#819acb 75%,#fff);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:titleShine 9s linear infinite}
+h1 span{color:#aebbd0}
+.heroArt{perspective:900px}
+.orbit{animation:orbitSpin 28s linear infinite}
+.core{animation:coreFloat 6s ease-in-out infinite;transition:box-shadow .4s,border-color .4s}
+.heroArt:hover .core{box-shadow:0 35px 100px #000b,0 0 55px #8fb5ff20,inset 0 1px #ffffff3b;border-color:#c5d8ff80}
+.floatTag{animation:tagFloat 5s ease-in-out infinite}
+.tag2{animation-delay:-1.8s}.tag3{animation-delay:-3.1s}
+.person,.value,.project{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s,background .35s}
+.person:hover,.value:hover{transform:translateY(-7px);border-color:#91b2f4a0;box-shadow:0 18px 45px #0003,0 0 0 1px #9bbcff0b}
+.person:hover .avatar{transform:rotate(-7deg) scale(1.08);background:#233452}
+.avatar{transition:transform .35s,background .35s}
+.person.featured:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 20%,#a9c5ff0b 50%,transparent 80%);transform:translateX(-120%);transition:transform .8s;pointer-events:none}
+.person.featured:hover:before{transform:translateX(120%)}
+.devLead{border-color:#8de2c34d;background:linear-gradient(145deg,#18312f,#111725)}
+.devLead .role{color:#9ee8ce}
+.devLead .avatar{color:#b7f5df;border-color:#9ee8ce40}
+.project{transform:translateY(0)}
+.project:hover{transform:translateY(-8px) scale(1.008);box-shadow:0 22px 55px #0005}
+.projectTop:after{content:"";position:absolute;inset:-60% -80%;background:linear-gradient(110deg,transparent 40%,#ffffff0d 50%,transparent 60%);transform:translateX(-45%);transition:transform .8s}
+.project:hover .projectTop:after{transform:translateX(45%)}
+.projectGlyph{transition:transform .45s cubic-bezier(.2,.8,.2,1);animation:glyphBreathe 5s ease-in-out infinite}
+.project:hover .projectGlyph{transform:scale(1.08) translateY(-3px)}
+.qitem{transition:border-color .25s,transform .25s,background .25s}
+.qitem:focus-within{border-color:#8daeff;background:#101a2c;transform:translateY(-1px)}
+.qopt{transition:background .2s,border-color .2s,transform .2s}
+.qopt:hover{transform:translateY(-2px);border-color:#7f9dd9}
+input,select,textarea{transition:border-color .2s,box-shadow .2s,transform .2s}
+input:focus,select:focus,textarea:focus{transform:translateY(-1px)}
+.progress i{background:linear-gradient(90deg,#6e94f6,#dce8ff,#83dfb0);background-size:200% 100%;animation:progressGlow 3s linear infinite}
+.backtop{transition:transform .25s,box-shadow .25s}
+.backtop:hover{transform:translateY(-5px) rotate(4deg);box-shadow:0 12px 35px #0008}
+.reveal-ready .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal-ready .reveal.in-view{opacity:1;transform:translateY(0)}
+@keyframes heroEnter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slowOrbit{to{transform:rotate(360deg)}}
+@keyframes orbitSpin{to{transform:rotate(338deg)}}
+@keyframes coreFloat{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(-5deg) translateY(-10px)}}
+@keyframes tagFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 8px #8bb1ff}50%{box-shadow:0 0 23px #8bb1ff;opacity:.65}}
+@keyframes titleShine{to{background-position:220% center}}
+@keyframes glyphBreathe{0%,100%{text-shadow:0 0 28px #c7ddff25}50%{text-shadow:0 0 48px #c7ddff55}}
+@keyframes progressGlow{to{background-position:200% 0}}
+@media(max-width:850px){.teamGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.teamGrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal-ready .reveal{opacity:1;transform:none}}
+
+
+
+/* JUST STUDIO — immersive design system v2 */
+:root{--electric:#a8c3ff;--mint:#8de5c3;--rose:#ffc0b7;--panel-glass:rgba(16,22,35,.76)}
+body{background:radial-gradient(ellipse at 12% 4%,#1e2d4b45,transparent 34%),radial-gradient(ellipse at 88% 42%,#1c294322,transparent 35%),var(--bg)}
+.ambientCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.46}
+body>*:not(.ambientCanvas):not(.scrollMeter):not(.nav):not(.backtop){position:relative;z-index:1}
+.scrollMeter{position:fixed!important;top:0;left:0;right:0;height:3px;z-index:80!important;background:#ffffff08;pointer-events:none}
+.scrollMeter i{display:block;width:0;height:100%;background:linear-gradient(90deg,#6d91f7,#c8d9ff,#8de5c3);box-shadow:0 0 12px #9bbcff7a;transition:width .08s linear}
+.nav{z-index:50;border-bottom-color:#ffffff10}
+.navin{position:relative}
+.menuToggle{display:none;width:42px;height:42px;background:#ffffff07;border:1px solid #ffffff20;border-radius:12px;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.menuToggle span{height:2px;width:17px;background:#e5edfa;border-radius:2px;transition:transform .25s,translate .25s}
+.menuToggle[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg)}
+.menuToggle[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+.links a{white-space:nowrap}
+.navcta{box-shadow:0 7px 24px #a9c4ff0c}
+.hero{min-height:620px;display:flex;align-items:center;background:radial-gradient(ellipse at 75% 40%,#2b457634 0,transparent 38%),linear-gradient(135deg,#0b1020e8,#090c15eF 70%)}
+.hero:before{opacity:.75;background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 95%)}
+.hero:after{border-color:#9bbcff18;box-shadow:0 0 0 45px #9bbcff07,0 0 0 95px #9bbcff04}
+.heroGrid{width:100%}
+.kicker{padding:8px 12px;border:1px solid #a9c4ff27;background:#a9c4ff08;border-radius:99px;letter-spacing:2px}
+.dot{animation:pulseDot 2s ease-in-out infinite}
+.heroPill{display:inline-flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:22px;padding:9px 12px;border:1px solid #ffffff12;background:#ffffff05;border-radius:10px;color:#aebbd0;font-size:11px}
+.heroPill b{color:#e9f0ff}.liveDot{width:6px;height:6px;border-radius:50%;background:#8de5c3;box-shadow:0 0 12px #8de5c380;animation:pulseDot 2s infinite}.pillDivider{height:12px;width:1px;background:#ffffff25;margin:0 2px}
+.heroMeta{gap:0;justify-content:flex-start}.heroMeta>div{padding:0 22px;border-left:1px solid #ffffff17}.heroMeta>div:first-child{padding-left:0;border:0}
+.heroMeta b{font-size:16px;letter-spacing:-.4px}
+h1{filter:drop-shadow(0 8px 30px #a9c4ff0b)}
+.core{position:relative;isolation:isolate;box-shadow:0 35px 100px #0009,0 0 60px #91b4fa12,inset 0 1px #ffffff2b}
+.core:before{content:"";position:absolute;inset:9px;border:1px solid #ffffff13;border-radius:29px;pointer-events:none}
+.core:after{content:"";position:absolute;width:55%;height:1px;background:linear-gradient(90deg,transparent,#dce8ff9c,transparent);left:22%;top:19%;transform:rotate(-28deg);animation:coreGlint 5s ease-in-out infinite}
+.studioPulse{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 18px}
+.pulseStat{position:relative;overflow:hidden;min-height:138px;padding:20px 22px;border:1px solid #ffffff13;border-radius:16px;background:linear-gradient(130deg,#151d2dcd,#0d121edc);display:grid;grid-template-columns:1fr auto;align-content:center;gap:2px 10px;transition:transform .3s,border-color .3s,background .3s}
+.pulseStat:after{content:"";position:absolute;width:90px;height:90px;right:-45px;top:-45px;border:1px solid #a9c4ff16;border-radius:50%;box-shadow:0 0 0 15px #a9c4ff04,0 0 0 30px #a9c4ff03}
+.pulseStat:hover{transform:translateY(-5px);border-color:#a9c4ff60;background:linear-gradient(130deg,#1b2840,#101522)}
+.pulseIcon{grid-column:2;grid-row:1/3;font-size:22px;color:#b8ccf7;align-self:start}.pulseLabel{font-size:9px;color:#8e9fbb;letter-spacing:1.9px;font-weight:800}.pulseStat strong{font-size:34px;letter-spacing:-1.5px;line-height:1.15}.pulseCaption{font-size:11px;color:#aab6c9}
+.value{position:relative;overflow:hidden;padding:25px}.value:before{content:"";position:absolute;left:0;right:100%;top:0;height:2px;background:linear-gradient(90deg,#8eafff,#8de5c3);transition:right .45s}.value:hover:before{right:0}.value h3{letter-spacing:-.4px}.valueFoot{margin-top:22px;padding-top:12px;border-top:1px solid #ffffff10;font-size:9px;letter-spacing:1.6px;color:#8196ba;font-weight:800}
+.manifestoRail{margin-top:22px;overflow:hidden;border-block:1px solid #ffffff11;padding:14px 0;background:#ffffff02;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.manifestoTrack{display:flex;align-items:center;justify-content:space-around;gap:30px;min-width:max-content;animation:marquee 28s linear infinite;color:#c1cee4;font-size:10px;letter-spacing:2.4px;font-weight:800}.manifestoTrack b{color:#8de5c3;font-size:16px}
+.teamGrid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.person{min-height:276px;padding:24px;display:flex;flex-direction:column;isolation:isolate;box-shadow:0 10px 35px #00010}
+.person:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0%,#a6c3ff12,transparent 43%);z-index:-1;pointer-events:none}
+.personTopline{display:flex;justify-content:space-between;align-items:center;gap:8px}.memberId{font:800 10px 'DM Sans',sans-serif;letter-spacing:1px;color:#8899b6;padding:5px 7px;border:1px solid #ffffff14;border-radius:7px;background:#ffffff04}
+.person h3{font-size:28px;margin:25px 0 9px}.person p{max-width:310px;line-height:1.85;font-size:12px}.personSkills{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}.personSkills span{font-size:9px;color:#bac8df;padding:5px 7px;border:1px solid #ffffff14;background:#ffffff04;border-radius:6px}.person .avatar{margin-top:auto;margin-bottom:0;width:37px;height:37px}
+.personIndex{position:absolute;right:22px;bottom:23px;color:#64728a;font-size:9px;letter-spacing:1.6px;font-weight:800}.leaderCard{border-color:#a9c4ff5c;background:linear-gradient(145deg,#1c2a43,#111725)}.deputyCard{background:linear-gradient(145deg,#171f30,#101520)}.devLead{background:linear-gradient(145deg,#18312f,#111725);border-color:#8de2c35b}.devLead .personIndex{color:#689f91}
+.rosterNotice{display:flex;align-items:center;gap:13px;margin-top:16px;padding:16px 18px;border:1px solid #e0b97a2c;background:linear-gradient(100deg,#5a45200d,#101522b8);border-radius:14px}.rosterMark{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:9px;border:1px solid #eac78b3b;color:#e8c68c;font-weight:800}.rosterNotice strong{font-size:12px}.rosterNotice p{margin:4px 0 0;color:#aab5c7;font-size:11px;line-height:1.7}.rosterNotice p b{color:#e5d1ab}.holdBadge{margin-left:auto;white-space:nowrap;padding:6px 8px;border:1px solid #d3b57b40;color:#d7bc89;border-radius:7px;font-size:9px;font-weight:800;letter-spacing:1px}
+.recruitStrip{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-top:20px;padding:25px 26px;border:1px solid #a9c4ff28;border-radius:17px;background:linear-gradient(105deg,#17233a,#111725 75%);position:relative;overflow:hidden}.recruitStrip:after{content:"";position:absolute;right:-45px;top:-100px;width:210px;height:210px;border:1px solid #a9c4ff1c;border-radius:50%;box-shadow:0 0 0 28px #a9c4ff05,0 0 0 57px #a9c4ff03;pointer-events:none}.recruitStrip .eyebrow{font-size:9px}.recruitStrip h3{margin:7px 0;font-size:20px;letter-spacing:-.5px}.recruitStrip p{margin:0;color:#9caac0;font-size:11px}.recruitStrip .btn{z-index:1;white-space:nowrap}
+.workflowSection{overflow:hidden}.workflowLine{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;position:relative}.workflowLine:before{content:"";position:absolute;left:7%;right:7%;top:32px;height:1px;background:linear-gradient(90deg,#9cbcff35,#8de5c360,#9cbcff35)}
+.flowStep{position:relative;border:1px solid #ffffff14;border-radius:16px;padding:18px 17px;background:linear-gradient(165deg,#151d2d,#0d121d);transition:transform .35s,border-color .35s,box-shadow .35s;min-width:0}.flowStep:hover{transform:translateY(-7px);border-color:#9cbcff6b;box-shadow:0 18px 35px #0003}.flowNumber{position:absolute;right:16px;top:17px;color:#53627b;font-size:10px;letter-spacing:1px;font-weight:800}.flowIcon{position:relative;z-index:1;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;color:#dbe7ff;background:#202d46;border:1px solid #9cbcff28;font-size:17px;box-shadow:0 0 0 5px #111722}.flowLabel{display:block;margin-top:23px;font-size:9px;color:#9db8f4;font-weight:800;letter-spacing:1.8px}.flowStep h3{font-size:16px;letter-spacing:-.4px;margin:9px 0}.flowStep p{font-size:11px;line-height:1.85;color:#9eacc1;min-height:95px;margin:0}.flowOutput{padding-top:12px;margin-top:14px;border-top:1px solid #ffffff12;color:#aebbd0;font-size:10px;line-height:1.7}.flowOutput b{display:block;color:#647da8;font-size:8px;letter-spacing:1.5px;margin-bottom:3px}
+.devPrinciples{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:16px;border:1px solid #ffffff13;border-radius:15px;overflow:hidden;background:#0d121d}.principleLead{padding:21px;border-right:1px solid #ffffff10;grid-row:span 1}.principleLead h3{font-size:17px;line-height:1.5;margin:8px 0 0}.principle{display:flex;gap:12px;padding:19px;border-right:1px solid #ffffff10}.principle:last-child{border:0}.principle>span{font-size:10px;color:#8faeea;font-weight:800}.principle b{font-size:11px}.principle p{margin:5px 0 0;color:#9ba8bd;font-size:10px;line-height:1.7}
+.projectGrid{align-items:stretch}.project{position:relative;isolation:isolate}.projectTop{height:245px}.projectTop.air{background:radial-gradient(ellipse at 50% 45%,#263e6d 0,#131d30 45%,#0c1019 100%)}.projectTop.zombie{background:radial-gradient(ellipse at 50% 45%,#492b33 0,#20171f 52%,#0c1019 100%)}.projectTop:after{z-index:2}.projectIndex,.projectState,.projectFootLabel{z-index:3}.projectState{display:flex;align-items:center;gap:7px;letter-spacing:.5px}.projectState i{display:inline-block;width:5px;height:5px;background:#8de5c3;border-radius:50%;box-shadow:0 0 10px #8de5c3;animation:pulseDot 2s infinite}.projectAir .projectState i{background:#9cbcff;box-shadow:0 0 10px #9cbcff}.projectGlyph{z-index:2}.projectOrbit{position:absolute;z-index:1;width:178px;height:178px;border:1px solid #aecaff28;border-radius:50%;pointer-events:none}.o1{animation:orbitSpin 24s linear infinite}.o2{width:225px;height:225px;border-style:dashed;opacity:.6;animation:orbitSpin 38s linear infinite reverse}.projectZombie .projectGlyph{font-size:84px;text-shadow:0 0 45px #ffc0b733}.zombieScan{position:absolute;inset:0;z-index:1;background:linear-gradient(transparent 49%,#ffc0b70c 50%,transparent 51%);background-size:100% 8px;opacity:.4;pointer-events:none}.projectFootLabel{position:absolute;left:18px;bottom:16px;font-size:9px;letter-spacing:1.9px;color:#9aacc9;font-weight:800}.projectMeta{display:flex;justify-content:space-between;gap:10px;color:#7f91af;font-size:9px;font-weight:800;letter-spacing:1.3px;margin-bottom:14px}.projectBody h3{font-size:27px}.projectSummary{min-height:90px}.projectBrief{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:19px 0}.projectBrief div{padding:11px;border:1px solid #ffffff10;border-radius:10px;background:#090e180a}.projectBrief span{display:block;font-size:9px;color:#8290a7;margin-bottom:4px}.projectBrief b{display:block;font-size:10px;color:#d2dced}.projectDisclaimer{display:flex;gap:14px;align-items:flex-start;margin-top:17px;padding:16px 18px;border:1px solid #ffffff12;border-radius:13px;background:#ffffff03}.disclaimerIcon{flex:none;width:29px;height:29px;display:grid;place-items:center;border:1px solid #8de5c32c;background:#8de5c30a;color:#8de5c3;border-radius:9px}.projectDisclaimer b{font-size:11px}.projectDisclaimer p{margin:5px 0 0;color:#9da9bd;font-size:11px;line-height:1.8}
+.faqLayout{display:grid;grid-template-columns:.7fr 1.3fr;gap:54px;align-items:start}.faqIntro{position:sticky;top:112px}.faqIntro h2{margin-top:13px}.faqIntro p{max-width:320px;margin-top:17px;color:#9ba8bd;font-size:12px;line-height:1.9}.faqCta{display:inline-flex;gap:10px;align-items:center;margin-top:14px;color:#c8d7f4;font-size:11px;border-bottom:1px solid #a9c4ff55;padding-bottom:7px}.faqCta span{transition:transform .2s}.faqCta:hover span{transform:translate(3px,3px)}.faqList{border-top:1px solid #ffffff18}.faqItem{border-bottom:1px solid #ffffff18}.faqItem summary{display:grid;grid-template-columns:32px 1fr 24px;gap:11px;align-items:center;padding:20px 4px;list-style:none;cursor:pointer;font-size:13px;font-weight:700}.faqItem summary::-webkit-details-marker{display:none}.faqItem summary>span{font-size:9px;letter-spacing:1px;color:#8da8e0}.faqItem summary>b{display:grid;place-items:center;width:23px;height:23px;border:1px solid #ffffff15;border-radius:7px;color:#9eb9f3;font-weight:500;transition:transform .25s,background .25s}.faqItem[open] summary>b{transform:rotate(45deg);background:#9bbcff13}.faqAnswer{padding:0 36px 20px 47px;color:#9daac0;font-size:12px;line-height:1.9;animation:faqIn .25s ease both}
+.applyStep{display:inline-block;color:#96b4f3;font-size:9px;letter-spacing:2px;font-weight:800;margin-bottom:15px}.applyAside h3{font-size:24px;line-height:1.4}.applyChecklist{margin-top:22px}.applyChecklist>div{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-top:1px solid #ffffff10}.applyChecklist>div>span{color:#92b1f2;font-size:10px;font-weight:800;padding-top:2px}.applyChecklist p{margin:0}.applyChecklist b{display:block;color:#dce6f8;font-size:11px}.applyChecklist small{display:block;color:#8d9bb1;font-size:10px;margin-top:3px}.formHead{align-items:flex-start}.formHead h3{margin-top:5px}.formHead p{font-size:11px;color:#8997ad;margin:5px 0 0}.formEyebrow{color:#91afea;font-size:9px;letter-spacing:1.8px;font-weight:800}.quizIntro{align-items:flex-end}.quizIntro h4{margin:6px 0 0}.quizIntro p{margin:5px 0 0;color:#8997ad;font-size:10px;line-height:1.7}.quizIntro #answered{white-space:nowrap}
+.footer{position:relative}.footer b{font-size:13px}.footer b span{color:#8797b2;letter-spacing:0}.footerSmall{margin-top:6px;color:#66748a;font-size:10px}.footerLinks{display:flex;gap:14px;flex-wrap:wrap;align-items:center}.footerLinks a{color:#9ba8bd;font-size:10px;letter-spacing:1px;transition:color .2s}.footerLinks a:hover{color:#e5edfc}.footerLegal{line-height:2;text-align:right}
+.backtop{z-index:40;border:1px solid #ffffff44}
+.reveal-ready .reveal{will-change:transform,opacity}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes coreGlint{0%,100%{opacity:.12;transform:translateX(-20%) rotate(-28deg)}50%{opacity:.8;transform:translateX(20%) rotate(-28deg)}}
+@keyframes faqIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1000px){.links{gap:15px}.links a{font-size:11px}.workflowLine{grid-template-columns:repeat(2,minmax(0,1fr))}.workflowLine:before{display:none}.flowStep p{min-height:0}.devPrinciples{grid-template-columns:1fr 1fr}.principleLead{grid-column:1/-1;border-right:0;border-bottom:1px solid #ffffff10}.principle:nth-child(3){border-right:0}.principle:last-child{grid-column:1/-1;border-top:1px solid #ffffff10}}
+@media(max-width:850px){.hero{min-height:0}.teamGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.teamGrid .devLead{grid-column:1/-1}.faqLayout{gap:28px}.person{min-height:270px}.heroMeta>div{padding:0 14px}}
+@media(max-width:720px){.menuToggle{display:flex}.navin{height:66px}.links{display:none;position:absolute;top:58px;left:0;right:0;padding:12px;background:#0c1220f5;border:1px solid #ffffff1b;border-radius:15px;box-shadow:0 18px 50px #0009;backdrop-filter:blur(20px);flex-direction:column;align-items:stretch;gap:2px}.links.is-open{display:flex;animation:navDrop .2s ease both}.links a:not(.navcta){display:block;padding:12px 13px;border-radius:8px}.links a:not(.navcta):hover{background:#ffffff08}.links a:not(.navcta):after{display:none}.links .navcta{margin-top:7px}.heroGrid{grid-template-columns:1fr}.heroArt{min-height:260px}.heroMeta{gap:0}.studioPulse{gap:8px}.pulseStat{padding:15px 13px;min-height:125px}.pulseStat strong{font-size:28px}.pulseLabel{font-size:8px;letter-spacing:1px}.pulseCaption{font-size:10px}.values{grid-template-columns:1fr}.manifestoTrack{animation-duration:34s}.faqLayout{grid-template-columns:1fr}.faqIntro{position:static}.faqIntro p{max-width:540px}.faqList{margin-top:4px}.faqAnswer{padding-left:42px}.footerLegal{text-align:left}}
+@media(max-width:620px){.wrap{width:calc(100% - 28px)}.hero{padding:64px 0 48px}.heroArt{min-height:230px}.heroPill{font-size:10px}.heroMeta{margin-top:28px;justify-content:space-between}.heroMeta>div{padding:0 8px}.heroMeta b{font-size:13px}.heroMeta>div{font-size:9px}.studioPulse{grid-template-columns:1fr 1fr}.pulseStat:last-child{grid-column:1/-1;min-height:100px}.teamGrid{grid-template-columns:1fr}.teamGrid .devLead{grid-column:auto}.person{min-height:250px}.person h3{margin-top:20px}.rosterNotice{align-items:flex-start;padding:13px}.holdBadge{font-size:8px}.recruitStrip{align-items:flex-start;flex-direction:column;padding:21px}.recruitStrip h3{font-size:18px}.workflowLine{grid-template-columns:1fr;gap:11px}.flowStep{padding:18px}.flowLabel{margin-top:15px}.flowStep p{font-size:12px}.devPrinciples{grid-template-columns:1fr}.principleLead{grid-column:auto}.principle,.principle:nth-child(3),.principle:last-child{grid-column:auto;border-right:0;border-top:1px solid #ffffff10;padding:16px 20px}.projectGrid{grid-template-columns:1fr}.projectTop{height:205px}.projectSummary{min-height:0}.projectBrief{grid-template-columns:1fr 1fr}.projectDisclaimer{padding:14px}.formShell{padding:17px}.quizIntro{align-items:flex-start;flex-direction:column}.quizIntro #answered{align-self:flex-end}.footerin{gap:18px}.footerLinks{gap:13px}.footerSmall{max-width:270px}}
+@keyframes navDrop{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.ambientCanvas{display:none}.manifestoTrack{animation:none}.projectOrbit,.zombieScan{animation:none}.core:after{animation:none}.scrollMeter i{transition:none}html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal-ready .reveal{opacity:1;transform:none}}
+
+
+/* JUST ULTIMATE v2 — balanced composition + cinematic motion system */
+:root{--max:1240px;--ease-out:cubic-bezier(.16,1,.3,1);--ease-spring:cubic-bezier(.2,.85,.25,1.25)}
+body{overflow-x:hidden;background-image:radial-gradient(ellipse at 50% -18%,#243b6928,transparent 55%)}
+.wrap{width:min(var(--max),calc(100% - 64px))}
+.hero{padding:92px 0 74px;background:radial-gradient(ellipse at 50% 15%,#314a7c3d 0,transparent 48%),linear-gradient(135deg,#0b1020,#090c15 70%)}
+.heroGrid{grid-template-columns:1fr;gap:16px;max-width:1040px;margin:0 auto;text-align:center}
+.heroCopy{display:flex;flex-direction:column;align-items:center}
+.kicker{justify-content:center;margin-inline:auto}
+h1{max-width:100%;font-size:clamp(64px,10vw,128px);letter-spacing:clamp(-7px,-.5vw,-2px);text-wrap:balance;text-shadow:0 0 54px #8fb4ff15}
+.lead{max-width:760px;margin-inline:auto;text-wrap:pretty}
+.heroBtns,.heroMeta{justify-content:center}
+.heroArt{width:min(100%,650px);min-height:330px;margin:0 auto;transform-origin:center}
+.heroArt .core{animation:coreFloat 6s ease-in-out infinite,corePulse 4.5s ease-in-out infinite}
+.heroArt .orbit{animation:slowOrbit 22s linear infinite}
+.heroArt .orbit2{animation:orbitReverse 30s linear infinite}
+.heroArt .floatTag{animation:tagFloat 4.5s ease-in-out infinite,tagGlow 5s ease-in-out infinite}
+.heroArt .tag2{animation-delay:-1.2s,-2s}.heroArt .tag3{animation-delay:-2.4s,-3s}
+.sectionHead{display:flex;flex-direction:column;align-items:center;gap:15px;text-align:center;margin:0 auto 42px;max-width:920px}
+.sectionHead>div{width:100%}
+.sectionHead h2{text-wrap:balance}
+.sectionHead p{max-width:760px;margin-inline:auto;font-size:14px;text-wrap:pretty}
+.section{padding:104px 0}
+.teamGrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
+.person{min-height:315px;padding:25px 21px 48px;text-align:center;display:flex;flex-direction:column;align-items:center;isolation:isolate;transition:transform .65s var(--ease-out),border-color .4s,box-shadow .5s,background .5s}
+.person:before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;background:radial-gradient(circle at 50% 0%,#8eb5ff2c,transparent 64%);transition:opacity .5s}
+.person:hover:before{opacity:1}
+.person:hover{transform:translateY(-9px) scale(1.015);box-shadow:0 24px 70px #0005,0 0 0 1px #9cbcff16 inset}
+.personTopline{width:100%;display:flex;flex-direction:column;align-items:center;gap:9px;min-height:57px}
+.role{font-size:10px;letter-spacing:1.4px;text-align:center}
+.memberId{font-variant-numeric:tabular-nums}
+.person h3{font-size:clamp(22px,2vw,28px);margin:17px 0 9px;text-align:center}
+.person p{max-width:100%;min-height:62px;text-align:center;line-height:1.85;font-size:12px}
+.personSkills{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px;margin-top:15px}
+.personSkills span{border:1px solid #ffffff15;background:#ffffff06;border-radius:999px;padding:5px 9px;font-size:10px;transition:background .35s,border-color .35s,transform .35s}
+.person:hover .personSkills span{background:#9bbcff0c;border-color:#9bbcff38}
+.avatar{width:54px;height:54px;border-radius:17px;font-size:20px;margin:20px auto 0;box-shadow:0 0 0 7px #ffffff04,0 0 30px #9bbcff12;transition:transform .55s var(--ease-spring),box-shadow .4s}
+.person:hover .avatar{transform:translateY(-4px) rotate(-5deg) scale(1.08);box-shadow:0 0 0 8px #9bbcff0b,0 0 34px #9bbcff30}
+.personIndex{position:absolute;bottom:18px;left:12px;right:12px;text-align:center;font-size:9px;letter-spacing:1.8px}
+.teamFootnote{display:flex;align-items:center;gap:17px;margin-top:24px;padding:22px 25px;border:1px solid #ffffff12;border-radius:18px;background:linear-gradient(100deg,#121a2a,#0d121d);box-shadow:0 16px 50px #0002}
+.teamFootnoteIcon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border:1px solid #9bbcff35;border-radius:14px;color:#c7d9ff;background:#9bbcff0b;animation:iconOrbit 8s linear infinite}
+.teamFootnote p{flex:1;margin:0;color:var(--muted);font-size:13px;line-height:1.8}.teamFootnote p b{color:#f5f7fb}
+.teamFootnoteTag{color:#9bbcff;font-size:10px;letter-spacing:1.6px;font-weight:800;white-space:nowrap}
+.qualitySection{position:relative;overflow:hidden;background:radial-gradient(ellipse at 15% 40%,#1d3c5c24,transparent 42%),radial-gradient(ellipse at 90% 70%,#3d2d5920,transparent 38%),#0a0e18;border-block:1px solid #ffffff0b}
+.qualityGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.qualityCard{position:relative;overflow:hidden;min-height:285px;padding:25px 23px 24px;border:1px solid #ffffff14;border-radius:20px;background:linear-gradient(155deg,#161f30e8,#0d121e);transition:transform .65s var(--ease-out),border-color .45s,box-shadow .5s;isolation:isolate}
+.qualityCard:before{content:"";position:absolute;inset:-1px;z-index:-1;background:linear-gradient(125deg,transparent 15%,#b4ceff13 43%,transparent 67%);transform:translateX(-120%);transition:transform .85s var(--ease-out)}
+.qualityCard:hover{transform:translateY(-9px);border-color:#9bbcff5c;box-shadow:0 24px 60px #0004,0 0 35px #6e98ff0b}
+.qualityCard:hover:before{transform:translateX(120%)}
+.qualityNo{position:absolute;right:20px;top:19px;font-size:11px;letter-spacing:1.6px;color:#71819e}
+.qualityIcon{display:grid;place-items:center;width:46px;height:46px;border-radius:15px;border:1px solid #a8c3ff30;background:linear-gradient(135deg,#8eb5ff1b,#8de5c308);font-size:23px;color:#c8d9ff;box-shadow:0 0 24px #9bbcff0b;transition:transform .5s var(--ease-spring),box-shadow .4s}
+.qualityCard:hover .qualityIcon{transform:rotate(-8deg) scale(1.1);box-shadow:0 0 28px #9bbcff22}
+.qualityLabel{display:block;margin-top:24px;font-size:9px;letter-spacing:2px;color:#9bbcff;font-weight:800}
+.qualityCard h3{font-size:21px;letter-spacing:-.5px;margin:7px 0 10px}
+.qualityCard p{margin:0;color:var(--muted);font-size:12px;line-height:1.9}
+.qualityLine{height:2px;background:#ffffff0c;margin-top:22px;overflow:hidden;border-radius:4px}.qualityLine i{display:block;width:30%;height:100%;background:linear-gradient(90deg,#7f9fff,#b7d0ff,#8de5c3);transition:width .65s var(--ease-out)}.qualityCard:hover .qualityLine i{width:100%}
+.qualityStatement{position:relative;display:flex;align-items:center;gap:30px;overflow:hidden;margin-top:20px;padding:32px 38px;border:1px solid #9bbcff29;border-radius:24px;background:linear-gradient(105deg,#17243a,#101725 60%,#14221f);box-shadow:0 20px 60px #0003}
+.qualityOrb{width:100px;height:100px;flex:0 0 100px;border:1px solid #b5ccff5e;border-radius:50%;position:relative;background:radial-gradient(circle at 35% 30%,#d7e4ff,#7e9fe5 14%,#1a2b4b 43%,#0c111d 68%);box-shadow:0 0 0 11px #9bbcff08,0 0 45px #8eb5ff21;animation:orbBreathe 5s ease-in-out infinite}
+.qualityOrb:before,.qualityOrb:after{content:"";position:absolute;inset:-12px;border:1px solid #9bbcff2c;border-radius:50%;animation:slowOrbit 14s linear infinite}.qualityOrb:after{inset:-23px;border-style:dashed;border-color:#8de5c326;animation:orbitReverse 22s linear infinite}
+.qualityStatement>div:nth-child(2){flex:1}.qualityStatement h3{margin:8px 0;font-size:clamp(24px,3vw,36px);line-height:1.2;letter-spacing:-1px}.qualityStatement h3 em{font-style:normal;color:#adc6ff}.qualityStatement p{margin:0;color:var(--muted);font-size:11px;line-height:1.8}
+.qualityStamp{display:grid;place-items:center;width:76px;height:76px;flex:0 0 76px;border:1px solid #8de5c34d;border-radius:50%;color:#a8e8cf;font-size:10px;font-weight:800;letter-spacing:1.5px;text-align:center;transform:rotate(10deg);animation:stampFloat 5s ease-in-out infinite}
+.projectGrid{gap:22px}.project{transition:transform .6s var(--ease-out),border-color .45s,box-shadow .5s}.project:hover{transform:translateY(-8px) scale(1.008);box-shadow:0 26px 70px #0005}
+.projectTop{height:260px}.projectTop:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 25%,#ffffff09 45%,transparent 62%);transform:translateX(-120%);animation:projectSweep 8s ease-in-out infinite}
+.btn,.navcta,.faqCta{position:relative;overflow:hidden}.btn:after,.navcta:after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,#ffffff70 50%,transparent 68%);transform:translateX(-130%);transition:transform .7s var(--ease-out)}.btn:hover:after,.navcta:hover:after{transform:translateX(130%)}
+.recruitStrip{border-radius:22px;box-shadow:0 20px 55px #0002}
+.footerin{max-width:var(--max);margin-inline:auto}
+/* Stronger but restrained layered motion */
+@keyframes orbitReverse{to{transform:rotate(-360deg)}}
+@keyframes corePulse{0%,100%{filter:drop-shadow(0 0 14px #91b8ff18)}50%{filter:drop-shadow(0 0 35px #91b8ff42)}}
+@keyframes tagGlow{0%,100%{border-color:#ffffff1c;box-shadow:0 5px 24px #0002}50%{border-color:#9bbcff4d;box-shadow:0 5px 30px #9bbcff12}}
+@keyframes iconOrbit{to{transform:rotate(360deg)}}
+@keyframes orbBreathe{0%,100%{transform:scale(.96);filter:hue-rotate(0deg)}50%{transform:scale(1.04);filter:hue-rotate(12deg)}}
+@keyframes stampFloat{0%,100%{transform:rotate(10deg) translateY(0)}50%{transform:rotate(5deg) translateY(-7px)}}
+@keyframes projectSweep{0%,65%,100%{transform:translateX(-120%)}82%{transform:translateX(120%)}}
+@media(max-width:1100px){.teamGrid,.qualityGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.person{min-height:285px}.person p{max-width:360px}.heroArt{min-height:300px}}
+@media(max-width:720px){.wrap{width:calc(100% - 32px)}.hero{padding:70px 0 54px}.heroGrid{gap:8px}.heroArt{min-height:240px}.section{padding:76px 0}.sectionHead{margin-bottom:30px}.sectionHead p{font-size:13px}.teamGrid,.qualityGrid{grid-template-columns:1fr}.person{min-height:0;padding:24px 22px 50px}.person p{min-height:0;max-width:420px}.personTopline{min-height:0}.teamFootnote{align-items:flex-start;padding:18px;gap:12px}.teamFootnoteTag{display:none}.qualityCard{min-height:0;padding:23px}.qualityLabel{margin-top:18px}.qualityStatement{padding:25px 22px;gap:16px}.qualityOrb{width:62px;height:62px;flex-basis:62px}.qualityStamp{width:54px;height:54px;flex-basis:54px;font-size:8px}.qualityStatement h3{font-size:24px}.projectTop{height:220px}}
+@media(max-width:420px){h1{font-size:58px;letter-spacing:-3px}.heroMeta{gap:12px;flex-wrap:wrap}.heroBtns{width:100%}.heroBtns .btn{flex:1}.qualityStatement{flex-wrap:wrap}.qualityStamp{margin-left:auto}.qualityStatement>div:nth-child(2){min-width:0}}
+@media(prefers-reduced-motion:reduce){.heroArt .core,.heroArt .orbit,.heroArt .orbit2,.heroArt .floatTag,.qualityOrb,.qualityOrb:before,.qualityOrb:after,.qualityStamp,.teamFootnoteIcon{animation:none!important}.qualityCard,.person,.project{transition:none!important}.projectTop:after{animation:none!important}}
+
+
+
+/* ================================================================
+   JUST ULTIMATE V3 — Design system, motion language, and responsive polish
+   ================================================================ */
+:root{--bg:#070a12;--panel:#0f1523;--panel2:#141e31;--line:#293750;--text:#f5f7ff;--muted:#a4b0c5;--silver:#e8efff;--blue:#abc7ff;--accent:#88aaff;--green:#8df0ce;--violet:#ba9dff;--ease-spring:cubic-bezier(.2,1.35,.35,1);--ease-out:cubic-bezier(.16,1,.3,1);--max:1240px}
+html{scroll-padding-top:94px;scroll-behavior:smooth}
+body{overflow-x:hidden;background:radial-gradient(ellipse at 50% -20%,#17254555,transparent 55%),#070a12;letter-spacing:-.01em}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(#b5ccff0c .7px,transparent .7px);background-size:24px 24px;mask-image:linear-gradient(to bottom,#000,transparent 76%);opacity:.43}
+::selection{background:#9bbcff50;color:#fff}
+:focus-visible{outline:2px solid #b3cbff!important;outline-offset:4px!important}
+.wrap{width:min(var(--max),calc(100% - 64px))}
+.nav{position:sticky;top:0;z-index:60;background:#080c16d9;border-bottom:1px solid #b4caff16;box-shadow:0 10px 50px #00000012;transition:background .35s,border-color .35s,box-shadow .35s}
+body.scrolled .nav{background:#080c16ed;border-color:#a9c6ff27;box-shadow:0 12px 44px #0004}
+.navin{height:78px;gap:22px}
+.brand{gap:12px;letter-spacing:2.5px;transition:transform .4s var(--ease-spring)}
+.brand:hover{transform:translateY(-2px)}
+.mark{width:41px;height:41px;border-radius:14px;background:linear-gradient(145deg,#273c61,#101729);border-color:#d6e5ff5e;box-shadow:inset 0 1px #fff3,0 0 30px #83aaff12;font-size:17px;position:relative;overflow:hidden}
+.mark:after{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 40%,#fff5 50%,transparent 60%);transform:translateX(-120%);animation:markSweep 5.5s ease-in-out infinite}
+.brand small{letter-spacing:2.6px;font-size:9px}
+.links{gap:clamp(12px,1.8vw,24px);font-size:11px;letter-spacing:1.1px}
+.links a{position:relative;transition:color .25s,transform .25s}
+.links a:not(.navcta):after{content:"";position:absolute;left:0;right:100%;bottom:-8px;height:1px;background:linear-gradient(90deg,#9dbdff,#9ef0d0);transition:right .35s var(--ease-out)}
+.links a:not(.navcta):hover:after,.links a[aria-current="location"]:not(.navcta):after{right:0}
+.navcta{padding:12px 16px;border-radius:11px;background:linear-gradient(110deg,#f1f5ff,#b9ceff);box-shadow:0 6px 22px #8eafff1a;letter-spacing:.7px}
+.navcta:hover,.btn:hover{box-shadow:0 9px 30px #87aaff24}
+.menuToggle{border:1px solid #ffffff22;background:#10182a;border-radius:12px;width:43px;height:43px}
+.heroV3{isolation:isolate;min-height:calc(100svh - 78px);padding:88px 0 30px;background:radial-gradient(ellipse at 50% 30%,#1c315a45,transparent 45%),linear-gradient(180deg,#0a1020,#080b14 78%);overflow:hidden}
+.heroV3:before{background-image:linear-gradient(#c0d2ff08 1px,transparent 1px),linear-gradient(90deg,#c0d2ff08 1px,transparent 1px);background-size:58px 58px;mask-image:radial-gradient(ellipse at 50% 40%,#000 0,transparent 75%);opacity:.75;animation:gridDrift 36s linear infinite}
+.heroV3:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 65%,#070a12 100%);z-index:0}
+.heroAura{position:absolute;width:580px;aspect-ratio:1;border-radius:50%;filter:blur(65px);opacity:.15;pointer-events:none;z-index:-1;animation:auraDrift 18s ease-in-out infinite alternate}
+.heroAuraA{background:#557eff;left:-220px;top:8%}.heroAuraB{background:#4be0c0;right:-230px;top:16%;animation-delay:-8s;opacity:.11}
+.heroWrap{position:relative;z-index:2}
+.heroGrid{display:block;position:relative;min-height:600px;isolation:isolate}
+.heroCopy{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0 0;max-width:930px;margin-inline:auto}
+.kicker{justify-content:center;flex-wrap:wrap;gap:10px;color:#c3d4f6;font-size:10px;letter-spacing:2.2px;animation:riseIn .85s var(--ease-out) both;animation-delay:.08s}
+.dot,.liveDot{flex:none;width:7px;height:7px;background:#8ef0ce;box-shadow:0 0 0 4px #8ef0ce12,0 0 20px #8ef0ceaa;animation:signalPulse 2.2s ease-in-out infinite}
+.kickerSep{color:#4e638a;margin-inline:2px}
+.heroTitleLockup{position:relative;display:flex;align-items:center;flex-direction:column;gap:0;margin:22px 0 13px;animation:riseIn 1s var(--ease-out) both;animation-delay:.15s}
+.heroV3 h1{position:relative;z-index:1;font-size:clamp(98px,15.5vw,184px);line-height:.79;letter-spacing:-.105em;margin:0;padding-right:.1em;font-weight:800;background:linear-gradient(105deg,#fff 4%,#dbe6ff 32%,#8fb1ff 52%,#e9e4ff 72%,#fff 95%);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;text-shadow:none;animation:titleFlow 9s linear infinite}
+.heroV3 h1 span{display:inline-block;background:linear-gradient(180deg,#c5d5ff,#8ef0ce);background-clip:text;-webkit-background-clip:text;color:transparent;animation:dotFloat 3.5s ease-in-out infinite}
+.heroKorean{display:block;margin-top:16px;color:#ebf1ff;font-size:clamp(15px,2.1vw,23px);font-weight:800;letter-spacing:.65em;padding-left:.65em;text-shadow:0 4px 32px #9cbaff28}
+.heroKorean i{display:block;margin-top:9px;color:#8093b6;font-style:normal;font-size:9px;letter-spacing:4px;font-weight:700}
+.heroV3 .lead{max-width:680px;font-size:clamp(14px,1.5vw,17px);line-height:2.0;color:#c1cce0;margin:16px auto 0;animation:riseIn .9s var(--ease-out) both;animation-delay:.28s}
+.heroPill{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;padding:10px 14px;margin-top:25px;border:1px solid #a8c4ff27;background:#0d1629c9;border-radius:999px;box-shadow:0 8px 40px #0002,inset 0 1px #fff08;backdrop-filter:blur(14px);font-size:9px;letter-spacing:1.2px;color:#afbfda;animation:riseIn .9s var(--ease-out) both;animation-delay:.36s}
+.heroPill b{font-weight:800;color:#e2ecff}.pillDivider{height:14px;width:1px;background:#ffffff27;margin-inline:4px}
+.heroBtns{justify-content:center;gap:12px;margin-top:26px;animation:riseIn .9s var(--ease-out) both;animation-delay:.43s}
+.btn{padding:14px 20px;border-radius:13px;font-size:12px;letter-spacing:.25px;box-shadow:0 6px 24px #0002;transition:transform .35s var(--ease-spring),background .25s,border-color .25s,box-shadow .35s}
+.btn span{display:inline-block;transition:transform .35s var(--ease-spring)}.btn:hover span{transform:translate(3px,-3px)}
+.heroPrimary{color:#0b1020;background:linear-gradient(115deg,#f2f5ff,#b9ceff 55%,#c7fff0);border-color:#fff8;box-shadow:0 9px 35px #7fa7ff26}
+.heroPrimary:hover{transform:translateY(-4px) scale(1.025)}
+.heroSecondary{background:#ffffff06;border-color:#ffffff2b;color:#f0f4ff}
+.heroMeta{justify-content:center;align-items:center;gap:clamp(19px,3.4vw,46px);margin-top:36px;color:#8b9ab6;animation:riseIn .9s var(--ease-out) both;animation-delay:.5s}
+.heroMeta>div{min-width:92px;text-align:center}.heroMeta b{font-size:22px;letter-spacing:-.7px;line-height:1.15;background:linear-gradient(180deg,#fff,#9eafd0);background-clip:text;-webkit-background-clip:text;color:transparent;margin-bottom:6px;font-variant-numeric:tabular-nums}.heroMeta span{font-size:8px;letter-spacing:1.6px;white-space:nowrap}.heroMeta>i{display:block;width:1px;height:31px;background:linear-gradient(transparent,#aabfff4a,transparent)}
+.heroArtV3{position:absolute;right:-7%;top:40px;width:54%;min-height:480px;opacity:.54;z-index:0;pointer-events:none;transform:translateZ(0)}
+.heroArtV3 .core{width:clamp(170px,20vw,270px);border-radius:32%;background:linear-gradient(145deg,#263c62c9,#0a1224ed);border-color:#d6e5ff4c;box-shadow:0 30px 100px #000a,inset 0 1px #fff3,0 0 110px #6f9cff21;transform:rotate(-11deg);animation:coreHover 7s ease-in-out infinite,coreGlow 5s ease-in-out infinite}
+.coreInner{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transform:rotate(11deg)}.coreInner:before{content:"";position:absolute;inset:-25px;border:1px solid #a9c4ff25;border-radius:30%;animation:innerFrame 12s linear infinite}.coreInner strong{font-size:clamp(78px,10vw,120px);letter-spacing:-.1em;padding-right:.1em;background:linear-gradient(145deg,#fff,#a4c2ff 60%,#9df2dc);background-clip:text;-webkit-background-clip:text;color:transparent;text-shadow:0 0 40px #b5ccff15}.coreInner strong span{color:#8dedce}.coreInner small{font-size:8px;color:#93a9ce;letter-spacing:3px}
+.heroArtV3 .orbit{width:min(100%,470px);border-color:#a8c7ff29}.heroArtV3 .orbit:before{border-color:#9fbaff20}.heroArtV3 .orbit:after{border-color:#96e6d21b}.orbitA{animation:orbitSpin 36s linear infinite}.orbitB{border-style:dashed;transform:rotate(42deg);animation:orbitReverse 49s linear infinite}.orbitC{width:62%!important;aspect-ratio:1;border-color:#95eed126;transform:rotate(18deg);animation:orbitSpin 26s linear infinite}
+.heroArtHalo{position:absolute;width:310px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#8db1ff20,transparent 70%);filter:blur(10px);animation:haloBreathe 5s ease-in-out infinite}
+.heroOrbitNode{position:absolute;width:9px;height:9px;border-radius:50%;background:#bcd0ff;box-shadow:0 0 0 7px #abc6ff0a,0 0 25px #a8c8ff;z-index:3}.nodeA{top:15%;left:54%;animation:nodeFloat 5s ease-in-out infinite}.nodeB{bottom:19%;left:27%;width:6px;height:6px;background:#91f0cf;box-shadow:0 0 20px #91f0cf;animation:nodeFloat 7s ease-in-out infinite reverse}.nodeC{right:13%;top:43%;width:4px;height:4px;animation:nodeFloat 6s ease-in-out infinite .6s}
+.heroArtV3 .floatTag{background:#0b1425d9;border-color:#b3cbff2c;box-shadow:0 14px 35px #0003,inset 0 1px #fff0;letter-spacing:1.1px;border-radius:10px;font-size:9px;animation:tagBob 6s ease-in-out infinite,tagGlow 5s ease-in-out infinite;backdrop-filter:blur(12px)}.heroArtV3 .tag1{top:15%;right:1%}.heroArtV3 .tag2{bottom:18%;left:1%;animation-delay:-2s}.heroArtV3 .tag3{bottom:8%;right:10%;animation-delay:-4s}.tag1 .tagSignal{display:inline-block;width:5px;height:5px;border-radius:50%;background:#8ff0ce;margin-right:6px;box-shadow:0 0 10px #8ff0ce}
+.heroDataPlate{position:absolute;bottom:1%;right:4%;width:160px;padding:13px 14px;border-radius:14px;border:1px solid #bbcffd23;background:#0b1426b8;backdrop-filter:blur(14px);box-shadow:0 18px 50px #0003;transform:rotate(4deg);animation:plateFloat 7s ease-in-out infinite}.dataPlateTop{display:flex;justify-content:space-between;gap:6px;color:#7d8fac;font-size:7px;letter-spacing:1px}.dataPlateTop i{color:#8deecb;font-style:normal}.heroDataPlate strong{display:block;margin:12px 0;font-size:18px;line-height:1.1;letter-spacing:-.4px}.heroDataPlate strong em{font-style:normal;color:#a9c5ff}.dataPlateLine{height:2px;background:#ffffff10;margin-bottom:8px}.dataPlateLine i{display:block;width:65%;height:100%;background:linear-gradient(90deg,#9bbcff,#9af0ce);animation:plateProgress 3.2s ease-in-out infinite alternate}.heroDataPlate small{font-size:6px;letter-spacing:1.3px;color:#7f90af}
+.heroScrollHint{display:flex;align-items:center;justify-content:center;gap:11px;margin-top:38px;color:#7486a7;font-size:8px;font-weight:800;letter-spacing:2px;animation:riseIn .9s var(--ease-out) both;animation-delay:.58s}.scrollMouse{width:16px;height:25px;border:1px solid #8098c9;border-radius:99px;display:grid;place-items:start center;padding-top:5px}.scrollMouse i{display:block;width:2px;height:5px;border-radius:2px;background:#d5e4ff;animation:mouseScroll 1.6s ease-in-out infinite}.heroScrollLine{width:36px;height:1px;background:linear-gradient(90deg,#91b8ff80,transparent)}
+.heroBottomRail{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:18px 4px 0;border-top:1px solid #ffffff12;color:#647694;font-size:8px;letter-spacing:1.6px;position:relative;z-index:3}.heroBottomRail .railArrow{color:#9ebaff;font-size:15px}
+.section{position:relative;padding:112px 0;isolation:isolate}.section.alt{background:linear-gradient(180deg,#0b101b,#0a0e18 50%,#0b101b);border-block:1px solid #ffffff09}.section:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,#8caeff07,transparent 55%)}
+.sectionHead{flex-direction:column;align-items:center;gap:18px;margin:0 auto 45px;text-align:center;max-width:880px}.sectionHead>div{width:100%}.sectionHead .eyebrow{display:inline-flex;align-items:center;gap:8px}.sectionHead h2{font-size:clamp(32px,4.5vw,53px);line-height:1.12;letter-spacing:-2px;margin:14px 0 0;text-wrap:balance}.sectionHead p{max-width:720px;font-size:13px;line-height:2;margin:0 auto;color:#a4b0c5;text-wrap:pretty}.headlineGlow{color:#b4cbff;text-shadow:0 0 45px #93b5ff1c}
+.studioSection{overflow:hidden;background:radial-gradient(ellipse at 15% 22%,#263f7820,transparent 44%),radial-gradient(ellipse at 90% 80%,#1f625319,transparent 40%),#090d17}
+.studioSection:after{content:"";position:absolute;left:-180px;bottom:-180px;width:380px;height:380px;border:1px solid #abcaff0d;border-radius:50%;box-shadow:0 0 0 34px #abcaff04,0 0 0 68px #abcaff03;z-index:-1;animation:orbitReverse 80s linear infinite}
+.studioManifest{position:relative;overflow:hidden;padding:24px 30px 0;border:1px solid #a9c5ff22;border-radius:21px;background:linear-gradient(110deg,#121e33,#0c1423 60%,#112221);box-shadow:0 20px 65px #0002;isolation:isolate;margin-bottom:18px}.studioManifest:before{content:"";position:absolute;right:-30px;top:-130px;width:260px;height:260px;border:1px solid #a9c5ff17;border-radius:50%;box-shadow:0 0 0 26px #a9c5ff04,0 0 0 54px #a9c5ff03;z-index:-1;animation:orbitSpin 46s linear infinite}.manifestEyebrow{display:flex;align-items:center;gap:10px;color:#9aafd4;font-size:8px;font-weight:800;letter-spacing:1.8px}.manifestEyebrow>span:last-child{margin-left:auto;color:#71829e}.manifestLive{width:6px;height:6px;background:#89eccc;border-radius:50%;box-shadow:0 0 12px #89eccc;animation:signalPulse 2s infinite}.studioManifest>p{font-size:clamp(16px,2.4vw,25px);line-height:1.55;letter-spacing:-.6px;text-align:center;margin:25px auto 28px;max-width:770px;color:#c9d6ec}.studioManifest>p strong{color:#f2f6ff}.manifestTicker{overflow:hidden;margin-inline:-30px;border-top:1px solid #ffffff0e;background:#090f1b8c}.manifestTickerTrack{display:flex;align-items:center;justify-content:flex-start;gap:25px;white-space:nowrap;padding:14px 0;min-width:max-content;animation:manifestRun 31s linear infinite}.manifestTickerTrack span{font-size:8px;letter-spacing:2px;color:#869bbd;font-weight:800}.manifestTickerTrack b{font-size:12px;color:#8de8ce}
+.studioCards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:stretch}.studioCard{--mx:50%;--my:50%;position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;min-width:0;min-height:340px;padding:23px 21px 20px;border:1px solid #ffffff14;border-radius:19px;background:linear-gradient(155deg,#151f32,#0d121e 70%);box-shadow:0 12px 40px #00000018;transition:transform .55s var(--ease-out),border-color .4s,box-shadow .5s;transform-style:preserve-3d}.studioCard:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(320px circle at var(--mx) var(--my),#a8c3ff14,transparent 45%);opacity:0;transition:opacity .35s}.studioCard:after{content:"";position:absolute;top:-120%;left:-35%;width:45%;height:340%;transform:rotate(28deg);background:linear-gradient(90deg,transparent,#ffffff0c,transparent);transition:left .9s var(--ease-out);z-index:-1}.studioCard:hover{transform:translateY(-9px);border-color:#9bbcff59;box-shadow:0 24px 65px #0005,0 0 35px #8fb1ff09}.studioCard:hover:before{opacity:1}.studioCard:hover:after{left:130%}.studioSystems:hover{border-color:#8de5c35c}.studioExperience:hover{border-color:#c1a0ff59}.studioTesting:hover{border-color:#ffcc9a55}.studioCardTop{display:flex;flex-wrap:wrap;align-items:center;gap:10px;min-height:42px}.studioCardNum{font-size:10px;letter-spacing:1.5px;color:#8092b2;font-weight:800}.studioCardIcon{display:grid;place-items:center;width:42px;height:42px;margin-left:auto;border:1px solid #aec7ff2b;border-radius:14px;background:linear-gradient(145deg,#9dbbff17,#9bbcff04);color:#cbdbff;transition:transform .55s var(--ease-spring),background .35s,box-shadow .4s}.studioCardIcon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.studioCard:hover .studioCardIcon{transform:rotate(-8deg) scale(1.12);background:#a8c5ff19;box-shadow:0 0 24px #9bbcff14}.studioCardTag{width:100%;font-size:8px;letter-spacing:1.8px;color:#8ba6d4;font-weight:800}.studioCard h3{font-size:21px;letter-spacing:-.6px;margin:24px 0 10px}.studioCard p{font-size:11px;color:#a1aec2;line-height:1.95;margin:0 0 23px;flex:1}.studioCardFooter{display:flex;flex-wrap:wrap;gap:5px;padding-top:14px;border-top:1px solid #ffffff11}.studioCardFooter span{font-size:7px;font-weight:800;letter-spacing:.8px;padding:5px 6px;border:1px solid #ffffff13;border-radius:6px;background:#ffffff04;color:#91a1bc}.studioCardBloom{position:absolute;right:-55px;bottom:-68px;width:150px;height:150px;border:1px solid #9dbbff15;border-radius:50%;box-shadow:0 0 0 15px #9dbbff03,0 0 0 31px #9dbbff02;pointer-events:none;transition:transform .8s var(--ease-out)}.studioCard:hover .studioCardBloom{transform:scale(1.35) rotate(20deg)}.studioSystems .studioCardIcon{border-color:#8de5c328;color:#a4f1d9}.studioExperience .studioCardIcon{border-color:#c2a4ff28;color:#d4c3ff}.studioTesting .studioCardIcon{border-color:#ffcd9a28;color:#ffddb6}
+.studioBottomNote{display:flex;align-items:center;gap:14px;padding:18px 20px;margin-top:17px;border:1px dashed #ffffff19;border-radius:15px;background:#ffffff02}.studioNoteIcon{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:10px;background:#b5caff0e;border:1px solid #b5caff27;color:#bbd1ff}.studioBottomNote p{flex:1;margin:0;color:#8f9eb5;font-size:10px;line-height:1.8}.studioBottomNote p b{color:#d1dcf0}.studioNoteCode{white-space:nowrap;font-size:8px;font-weight:800;letter-spacing:1.3px;color:#7184a5}
+.studioPulse{gap:15px;margin-bottom:22px}.pulseStat{position:relative;overflow:hidden;min-height:142px;border-radius:19px;background:linear-gradient(155deg,#151f31,#0f1522);transition:transform .45s var(--ease-out),border-color .35s,box-shadow .35s}.pulseStat:after{content:"";position:absolute;right:-26px;top:-30px;width:100px;height:100px;border:1px solid #a8c4ff15;border-radius:50%;box-shadow:0 0 0 15px #a8c4ff04,0 0 0 30px #a8c4ff03;transition:transform .65s var(--ease-out)}.pulseStat:hover{transform:translateY(-5px);border-color:#9bbcff49;box-shadow:0 18px 45px #0003}.pulseStat:hover:after{transform:scale(1.25)}.pulseIcon{width:33px;height:33px;border-radius:11px;background:#a8c4ff12;border:1px solid #a8c4ff22;display:grid;place-items:center;color:#bfd2ff}
+.values{gap:15px}.value{position:relative;overflow:hidden;padding:26px 25px 23px;border-radius:19px;background:linear-gradient(145deg,#121a29,#0c111c);transition:transform .5s var(--ease-out),border-color .35s,box-shadow .35s}.value:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,#8eb2ff,#a6f1d8,#ba9dff);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease-out)}.value:hover{transform:translateY(-7px);border-color:#a7c4ff40;box-shadow:0 18px 45px #0003}.value:hover:after{transform:scaleX(1)}.value h3{font-size:19px;line-height:1.45}.value p{font-size:12px;line-height:1.95}.valueFoot{margin-top:18px;font-size:8px;letter-spacing:1.5px;color:#899bb9}
+.manifestoRail{border-radius:12px;background:linear-gradient(90deg,#0d1524,#121d31,#0d1524);border:1px solid #ffffff0d}.manifestoTrack{gap:20px;animation-duration:31s}.manifestoTrack span{font-size:9px;letter-spacing:1.9px}.manifestoTrack b{color:#9eefd6}
+.teamGrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.person{min-width:0;min-height:320px;padding:24px 18px 50px;border-radius:21px;background:linear-gradient(155deg,#151f31,#0d121e 73%);text-align:center;display:flex;flex-direction:column;align-items:center;isolation:isolate;transition:transform .55s var(--ease-out),border-color .4s,box-shadow .5s,background .5s}.personTopline{flex-direction:column;align-items:center;gap:9px;min-height:55px}.role{font-size:9px;letter-spacing:1.2px}.memberId{font-size:10px;color:#c1cfe7;background:#ffffff05}.person h3{font-size:25px;margin:16px 0 9px}.person p{max-width:100%;min-height:75px;font-size:11px;line-height:1.9;text-align:center}.personSkills{justify-content:center;gap:5px}.personSkills span{font-size:9px;padding:5px 7px}.avatar{width:51px;height:51px;border-radius:16px;margin:auto auto 0;font-size:18px}.leaderCard{background:linear-gradient(155deg,#1a2a48,#101724);border-color:#a7c4ff50}.devLead{background:linear-gradient(155deg,#16332f,#101724);border-color:#8de5c34d}.deputyCard{background:linear-gradient(155deg,#1a2235,#0e1420)}.personIndex{bottom:17px;font-size:8px}
+.teamFootnote,.recruitStrip{border-radius:20px}.recruitStrip{padding:28px 30px;background:linear-gradient(105deg,#17243b,#111826 70%,#122421);border-color:#9bbcff2d}.recruitStrip .btn{position:relative;z-index:2}
+.workflowLine{gap:15px}.flowStep{border-radius:19px;background:linear-gradient(165deg,#151f31,#0b111c);padding:22px 20px}.flowStep:hover{box-shadow:0 25px 55px #0004;border-color:#a9c4ff65}.flowIcon{width:38px;height:38px;border-radius:13px}.flowStep h3{font-size:17px;line-height:1.45}.flowStep p{font-size:11px;line-height:1.95}.flowOutput{font-size:10px}
+.devPrinciples{border-radius:19px;background:#0c121f}
+.qualityGrid{gap:16px}.qualityCard{min-height:315px;border-radius:21px;background:linear-gradient(155deg,#172033,#0c111d)}.qualityCard p{font-size:11px;line-height:1.95}.qualityCard h3{font-size:20px}.qualityStatement{border-radius:24px;background:linear-gradient(105deg,#182640,#101725 58%,#142620)}
+.projectGrid{gap:22px}.project{border-radius:23px;background:linear-gradient(145deg,#131b2b,#0e1320);box-shadow:0 15px 44px #0002}.project:hover{border-color:#88a9ef70}.projectTop{height:285px}.projectTop.air{background:radial-gradient(ellipse at 50% 45%,#2b4779 0,#141f35 47%,#0a101b 100%)}.projectTop.zombie{background:radial-gradient(ellipse at 50% 45%,#51303b 0,#211922 52%,#0c1019 100%)}.projectGlyph{font-size:clamp(45px,5vw,75px);letter-spacing:-.06em}.projectBody{padding:28px}.projectBody h3{font-size:29px}.projectBody p{font-size:12px;line-height:2}.projectBrief div{border-color:#ffffff14;background:#ffffff03;border-radius:11px;padding:13px}.projectBrief b{font-size:10px;line-height:1.6}.projectMore{position:relative;display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:11px 0 5px;border:0;border-bottom:1px solid #9bbcff4d;background:transparent;color:#d3e0fc;font-weight:800;font-size:10px;letter-spacing:.5px;cursor:pointer;transition:color .25s,border-color .25s,gap .35s var(--ease-spring)}.projectMore:hover{color:#fff;border-color:#b8ccff;gap:17px}.projectMore span{color:#9fbaff;font-size:13px}.projectDisclaimer{border-radius:16px;background:#ffffff03}
+.faqLayout{gap:55px}.faqIntro h2{font-size:clamp(30px,4vw,46px);line-height:1.2}.faqIntro p{font-size:12px;line-height:2}.faqItem{transition:background .25s}.faqItem[open]{background:linear-gradient(90deg,#9bbcff06,transparent)}.faqItem summary{padding:23px 7px;font-size:12px;line-height:1.7}.faqAnswer{font-size:11px;line-height:2}
+.applyIntro{grid-template-columns:minmax(275px,.74fr) minmax(0,1.26fr);gap:24px}.applyAside{border-radius:21px;box-shadow:0 20px 55px #0003}.formShell{border-radius:23px;padding:30px;background:linear-gradient(155deg,#111a2a,#0d121e);box-shadow:0 20px 70px #0003}.formHead{border-bottom-color:#ffffff18}.formGrid{gap:19px}.field{gap:10px}.field>label,.fieldLabel{font-size:12px}.formShell input[type=text],.formShell input[type=email],.formShell select,.formShell textarea{border-radius:12px;padding:13px 14px;background:#090f1a;border-color:#303e58}.formShell input:focus,.formShell select:focus,.formShell textarea:focus{border-color:#a6c3ff;box-shadow:0 0 0 4px #97b8ff13}.skillChoice{border-radius:13px;transition:transform .25s,border-color .25s,background .25s}.skillChoice:hover{transform:translateY(-2px);border-color:#8faeff7a}.qitem{border-radius:15px;transition:border-color .3s,background .3s}.qitem:focus-within{border-color:#8dafff50;background:#111b2c}.qopt{transition:background .25s,border-color .25s,transform .25s}.qopt:hover{transform:translateX(3px);border-color:#b3cbff5c}.progress{height:5px;border-radius:99px;background:#ffffff0a;overflow:hidden}.progress i{border-radius:inherit;background:linear-gradient(90deg,#91abff,#c0d2ff,#9af0d3);box-shadow:0 0 18px #98b8ff40;transition:width .45s var(--ease-out)}.submitRow .btn{min-width:150px}.status{white-space:pre-line;border-radius:12px}
+.footer{border-top:1px solid #ffffff12;background:linear-gradient(180deg,#080b13,#06080e)}.footerin{padding-top:34px;padding-bottom:32px}.footerLinks{gap:19px}.footerLegal{text-align:right;max-width:340px;font-size:10px;color:#7f8ba0}
+.backtop{position:fixed;right:24px;bottom:22px;display:grid;place-items:center;width:44px;height:44px;border-radius:15px;background:#121d31e8;backdrop-filter:blur(16px);box-shadow:0 12px 32px #0005;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .3s,visibility .3s,transform .35s var(--ease-spring);z-index:55}.backtop.is-visible{opacity:1;visibility:visible;transform:translateY(0)}.backtop:hover{transform:translateY(-4px);border-color:#acc7ff}
+.ambientCanvas{z-index:0;opacity:.8}.cursorGlow{position:fixed;left:0;top:0;width:360px;height:360px;pointer-events:none;z-index:0;border-radius:50%;background:radial-gradient(circle,#9dbdff0b 0,transparent 68%);transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;will-change:transform}.cursorGlow.visible{opacity:1}
+.studioLoader{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;background:radial-gradient(ellipse at 50% 45%,#192a4a,#070a12 65%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .5s,visibility .5s}.studioLoader.active{opacity:1;visibility:visible}.loaderMark{display:grid;place-items:center;width:68px;height:68px;border-radius:22px;border:1px solid #b4ceff55;background:linear-gradient(145deg,#273e66,#0b1324);box-shadow:0 0 60px #8fb4ff2a,inset 0 1px #fff3;font-size:31px;font-weight:800;letter-spacing:-4px;animation:loaderMark .9s var(--ease-spring) both}.loaderMark span{color:#9bf0d3}.loaderWord{font-size:12px;font-weight:800;letter-spacing:4px;color:#e3ecff}.loaderWord i{font-style:normal;display:block;text-align:center;margin-top:5px;font-size:7px;letter-spacing:3px;color:#8399be}.loaderTrack{width:140px;height:2px;background:#ffffff16;overflow:hidden;margin-top:9px}.loaderTrack i{display:block;height:100%;background:linear-gradient(90deg,#9ebcff,#9bf0d3);animation:loadRun .75s var(--ease-out) both}.studioLoader small{font-size:7px;letter-spacing:1.8px;color:#64799c}
+.projectDialog{width:min(620px,calc(100% - 28px));max-width:none;max-height:min(88vh,900px);padding:0;border:1px solid #b2c9ff36;border-radius:25px;color:#f4f7ff;background:linear-gradient(150deg,#151f33,#0a101b 80%);box-shadow:0 38px 120px #000a;overflow:auto;overscroll-behavior:contain}.projectDialog::backdrop{background:#02050bd9;backdrop-filter:blur(10px)}.projectDialog[open]{animation:dialogOpen .4s var(--ease-out) both}.dialogClose{position:absolute;right:17px;top:17px;z-index:5;width:37px;height:37px;border-radius:12px;border:1px solid #ffffff2c;background:#0b1324b8;color:#fff;font-size:25px;line-height:1;cursor:pointer;transition:transform .3s var(--ease-spring),background .25s}.dialogClose:hover{transform:rotate(90deg);background:#263856}.dialogKicker{display:flex;align-items:center;gap:9px;padding:23px 25px 17px;color:#91a7cf;font-size:8px;font-weight:800;letter-spacing:1.7px}.dialogKicker #dialogProjectCode{margin-left:auto;color:#7d8da9}.dialogArtwork{height:180px;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#2b4779,#131e33 65%,#0b101b)}.dialogArtwork.zombieMode{background:radial-gradient(ellipse at 50% 45%,#51303b,#211922 65%,#0b101b)}.dialogArtwork span{position:relative;z-index:2;font-weight:800;font-size:clamp(45px,10vw,72px);letter-spacing:-.07em;text-shadow:0 0 50px #b7d0ff38}.dialogArtwork i,.dialogArtwork b{position:absolute;width:145px;height:145px;border:1px solid #b5ceff56;border-radius:50%;animation:orbitSpin 19s linear infinite}.dialogArtwork b{width:205px;height:205px;border-style:dashed;opacity:.7;animation-direction:reverse}.dialogArtwork.zombieMode i{border-color:#ffb8b356}.dialogBody{padding:27px}.dialogState{display:inline-flex;padding:7px 10px;border:1px solid #8de5c32a;border-radius:99px;background:#8de5c309;color:#9aebcd;font-size:8px;font-weight:800;letter-spacing:1.4px}.dialogBody h2{margin:12px 0 8px;font-size:35px;letter-spacing:-1.1px}.dialogBody>p{margin:0;color:#aab7cd;font-size:12px;line-height:2}.dialogInfoGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:22px 0}.dialogInfoGrid>div{padding:13px;border:1px solid #ffffff14;border-radius:12px;background:#ffffff04;min-width:0}.dialogInfoGrid span{display:block;font-size:7px;letter-spacing:1px;color:#8497b6;margin-bottom:8px}.dialogInfoGrid b{display:block;color:#d9e3f5;font-size:10px;line-height:1.7}.dialogBoundary{padding:15px;border:1px solid #ffffff12;border-radius:13px;background:#ffffff03}.dialogBoundary strong{font-size:10px;color:#cad9f4}.dialogBoundary p{font-size:10px;line-height:1.9;color:#93a3bd;margin:6px 0 0}.dialogDone{margin-top:20px;min-width:130px}
+/* Kinetic typography and motion primitives */
+@keyframes markSweep{0%,68%,100%{transform:translateX(-120%)}82%{transform:translateX(120%)}}
+@keyframes titleFlow{to{background-position:220% center}}
+@keyframes dotFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(8deg)}}
+@keyframes gridDrift{to{background-position:58px 58px}}
+@keyframes auraDrift{from{transform:translate3d(0,0,0) scale(.94)}to{transform:translate3d(80px,35px,0) scale(1.12)}}
+@keyframes coreHover{0%,100%{transform:translateY(2px) rotate(-11deg)}50%{transform:translateY(-12px) rotate(-7deg)}}
+@keyframes coreGlow{0%,100%{filter:drop-shadow(0 0 16px #91b8ff12)}50%{filter:drop-shadow(0 0 32px #91b8ff31)}}
+@keyframes innerFrame{to{transform:rotate(360deg)}}
+@keyframes haloBreathe{0%,100%{transform:scale(.9);opacity:.5}50%{transform:scale(1.12);opacity:1}}
+@keyframes nodeFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(8px,-15px)}}
+@keyframes tagBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes plateFloat{0%,100%{transform:rotate(4deg) translateY(0)}50%{transform:rotate(1deg) translateY(-9px)}}
+@keyframes plateProgress{from{width:35%}to{width:92%}}
+@keyframes mouseScroll{0%{transform:translateY(0);opacity:1}70%,100%{transform:translateY(7px);opacity:0}}
+@keyframes manifestRun{to{transform:translateX(-50%)}}
+@keyframes riseIn{from{opacity:0;transform:translateY(24px);filter:blur(5px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes signalPulse{0%,100%{opacity:1;box-shadow:0 0 0 4px #8ef0ce12,0 0 20px #8ef0ceaa}50%{opacity:.65;box-shadow:0 0 0 8px #8ef0ce08,0 0 28px #8ef0ce55}}
+@keyframes loaderMark{from{opacity:0;transform:scale(.7) rotate(-15deg);filter:blur(6px)}to{opacity:1;transform:scale(1) rotate(0);filter:blur(0)}}
+@keyframes loadRun{from{width:0}to{width:100%}}
+@keyframes dialogOpen{from{opacity:0;transform:translateY(24px) scale(.97);filter:blur(5px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@media(max-width:1100px){.wrap{width:min(var(--max),calc(100% - 44px))}.studioCards{grid-template-columns:repeat(2,minmax(0,1fr))}.studioCard{min-height:310px}.teamGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.person{min-height:290px}.heroArtV3{right:-10%;width:61%;opacity:.43}.heroDataPlate{right:0}}
+@media(max-width:900px){.links{gap:12px}.links a{font-size:9px}.navcta{padding:10px 11px}.heroV3{min-height:0;padding-top:70px}.heroGrid{min-height:590px}.heroArtV3{width:68%;right:-15%;top:85px;opacity:.34}.heroCopy{padding-top:24px}.section{padding:90px 0}.sectionHead{margin-bottom:34px}.faqLayout{gap:32px}.applyIntro{grid-template-columns:minmax(230px,.7fr) minmax(0,1.3fr)}.formShell{padding:23px}}
+@media(max-width:720px){.wrap{width:calc(100% - 32px)}.navin{height:68px}.nav .links{position:absolute;left:16px;right:16px;top:calc(100% + 8px);display:none;align-items:stretch;gap:4px;padding:11px;border:1px solid #ffffff20;border-radius:18px;background:#0a1020f5;backdrop-filter:blur(20px);box-shadow:0 22px 60px #0008}.nav .links.is-open{display:flex;flex-direction:column;animation:riseIn .25s var(--ease-out) both}.nav .links a{padding:12px 13px;border-radius:10px;font-size:11px}.nav .links a:hover{background:#ffffff08}.nav .links .navcta{justify-content:center;margin-top:5px}.menuToggle{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px}.menuToggle span{height:1px;width:17px;display:block;background:#dce8ff;transition:transform .25s}.menuToggle[aria-expanded=true] span:first-child{transform:translateY(3px) rotate(45deg)}.menuToggle[aria-expanded=true] span:last-child{transform:translateY(-3px) rotate(-45deg)}.heroV3{padding:58px 0 22px}.heroGrid{min-height:0}.heroCopy{padding-top:10px}.kicker{font-size:8px;letter-spacing:1.5px;gap:7px}.heroV3 h1{font-size:clamp(82px,20vw,125px);letter-spacing:-.095em}.heroKorean{font-size:15px;letter-spacing:.5em;padding-left:.5em;margin-top:14px}.heroKorean i{font-size:7px;letter-spacing:2.6px}.heroV3 .lead{font-size:13px;line-height:1.95;max-width:440px;margin-top:14px}.heroPill{gap:8px;border-radius:13px;padding:10px 12px;font-size:8px;letter-spacing:.6px;max-width:100%}.heroPill .pillDivider{height:10px}.heroBtns{width:100%;max-width:450px;gap:8px;margin-top:20px}.heroBtns .btn{flex:1;padding:13px 10px;font-size:10px}.heroMeta{gap:13px;margin-top:26px}.heroMeta>div{min-width:72px}.heroMeta b{font-size:19px}.heroMeta span{font-size:7px;letter-spacing:.8px}.heroMeta>i{height:26px}.heroArtV3{position:relative;right:auto;top:auto;width:100%;min-height:300px;height:300px;margin:-20px auto -14px;opacity:.74;transform:none}.heroArtV3 .core{width:148px;border-radius:30%}.coreInner strong{font-size:82px}.heroArtV3 .orbit{width:290px}.heroDataPlate{width:128px;right:0;bottom:0;padding:10px 11px}.heroDataPlate strong{font-size:15px}.heroArtV3 .tag1{top:25px;right:1%}.heroArtV3 .tag2{bottom:54px;left:0}.heroArtV3 .tag3{bottom:13px;right:12%}.heroArtV3 .floatTag{padding:8px 9px;font-size:7px}.heroScrollHint{margin-top:10px;font-size:7px}.heroBottomRail{gap:10px;justify-content:center;flex-wrap:wrap;text-align:center;padding-top:13px}.heroBottomRail span:not(.railArrow){font-size:6px;letter-spacing:1px}.heroBottomRail .railArrow{display:none}.section{padding:78px 0}.sectionHead{gap:14px;margin-bottom:28px}.sectionHead h2{font-size:clamp(29px,8vw,39px);letter-spacing:-1.4px}.sectionHead p{font-size:12px;line-height:1.9}.studioManifest{padding:19px 18px 0;border-radius:17px}.studioManifest>p{font-size:17px;margin:20px auto 22px}.manifestTicker{margin-inline:-18px}.manifestTickerTrack{padding:12px 0}.studioCards{grid-template-columns:1fr;gap:11px}.studioCard{min-height:0;padding:21px;border-radius:17px}.studioCard h3{margin-top:17px}.studioCard p{font-size:11px;line-height:1.9;margin-bottom:18px}.studioBottomNote{align-items:flex-start;gap:10px;padding:14px}.studioNoteCode{display:none}.studioPulse{grid-template-columns:1fr;gap:10px}.pulseStat{min-height:110px}.values{grid-template-columns:1fr}.value{padding:22px}.teamGrid{grid-template-columns:1fr;gap:12px}.person{min-height:0;padding:25px 22px 49px}.person p{min-height:0;max-width:420px}.personTopline{min-height:0}.person .avatar{margin-top:19px}.teamFootnote{align-items:flex-start;padding:18px;gap:12px}.teamFootnoteTag{display:none}.recruitStrip{flex-direction:column;align-items:flex-start;padding:23px}.recruitStrip .btn{align-self:stretch}.workflowLine{grid-template-columns:1fr;gap:11px}.flowStep{padding:20px}.flowStep p{min-height:0}.flowStep .flowOutput{margin-top:12px}.devPrinciples{grid-template-columns:1fr}.principleLead{grid-column:auto;border-bottom:1px solid #ffffff10;padding:18px}.principle{padding:16px;border-right:0;border-bottom:1px solid #ffffff0c}.principle:last-child{border-bottom:0}.qualityGrid{grid-template-columns:1fr;gap:11px}.qualityCard{min-height:0;padding:22px}.qualityStatement{padding:22px 19px;gap:13px;align-items:flex-start;flex-wrap:wrap}.qualityOrb{width:57px;height:57px;flex-basis:57px}.qualityStatement>div:nth-child(2){min-width:0;flex:1}.qualityStatement h3{font-size:23px}.qualityStamp{width:51px;height:51px;flex-basis:51px;font-size:7px;margin-left:auto}.projectGrid{grid-template-columns:1fr;gap:16px}.projectTop{height:230px}.projectBody{padding:23px}.projectSummary{min-height:0}.projectBrief{grid-template-columns:1fr 1fr}.faqLayout{grid-template-columns:1fr;gap:24px}.faqIntro{position:static}.faqIntro p{max-width:600px}.faqItem summary{grid-template-columns:26px 1fr 24px;padding:17px 2px;font-size:11px}.faqAnswer{padding:0 25px 18px 39px}.applyIntro{grid-template-columns:1fr;gap:17px}.applyAside{position:static;padding:22px}.formShell{padding:19px;border-radius:18px}.formHead{gap:10px}.formHead h3{font-size:18px}.formHead p{font-size:10px}.formGrid{grid-template-columns:1fr;gap:15px}.field.full{grid-column:auto}.skillChoices{grid-template-columns:1fr}.quizIntro{align-items:flex-start;gap:12px}.quizIntro #answered{white-space:nowrap;font-size:10px}.submitRow{flex-wrap:wrap}.submitRow .btn{flex:1}.footerin{gap:18px;flex-direction:column;align-items:flex-start}.footerLegal{text-align:left;max-width:none}.cursorGlow{display:none}.projectDialog{border-radius:19px}.dialogKicker{padding:19px 19px 13px}.dialogArtwork{height:150px}.dialogBody{padding:20px}.dialogInfoGrid{gap:6px}.dialogInfoGrid>div{padding:10px}.dialogInfoGrid b{font-size:9px}.heroBottomRail{margin-top:8px}}
+@media(max-width:420px){.wrap{width:calc(100% - 26px)}.heroPill{width:100%;justify-content:center;flex-direction:row}.heroPill>span:last-child{width:100%;text-align:center}.heroPill .pillDivider{display:none}.heroArtV3{min-height:270px;height:270px}.heroArtV3 .orbit{width:250px}.heroDataPlate{right:-3px;bottom:-1px;transform:scale(.9) rotate(4deg);transform-origin:bottom right}.heroArtV3 .tag1{right:-2px}.heroArtV3 .tag2{left:-3px}.heroMeta{gap:8px}.heroMeta>div{min-width:66px}.heroMeta b{font-size:17px}.heroMeta span{font-size:6px}.heroScrollHint{margin-top:8px}.heroBottomRail span:not(.railArrow){font-size:5.5px}.studioManifest>p{font-size:15px}.studioNoteIcon{width:27px;height:27px}.projectBrief{grid-template-columns:1fr}.dialogInfoGrid{grid-template-columns:1fr}.dialogArtwork{height:125px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.heroAura,.heroArtV3,.cursorGlow{display:none!important}.studioLoader{display:none!important}}
+
+/* Keep direct-body overlays in the browser's true fixed/top-layer position. */
+body>.studioLoader{position:fixed!important;z-index:200!important}
+body>.cursorGlow{position:fixed!important;z-index:58!important}
+body>dialog.projectDialog{position:fixed!important;inset:0;margin:auto;z-index:201}
+@media(max-width:720px){.heroScrollHint{display:none}}
+
+
+/* JUST / Supabase private development log */
+#devLoginView[hidden],#devAppView[hidden]{display:none!important}
+.devlogSection{position:relative;isolation:isolate;overflow:hidden}
+.devlogSection:before{content:"";position:absolute;z-index:-1;inset:-15% -5%;background:radial-gradient(ellipse at 14% 22%,#4c77c21a,transparent 33%),radial-gradient(ellipse at 90% 70%,#2eae9b13,transparent 28%);pointer-events:none}
+.devlogSection .sectionHead{align-items:flex-end}
+.devShell{display:grid;grid-template-columns:.74fr 1.26fr;gap:18px;align-items:stretch}
+.devIntroCard,.devPanel{border:1px solid #ffffff16;border-radius:24px;overflow:hidden;position:relative;background:linear-gradient(145deg,#111b2d,#0d121e 76%);box-shadow:0 24px 75px #0002}
+.devIntroCard{padding:26px;min-height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:26px}
+.devIntroCard:before{content:"";position:absolute;width:250px;height:250px;right:-112px;top:-105px;border-radius:50%;border:1px solid #9dbdff27;box-shadow:0 0 0 23px #92b6ff08,0 0 0 49px #92b6ff05;animation:devOrbit 21s linear infinite;pointer-events:none}
+.devIntroTop{position:relative;z-index:1}
+.devLogOrb{width:64px;height:64px;position:relative;display:grid;place-items:center;border:1px solid #c3d6ff47;border-radius:20px;background:linear-gradient(145deg,#273c62,#111b2d);box-shadow:0 12px 44px #7299ff1e,inset 0 1px #ffffff3d;margin-bottom:25px;animation:devFloat 5s ease-in-out infinite}
+.devLogOrb:before,.devLogOrb:after{content:"";position:absolute;inset:-9px;border:1px solid #a8c5ff28;border-radius:24px;animation:devOrbit 13s linear infinite}
+.devLogOrb:after{inset:-17px;border-radius:28px;border-style:dashed;animation-direction:reverse;animation-duration:22s}
+.devLogOrb span{font-size:23px;font-weight:900;letter-spacing:-2px;color:#edf4ff;text-shadow:0 0 24px #b2ceff75}
+.devIntroCard h3{font-size:clamp(23px,2.5vw,32px);line-height:1.28;letter-spacing:-1.2px;margin:0 0 13px;max-width:360px}
+.devIntroCard p{font-size:12px;line-height:1.95;color:#aab7ca;margin:0;max-width:390px}
+.devFeatureList{display:grid;gap:0;margin-top:22px;border-top:1px solid #ffffff12}
+.devFeature{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid #ffffff10}
+.devFeatureIcon{flex:none;width:29px;height:29px;display:grid;place-items:center;border:1px solid #91b7ff2c;border-radius:9px;color:#b7ceff;background:#8daeff0b;font-size:13px}
+.devFeature b{font-size:11px;display:block;margin:0 0 3px;color:#e4ebf8}
+.devFeature small{font-size:10px;line-height:1.7;display:block;color:#8e9bb0}
+.devIntroFoot{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:17px;border-top:1px solid #ffffff12;color:#7f8ea6;font-size:9px;letter-spacing:1.6px;font-weight:800}
+.devSecurePill{display:inline-flex;align-items:center;gap:6px;border:1px solid #80d8b329;color:#9ee7c6;background:#54b9940d;padding:6px 8px;border-radius:999px;letter-spacing:.7px;white-space:nowrap}
+.devSecurePill i{width:5px;height:5px;border-radius:50%;background:#8de1b6;box-shadow:0 0 12px #8de1b6;display:inline-block}
+.devPanel{padding:24px;background:linear-gradient(155deg,#101827,#0c111c)}
+.devPanelTop{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid #ffffff12}
+.devPanelTop h3{font-size:20px;margin:0 0 5px;letter-spacing:-.6px}
+.devPanelTop p{margin:0;color:#8998af;font-size:11px;line-height:1.75}
+.devPanelKicker{display:block;color:#a9c2fa;font-size:9px;font-weight:800;letter-spacing:2px;margin-bottom:8px}
+.devTinyStatus{flex:none;border:1px solid #ffffff17;background:#ffffff05;border-radius:9px;padding:7px 9px;color:#8d9cb3;font-size:9px;letter-spacing:.7px}
+.devFeedback{padding:12px 14px;border-radius:11px;border:1px solid #8aaaff25;background:#91b3ff0b;color:#bfccdf;font-size:11px;line-height:1.75;margin-bottom:16px;white-space:pre-line}
+.devFeedback.is-error{color:#ffc7b5;background:#ff795d0b;border-color:#ff8d7133}
+.devFeedback.is-success{color:#a8edca;background:#5de0a00b;border-color:#73dca732}
+.devFeedback.is-hidden{display:none}
+.devAuthLayout{display:grid;grid-template-columns:1fr;gap:15px}
+.devAuthCard{border:1px solid #ffffff15;border-radius:17px;padding:20px;background:linear-gradient(145deg,#151f31,#101622)}
+.devAuthCard h4{font-size:16px;margin:0 0 5px}
+.devAuthCard>p{font-size:11px;line-height:1.75;color:#93a0b5;margin:0 0 17px}
+.devFieldGrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.devField{display:flex;flex-direction:column;gap:7px;min-width:0}
+.devField.full{grid-column:1/-1}
+.devField label{font-size:11px;color:#dce5f4;font-weight:700}
+.devField input,.devField select,.devField textarea{width:100%;min-width:0;color:#f2f6ff;background:#090f1a;border:1px solid #34415a;border-radius:10px;padding:12px 13px;font-size:12px;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
+.devField textarea{min-height:140px;resize:vertical;line-height:1.8}
+.devField input:focus,.devField select:focus,.devField textarea:focus{border-color:#91b2ff;box-shadow:0 0 0 3px #82aaff16;background:#0d1524}
+.devField input::placeholder,.devField textarea::placeholder{color:#68768c}
+.devField select option{background:#111827;color:#f1f4fa}
+.devFieldHint{font-size:9px;line-height:1.6;color:#78879f}
+.devFormActions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.devFormActions .btn{font-size:11px;padding:11px 14px}
+.devToolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 17px}
+.devMemberChip{display:flex;align-items:center;gap:10px;min-width:0}
+.devMemberAvatar{width:37px;height:37px;flex:none;border:1px solid #9bbaff40;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#253858,#101927);font-weight:800;color:#deebff}
+.devMemberWho{min-width:0}
+.devMemberWho b{display:block;font-size:12px;color:#eef3fc}
+.devMemberWho small{display:block;font-size:10px;color:#8494ad;margin-top:2px}
+.devTextButton{border:1px solid #ffffff1d;background:#ffffff06;color:#c9d5e8;border-radius:9px;padding:8px 11px;font-size:10px;font-weight:700;transition:.2s}
+.devTextButton:hover{border-color:#9bbaff68;background:#a8c2ff10;color:white}
+.devEditor{border:1px solid #8aaaff26;border-radius:17px;padding:19px;background:linear-gradient(145deg,#131f33,#0d1420);margin-bottom:22px}
+.devEditorHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.devEditorHead h4{margin:0;font-size:15px}
+.devEditorHead span{font-size:9px;color:#9db7ef;letter-spacing:1.5px;font-weight:800}
+.devFeedHead{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:0 0 12px}
+.devFeedHead h4{font-size:16px;margin:0}
+.devFeedHead p{font-size:10px;color:#8290a6;margin:3px 0 0}
+.devFilters{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.devFilters input,.devFilters select{width:100%;min-width:0;background:#090f1a;color:#e9effb;border:1px solid #2d394e;border-radius:9px;padding:10px;font-size:10px;outline:none}
+.devFilters input:focus,.devFilters select:focus{border-color:#91b2ff}
+.devNotesList{display:grid;gap:11px}
+.devNoteCard{position:relative;overflow:hidden;border:1px solid #ffffff13;border-radius:15px;padding:16px;background:linear-gradient(145deg,#151e2e,#101520);transition:transform .22s,border-color .22s,box-shadow .22s}
+.devNoteCard:before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:linear-gradient(180deg,#a6c5ff,#5ed5b4);opacity:.65}
+.devNoteCard:hover{transform:translateY(-2px);border-color:#89abed45;box-shadow:0 13px 30px #0002}
+.devNoteMeta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.devBadge{border:1px solid #ffffff17;background:#ffffff06;border-radius:6px;padding:4px 7px;color:#b2c0d7;font-size:9px;font-weight:700}
+.devBadge.status-running{color:#b6ccff;border-color:#8eaefb31;background:#8eaefb0c}
+.devBadge.status-done{color:#9ee9c5;border-color:#7ce0ac30;background:#7ce0ac0b}
+.devBadge.status-hold{color:#ffd3a8;border-color:#f0bd8430;background:#f0bd840b}
+.devNoteCard h5{font-size:15px;line-height:1.5;letter-spacing:-.2px;margin:0 0 8px;overflow-wrap:anywhere}
+.devNoteBody{font-size:11px;line-height:1.9;color:#a9b6ca;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.devNoteFoot{display:flex;justify-content:space-between;align-items:center;gap:9px;flex-wrap:wrap;border-top:1px solid #ffffff0e;padding-top:11px;margin-top:13px;color:#7888a0;font-size:9px}
+.devNoteAuthor{color:#b7c5dc;font-weight:700}
+.devNoteActions{display:flex;gap:6px;align-items:center}
+.devNoteActions button{border:1px solid #ffffff16;background:#ffffff05;color:#aebbd0;border-radius:7px;padding:5px 8px;font-size:9px}
+.devNoteActions button:hover{border-color:#9bbaff54;color:#f4f7ff;background:#96b4ff0c}
+.devEmptyState{border:1px dashed #ffffff20;border-radius:13px;padding:25px 16px;text-align:center;color:#8392a9;font-size:11px;line-height:1.8}
+.devEmptyState strong{display:block;color:#d1dced;font-size:13px;margin-bottom:5px}
+.devLogLegal{font-size:9px;color:#718099;line-height:1.8;margin-top:14px}
+.devCount{font-size:9px;letter-spacing:1px;color:#94a4bc;font-weight:800;white-space:nowrap}
+
+.devAuthSwitch{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:14px;color:#8594aa;font-size:10px}
+.devInlineLink{border:0;background:transparent;color:#b8ceff;font-size:10px;font-weight:800;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:5px}
+.devAuthCard[hidden],#devLoginForm[hidden],#devSignupForm[hidden],#devPendingView[hidden],#devJoinRequestsPanel[hidden]{display:none!important}
+.devPendingCard{border:1px solid #9ab8ff2c;border-radius:17px;padding:23px;background:radial-gradient(ellipse at 95% 0%,#829cff16,transparent 42%),linear-gradient(145deg,#151f31,#101622)}
+.devPendingIcon{width:50px;height:50px;display:grid;place-items:center;border-radius:16px;border:1px solid #9dbaff3a;background:#a8c5ff0c;font-size:22px;color:#c1d4ff;margin-bottom:17px}
+.devPendingCard h4{font-size:18px;margin:0 0 8px}
+.devPendingCard p{font-size:11px;line-height:1.9;color:#9aa9bf;margin:0;max-width:560px}
+.devPendingMeta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:18px 0}
+.devPendingMeta div{border:1px solid #ffffff12;background:#ffffff05;border-radius:10px;padding:10px;min-width:0}
+.devPendingMeta small{display:block;color:#8291a8;font-size:9px;margin-bottom:5px}
+.devPendingMeta b{display:block;color:#e5ecf8;font-size:11px;overflow-wrap:anywhere}
+.devJoinPanel{border:1px solid #80d8b32d;border-radius:17px;padding:18px;background:linear-gradient(145deg,#11251f,#101720);margin-bottom:22px}
+.devJoinPanelTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:13px}
+.devJoinPanelTop h4{font-size:15px;margin:0 0 5px}
+.devJoinPanelTop p{font-size:10px;line-height:1.7;color:#98aaad;margin:0}
+.devJoinRequests{display:grid;gap:10px}
+.devJoinRequest{border:1px solid #ffffff14;border-radius:13px;padding:14px;background:#0c1519;min-width:0}
+.devJoinRequestHead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.devJoinRequestHead h5{margin:0;font-size:13px;color:#eef6f3;overflow-wrap:anywhere}
+.devJoinRequestHead small{display:block;color:#8ca4a0;font-size:9px;margin-top:4px}
+.devJoinRequestBody{font-size:10px;line-height:1.8;color:#b2c2bd;white-space:pre-wrap;overflow-wrap:anywhere;margin:8px 0}
+.devJoinRequestActions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+.devJoinRequestActions button{border:1px solid #ffffff1c;background:#ffffff07;color:#dbe6e1;border-radius:8px;padding:8px 11px;font-size:10px;font-weight:800;cursor:pointer}
+.devJoinRequestActions button[data-approve-join]{border-color:#75d6a650;background:#3aa97f18;color:#aaf0d0}
+.devJoinRequestActions button[data-reject-join]{border-color:#ef9c8640;color:#ffc4b4}
+.devJoinCount{border:1px solid #77d7aa45;color:#a2e9c7;background:#4fba9010;border-radius:8px;padding:6px 8px;font-size:9px;font-weight:900;white-space:nowrap}
+@media(max-width:720px){.devPendingMeta{grid-template-columns:1fr}.devPendingCard{padding:17px}.devJoinPanel{padding:14px}.devJoinPanelTop{flex-direction:column}.devJoinCount{align-self:flex-start}}
+@keyframes devFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-7px) rotate(3deg)}}
+@keyframes devOrbit{to{transform:rotate(360deg)}}
+@media(max-width:950px){.links{gap:clamp(8px,1vw,13px);font-size:11px}.navcta{padding:9px 11px}.devShell{grid-template-columns:1fr}.devIntroCard{min-height:0}.devIntroCard h3{max-width:600px}.devFeatureList{grid-template-columns:repeat(3,1fr);gap:12px;border-top:0}.devFeature{border-top:1px solid #ffffff10;border-bottom:0;padding:13px 0}.devIntroFoot{margin-top:4px}}
+@media(max-width:720px){.devShell{grid-template-columns:1fr;gap:13px}.devIntroCard,.devPanel{padding:19px;border-radius:18px}.devIntroCard{gap:20px}.devLogOrb{width:54px;height:54px;border-radius:17px;margin-bottom:20px}.devFeatureList{grid-template-columns:1fr;gap:0;border-top:1px solid #ffffff12}.devFeature{border-top:0;border-bottom:1px solid #ffffff10;padding:11px 0}.devFeature:last-child{border-bottom:0}.devPanelTop{gap:8px}.devPanelTop h3{font-size:18px}.devTinyStatus{font-size:8px;padding:6px}.devAuthCard,.devEditor{padding:15px}.devFieldGrid{grid-template-columns:1fr;gap:12px}.devField.full{grid-column:auto}.devFilters{grid-template-columns:1fr}.devFeedHead{align-items:flex-start;flex-direction:column;gap:5px}.devFeedHead .devCount{align-self:flex-end}.devNoteFoot{align-items:flex-start;flex-direction:column}.devNoteActions{align-self:flex-end}.devFormActions .btn{flex:1}.devIntroFoot{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.devIntroCard:before,.devLogOrb,.devLogOrb:before,.devLogOrb:after{animation:none!important}.devNoteCard{transition:none!important}.devNoteCard:hover{transform:none}}
+
 </style>
 </head>
 <body>
-<nav class="nav">
+<canvas class="ambientCanvas" id="ambientCanvas" aria-hidden="true"></canvas>
+<div class="scrollMeter" aria-hidden="true"><i id="scrollMeterFill"></i></div>
+<nav class="nav" aria-label="주요 메뉴">
   <div class="wrap navin">
-    <a class="brand" href="#top"><span class="mark">J.</span><span>JUST<small>GAME STUDIO</small></span></a>
-    <div class="links"><a href="#about">ABOUT</a><a href="#projects">PROJECTS</a><a href="#team">TEAM</a><a class="navcta" href="#apply">JOIN JUST ↗</a></div>
+    <a class="brand" href="#top" aria-label="JUST 메인으로"><span class="mark">J.</span><span>JUST<small>GAME STUDIO</small></span></a>
+    <button class="menuToggle" id="menuToggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primaryLinks"><span></span><span></span></button>
+    <div class="links" id="primaryLinks"><a href="#about">ABOUT</a><a href="#team">TEAM</a><a href="#studio">STUDIO</a><a href="#workflow">PROCESS</a><a href="#quality">QUALITY</a><a href="#projects">PROJECTS</a><a href="#devlog">DEV LOG</a><a href="#faq">FAQ</a><a class="navcta" href="#apply">JOIN JUST <span aria-hidden="true">↗</span></a></div>
   </div>
 </nav>
-<header class="hero" id="top">
-  <div class="wrap heroGrid">
-    <div>
-      <div class="kicker"><span class="dot"></span> INDEPENDENT ROBLOX STUDIO</div>
-      <h1>JUST<span>.</span><br><span>저스트</span></h1>
-      <p class="lead">친구들의 아이디어를 실제 플레이할 수 있는 경험으로.<br>JUST는 함께 배우고, 만들고, 더 나은 게임을 고민하는 Roblox 개발팀입니다.</p>
-      <div class="heroBtns"><a class="btn" href="#projects">프로젝트 보기 <span>↘</span></a><a class="btn secondary" href="#apply">팀원 지원하기 <span>↗</span></a></div>
-      <div class="heroMeta"><div><b>01</b>ONE TEAM</div><div><b>∞</b>IDEAS</div><div><b>ROBLOX</b>OUR WORLD</div></div>
+<header class="hero heroV3" id="top">
+  <div class="heroAura heroAuraA" aria-hidden="true"></div><div class="heroAura heroAuraB" aria-hidden="true"></div>
+  <div class="heroWrap wrap">
+    <div class="heroGrid">
+      <div class="heroCopy">
+        <div class="kicker"><span class="dot"></span> INDEPENDENT ROBLOX GAME STUDIO <span class="kickerSep">/</span> BUSAN, KR</div>
+        <div class="heroTitleLockup"><h1 aria-label="JUST">JUST<span>.</span></h1><span class="heroKorean">저스트 <i>GAME STUDIO</i></span></div>
+        <p class="lead">상상을 실제 플레이 경험으로.<br/>JUST는 아이디어를 설계하고, 직접 만들고, 플레이 테스트를 통해 더 나은 게임으로 발전시키는 Roblox 개발팀입니다.</p>
+        <div class="heroPill"><span class="liveDot"></span><span>ACTIVE BUILD <b>02 PROJECTS</b></span><span class="pillDivider"></span><span>IDEATE · BUILD · PLAYTEST · REFINE</span></div>
+        <div class="heroBtns"><a class="btn heroPrimary" href="#projects">프로젝트 탐색 <span aria-hidden="true">↘</span></a><a class="btn secondary heroSecondary" href="#apply">크리에이터로 합류 <span aria-hidden="true">↗</span></a></div>
+        <div class="heroMeta"><div><b>04</b><span>CORE MEMBERS</span></div><i></i><div><b>02</b><span>IN DEVELOPMENT</span></div><i></i><div><b>01</b><span>SHARED MISSION</span></div></div>
+        <div class="heroScrollHint"><span class="scrollMouse"><i></i></span><span>SCROLL TO EXPLORE</span><span class="heroScrollLine"></span></div>
+      </div>
+      <div aria-label="JUST 로고를 중심으로 회전하는 장식 그래픽" class="heroArt heroArtV3">
+        <div class="heroArtHalo"></div><div class="orbit orbitA"></div><div class="orbit orbitB"></div><div class="orbit orbitC"></div>
+        <div class="heroOrbitNode nodeA"></div><div class="heroOrbitNode nodeB"></div><div class="heroOrbitNode nodeC"></div>
+        <div class="core"><div class="coreInner"><strong>J<span>.</span></strong><small>JUST / STUDIO</small></div></div>
+        <div class="floatTag tag1"><span class="tagSignal"></span> BUILDING WORLDS</div><div class="floatTag tag2">DESIGN <b>×</b> SYSTEMS</div><div class="floatTag tag3">PLAYTEST / REPEAT</div>
+        <div class="heroDataPlate"><span class="dataPlateTop">STUDIO SIGNAL <i>● LIVE</i></span><strong>MAKE IT<br/><em>PLAYABLE.</em></strong><div class="dataPlateLine"><i></i></div><small>CRAFTED WITH CURIOSITY</small></div>
+      </div>
     </div>
-    <div class="heroArt" aria-label="JUST 로고 장식">
-      <div class="orbit"></div><div class="core"><strong>J<span style="color:#a9c2f6">.</span></strong></div>
-      <div class="floatTag tag1">JUST / STUDIO</div><div class="floatTag tag2">IMAGINE → BUILD</div><div class="floatTag tag3">EST. 2026</div>
-    </div>
+    <div class="heroBottomRail"><span>01 — CREATIVE THINKING</span><span>02 — TECHNICAL CRAFT</span><span>03 — PLAYER EXPERIENCE</span><span class="railArrow">↘</span></div>
   </div>
 </header>
 <main>
 <section class="section" id="about">
   <div class="wrap">
-    <div class="sectionHead"><div><div class="eyebrow">01 / WHO WE ARE</div><h2>아이디어에서<br>플레이 가능한 세계로.</h2></div><p>JUST는 완성된 결과만큼 제작 과정도 중요하게 생각합니다. 각자의 강점을 모아 기획부터 제작, 테스트까지 함께 성장합니다.</p></div>
-    <div class="values">
-      <article class="value"><div class="num">01 — CREATE</div><h3>직접 만들기</h3><p>아이디어를 구체적인 기능과 플레이 경험으로 바꾸고, 작더라도 실제로 작동하는 결과물을 만듭니다.</p></article>
-      <article class="value"><div class="num">02 — COLLABORATE</div><h3>함께 해결하기</h3><p>기획, 맵 제작, 모델링, 스크립팅 등 서로 다른 역할을 존중하고 문제를 함께 해결합니다.</p></article>
-      <article class="value"><div class="num">03 — IMPROVE</div><h3>계속 개선하기</h3><p>테스트와 피드백을 통해 버그를 찾고, 플레이어가 더 재미있게 즐길 수 있도록 다듬습니다.</p></article>
+    <div class="sectionHead"><div><div class="eyebrow">01 / WHO WE ARE</div><h2>아이디어에서<br>플레이 가능한 세계로.</h2></div><p>JUST는 “만드는 것”에서 끝나지 않습니다. 왜 재미있는지 고민하고, 직접 테스트하고, 피드백을 반영해 다음 버전을 더 좋게 만드는 과정을 중요하게 생각합니다.</p></div>
+    <div class="studioPulse" aria-label="JUST 스튜디오 현황">
+      <article class="pulseStat"><span class="pulseIcon">↗</span><span class="pulseLabel">IN DEVELOPMENT</span><strong data-count="2">2</strong><span class="pulseCaption">진행 중 프로젝트</span></article>
+      <article class="pulseStat"><span class="pulseIcon">◎</span><span class="pulseLabel">CORE MEMBERS</span><strong data-count="4">4</strong><span class="pulseCaption">현재 핵심 팀원</span></article>
+      <article class="pulseStat"><span class="pulseIcon">＋</span><span class="pulseLabel">PUBLIC RELEASES</span><strong data-count="0">0</strong><span class="pulseCaption">공개 완료 게임</span></article>
     </div>
+    <div class="values">
+      <article class="value"><div class="num">01 — CREATE</div><h3>작게 만들고, 직접 확인하기</h3><p>거대한 계획만 세우기보다 구현 가능한 단위로 나누고, 실제로 작동하는 결과물을 쌓아 갑니다.</p><div class="valueFoot">IDEA → PROTOTYPE</div></article>
+      <article class="value"><div class="num">02 — COLLABORATE</div><h3>역할은 달라도 목표는 하나</h3><p>기획·맵 제작·스크립팅·UI·테스트가 따로 놀지 않도록 진행 상황을 공유하고 필요한 부분을 서로 돕습니다.</p><div class="valueFoot">SHARE → BUILD</div></article>
+      <article class="value"><div class="num">03 — IMPROVE</div><h3>완성도는 테스트에서 나온다</h3><p>버그를 숨기기보다 기록하고, 플레이하는 사람의 입장에서 불편한 지점을 찾아 개선합니다.</p><div class="valueFoot">TEST → ITERATE</div></article>
+    </div>
+    <div class="manifestoRail" aria-label="JUST의 개발 원칙"><div class="manifestoTrack"><span>MAKE IT REAL</span><b>✳</b><span>PLAYTEST EARLY</span><b>✳</b><span>BUILD TOGETHER</span><b>✳</b><span>MAKE IT BETTER</span><b>✳</b><span>MAKE IT REAL</span><b>✳</b><span>PLAYTEST EARLY</span><b>✳</b><span>BUILD TOGETHER</span><b>✳</b><span>MAKE IT BETTER</span><b>✳</b></div></div>
   </div>
 </section>
 <section class="section alt" id="team">
   <div class="wrap">
-    <div class="sectionHead"><div><div class="eyebrow">02 / THE PEOPLE</div><h2>작은 팀, 큰 상상.</h2></div><p>각자의 역할을 살려 함께 게임을 만들어 갑니다. JUST와 함께할 새로운 팀원도 찾고 있어요.</p></div>
+    <div class="sectionHead"><div><div class="eyebrow">02 / THE PEOPLE</div><h2>좋은 게임은<br>좋은 팀에서 시작된다.</h2></div><p>현재 역할이 정해진 핵심 팀원과 합류 상태를 분리해 표시합니다. 관심 분야가 다르더라도 소통하고 맡은 일을 끝까지 다듬는 태도를 중요하게 생각합니다.</p></div>
     <div class="teamGrid">
-      <article class="person featured"><div class="role">TEAM LEADER</div><h3>임휘승</h3><p>팀 방향 설정 · 프로젝트 조율</p><div class="avatar">H</div></article>
-      <article class="person"><div class="role">VICE LEADER</div><h3>송시우</h3><p>협업 · 제작 진행 지원</p><div class="avatar">S</div></article>
-      <article class="person"><div class="role">VICE LEADER</div><h3>장현준</h3><p>팀 운영 · 개발 협업</p><div class="avatar">J</div></article>
-      <article class="person open"><div class="role">OPEN POSITION</div><h3>추가 리더 모집 중</h3><p>팀 운영과 개발을 함께 이끌어 갈 책임감 있는 지원자를 기다립니다.</p><div class="avatar">＋</div></article>
-      <article class="person open"><div class="role">JOIN THE TEAM</div><h3>팀원 모집 중</h3><p>초보자도 환영합니다. 배우려는 마음과 협업 태도를 중요하게 봅니다.</p><div class="avatar">＋</div></article>
+      <article class="person featured leaderCard"><div class="personTopline"><span class="role">TEAM LEADER</span><span class="memberId">10522</span></div><h3>임휘승</h3><p>팀의 방향과 목표를 정리하고, 프로젝트 우선순위와 전체 진행 상황을 조율합니다.</p><div class="personSkills"><span>방향 설정</span><span>기획 조율</span><span>진행 관리</span></div><div class="avatar">H</div><div class="personIndex">01 / LEADERSHIP</div></article>
+      <article class="person deputyCard"><div class="personTopline"><span class="role">VICE LEADER</span><span class="memberId">10516</span></div><h3>송시우</h3><p>팀 내 소통과 제작 진행을 지원하고, 아이디어가 실제 작업으로 이어지도록 돕습니다.</p><div class="personSkills"><span>협업</span><span>진행 지원</span></div><div class="avatar">S</div><div class="personIndex">02 / OPERATIONS</div></article>
+      <article class="person featured devLead"><div class="personTopline"><span class="role">DEVELOPMENT LEAD</span><span class="memberId">10628</span></div><h3>최유준</h3><p>개발 구조와 구현 방향을 검토하고, 시스템 설계와 기술적 문제 해결을 이끕니다.</p><div class="personSkills"><span>시스템 설계</span><span>개발 방향</span><span>기술 협업</span></div><div class="avatar">Y</div><div class="personIndex">03 / DEVELOPMENT</div></article>
+      <article class="person deputyCard junghyunCard"><div class="personTopline"><span class="role">VICE LEADER</span><span class="memberId">10323</span></div><h3>장현준</h3><p>팀 운영과 소통을 함께 맡고, 구성원들이 목표와 작업 상황을 명확히 공유할 수 있도록 지원합니다.</p><div class="personSkills"><span>팀 운영</span><span>협업 조율</span><span>진행 지원</span></div><div class="avatar">J</div><div class="personIndex">04 / OPERATIONS</div></article>
     </div>
+    <div class="teamFootnote"><span class="teamFootnoteIcon">✦</span><p><b>한 팀, 같은 목표.</b> 기획·개발·운영이 따로 움직이지 않도록 진행 상황을 공유하고, 서로의 작업을 테스트하며 완성도를 높입니다.</p><span class="teamFootnoteTag">BUILD AS ONE</span></div>
+    <div class="recruitStrip"><div><span class="eyebrow">OPEN CALL / JOIN THE CREW</span><h3>잘하는 사람보다, 함께 성장할 사람.</h3><p>처음 시작해도 괜찮아요. 지원서에서 관심 있는 역할과 배우고 싶은 것을 알려 주세요.</p></div><a class="btn" href="#apply">지원 절차 확인하기 <span>↗</span></a></div>
+  </div>
+</section>
+<section class="section studioSection" id="studio">
+  <div class="wrap">
+    <div class="sectionHead studioHead"><div><div class="eyebrow">03 / THE STUDIO TOOLKIT</div><h2>게임을 만드는 일을<br/><span class="headlineGlow">더 깊게 설계한다.</span></h2></div><p>좋은 게임은 멋진 아이디어 하나로 완성되지 않습니다. 월드 디자인부터 시스템의 반응, 화면의 전달력, 플레이 테스트까지 — JUST가 지향하는 제작 영역을 한눈에 소개합니다.</p></div>
+    <div class="studioManifest"><div class="manifestEyebrow"><span class="manifestLive"></span> OUR CREATIVE DIRECTION <span>REV. 2026</span></div><p>작동하는 것에서 멈추지 않고, <strong>이해하기 쉽고 다시 플레이하고 싶은 경험</strong>을 향해.</p><div class="manifestTicker" aria-hidden="true"><div class="manifestTickerTrack"><span>DESIGN WITH INTENT</span><b>✳</b><span>BUILD WITH CARE</span><b>✳</b><span>TEST WITH PLAYERS</span><b>✳</b><span>REFINE EVERY DETAIL</span><b>✳</b><span>DESIGN WITH INTENT</span><b>✳</b><span>BUILD WITH CARE</span><b>✳</b><span>TEST WITH PLAYERS</span><b>✳</b><span>REFINE EVERY DETAIL</span><b>✳</b></div></div></div>
+    <div class="studioCards">
+      <article class="studioCard studioWorld" data-spotlight><div class="studioCardTop"><span class="studioCardNum">01</span><span class="studioCardIcon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 20 24 8l19 12-19 12L5 20Z"/><path d="M5 28l19 12 19-12M5 24v8M43 24v8M24 32v8"/></svg></span><span class="studioCardTag">ENVIRONMENT</span></div><h3>World Building</h3><p>맵을 단순한 배경이 아니라 탐험과 이동, 발견이 일어나는 무대로 생각합니다. 플레이 동선과 공간의 분위기가 자연스럽게 이어지도록 설계합니다.</p><div class="studioCardFooter"><span>BLOCKOUT</span><span>LAYOUT</span><span>WORLD FEEL</span></div><div class="studioCardBloom"></div></article>
+      <article class="studioCard studioSystems" data-spotlight><div class="studioCardTop"><span class="studioCardNum">02</span><span class="studioCardIcon"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="7" width="13" height="13" rx="3"/><rect x="28" y="7" width="13" height="13" rx="3"/><rect x="17" y="28" width="13" height="13" rx="3"/><path d="M20 13h8M34.5 20v4.5H23.5V28"/></svg></span><span class="studioCardTag">LUAU / LOGIC</span></div><h3>Game Systems</h3><p>입력과 규칙, 결과가 일관되게 연결되는 시스템을 지향합니다. 문제가 생겼을 때 원인을 찾고 수정할 수 있도록 기능을 작은 단위로 나누어 생각합니다.</p><div class="studioCardFooter"><span>GAME LOGIC</span><span>DEBUGGING</span><span>RELIABILITY</span></div><div class="studioCardBloom"></div></article>
+      <article class="studioCard studioExperience" data-spotlight><div class="studioCardTop"><span class="studioCardNum">03</span><span class="studioCardIcon"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="9" width="34" height="30" rx="5"/><path d="M7 17h34M14 13h.1M18 13h.1M13 24h10M13 29h22M13 34h15"/></svg></span><span class="studioCardTag">UI / UX</span></div><h3>Experience Design</h3><p>화려함만큼 중요한 것은 명확함입니다. 버튼이 눌렸는지, 다음에 무엇을 해야 하는지, 정보가 잘 읽히는지를 세심하게 다룹니다.</p><div class="studioCardFooter"><span>READABILITY</span><span>FEEDBACK</span><span>ACCESSIBILITY</span></div><div class="studioCardBloom"></div></article>
+      <article class="studioCard studioTesting" data-spotlight><div class="studioCardTop"><span class="studioCardNum">04</span><span class="studioCardIcon"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="21" cy="21" r="12"/><path d="m30 30 10 10M16 21l4 4 7-8"/></svg></span><span class="studioCardTag">QA / PLAYTEST</span></div><h3>Playtest Lab</h3><p>만든 사람만 이해하는 게임이 되지 않도록 테스트 관점에서 확인합니다. 막히는 순간과 예상 밖의 행동을 기록하고 개선할 우선순위를 정합니다.</p><div class="studioCardFooter"><span>TEST CASES</span><span>FEEDBACK</span><span>ITERATION</span></div><div class="studioCardBloom"></div></article>
+    </div>
+    <div class="studioBottomNote"><span class="studioNoteIcon">✦</span><p><b>참고:</b> 위 항목은 JUST가 추구하는 제작 기준과 관심 영역을 설명합니다. 각 기능이 현재 프로젝트에 모두 구현되어 있다는 뜻은 아닙니다.</p><span class="studioNoteCode">STUDIO NOTE / 003</span></div>
+  </div>
+</section>
+<section class="section workflowSection" id="workflow">
+  <div class="wrap">
+    <div class="sectionHead"><div><div class="eyebrow">04 / HOW WE BUILD</div><h2>감으로만 만들지 않는다.<br>과정으로 완성한다.</h2></div><p>프로젝트마다 세부 계획은 달라도, 아이디어를 검증하고 개선하는 흐름을 기준으로 삼습니다. 아래는 JUST가 지향하는 제작 방식입니다.</p></div>
+    <div class="workflowLine" aria-label="게임 제작 과정">
+      <article class="flowStep"><span class="flowNumber">01</span><div class="flowIcon">⌁</div><span class="flowLabel">DISCOVER</span><h3>문제와 재미 찾기</h3><p>누가 플레이하는 게임인지, 어떤 경험이 핵심인지 정리하고 꼭 필요한 기능부터 고릅니다.</p><div class="flowOutput"><b>OUTPUT</b> 한 문장 콘셉트 · 핵심 목표</div></article>
+      <article class="flowStep"><span class="flowNumber">02</span><div class="flowIcon">◇</div><span class="flowLabel">PROTOTYPE</span><h3>핵심 기능 만들기</h3><p>맵·시스템·UI를 작은 단위로 구현해 아이디어가 실제로 작동하는지 확인합니다.</p><div class="flowOutput"><b>OUTPUT</b> 작동하는 프로토타입</div></article>
+      <article class="flowStep"><span class="flowNumber">03</span><div class="flowIcon">◎</div><span class="flowLabel">PLAYTEST</span><h3>직접 플레이하고 기록하기</h3><p>막히는 구간, 오류, 반복 플레이의 재미를 확인하고 수정할 내용을 우선순위로 정합니다.</p><div class="flowOutput"><b>OUTPUT</b> 버그 목록 · 피드백</div></article>
+      <article class="flowStep"><span class="flowNumber">04</span><div class="flowIcon">↗</div><span class="flowLabel">POLISH</span><h3>완성도를 끌어올리기</h3><p>불필요한 부분을 정리하고 조작감·가독성·안정성을 개선한 뒤 공개 가능 여부를 판단합니다.</p><div class="flowOutput"><b>OUTPUT</b> 개선 버전 · 공개 점검</div></article>
+    </div>
+    <div class="devPrinciples"><div class="principleLead"><span class="eyebrow">TEAM PRINCIPLES</span><h3>우리가 지키려는 작업 약속</h3></div><div class="principle"><span>01</span><div><b>진행 상황을 공유한다</b><p>작업 중 막힌 부분과 완료한 내용을 팀에 알립니다.</p></div></div><div class="principle"><span>02</span><div><b>피드백은 결과물을 향한다</b><p>사람을 비난하지 않고 구체적인 문제와 개선 방법을 이야기합니다.</p></div></div><div class="principle"><span>03</span><div><b>모르는 것은 질문하고 기록한다</b><p>같은 문제를 반복하지 않도록 해결 방법을 남기고 서로 배웁니다.</p></div></div></div>
+  </div>
+</section>
+<section class="section qualitySection" id="quality">
+  <div class="wrap">
+    <div class="sectionHead"><div><div class="eyebrow">05 / QUALITY STANDARD</div><h2>출시 버튼을 누르기 전,<br>끝까지 확인한다.</h2></div><p>멋있어 보이는 것만으로는 충분하지 않습니다. JUST는 플레이 흐름, 오류, 조작감, 성능을 반복해서 확인하고 실제 테스트에서 발견한 문제를 다음 작업에 반영하는 제작 문화를 지향합니다.</p></div>
+    <div class="qualityGrid">
+      <article class="qualityCard"><span class="qualityNo">01</span><div class="qualityIcon">⌘</div><span class="qualityLabel">PLAYABILITY</span><h3>재미와 흐름</h3><p>플레이어가 무엇을 해야 하는지 이해할 수 있는지, 목표가 명확한지, 반복 플레이가 지루하지 않은지 확인합니다.</p><div class="qualityLine"><i></i></div></article>
+      <article class="qualityCard"><span class="qualityNo">02</span><div class="qualityIcon">⌁</div><span class="qualityLabel">STABILITY</span><h3>오류와 안정성</h3><p>예외 상황과 잘못된 입력을 확인하고, 문제가 발생하면 재현 방법과 수정 내용을 기록해 같은 오류를 줄입니다.</p><div class="qualityLine"><i></i></div></article>
+      <article class="qualityCard"><span class="qualityNo">03</span><div class="qualityIcon">◈</div><span class="qualityLabel">PRESENTATION</span><h3>화면과 조작감</h3><p>UI의 가독성, 버튼 피드백, 화면 크기별 배치, 안내 문구를 점검해 처음 접하는 플레이어도 편하게 이용하도록 합니다.</p><div class="qualityLine"><i></i></div></article>
+      <article class="qualityCard"><span class="qualityNo">04</span><div class="qualityIcon">↗</div><span class="qualityLabel">ITERATION</span><h3>테스트와 개선</h3><p>테스트 의견을 모으고 우선순위를 정해 수정합니다. 완성도를 높이기 위해 작은 개선도 반복합니다.</p><div class="qualityLine"><i></i></div></article>
+    </div>
+    <div class="qualityStatement"><span class="qualityOrb" aria-hidden="true"></span><div><span class="eyebrow">THE JUST STANDARD</span><h3>만들었다고 끝이 아니다.<br><em>플레이할 수 있을 때까지.</em></h3><p>이 기준은 현재의 제작 원칙이며, 개별 프로젝트의 실제 구현 여부나 출시 상태를 의미하지 않습니다.</p></div><div class="qualityStamp">TEST<br>·<br>REFINE</div></div>
   </div>
 </section>
 <section class="section" id="projects">
   <div class="wrap">
-    <div class="sectionHead"><div><div class="eyebrow">03 / CURRENT PROJECTS</div><h2>지금 만들고 있는 것.</h2></div><p>현재 진행 중인 프로젝트입니다. 아직 공개된 완성작은 없으며, 개발을 진행하며 내용을 업데이트할 예정입니다.</p></div>
+    <div class="sectionHead"><div><div class="eyebrow">06 / PROJECT FILES</div><h2>두 개의 세계를<br>동시에 준비 중.</h2></div><p>Airhope와 Zombie Defance는 현재 개발 중인 프로젝트입니다. 이곳에서는 프로젝트의 방향과 제작 상태를 구분해 소개하며, 플레이 방식·세부 기능·출시 일정은 실제로 확정된 내용만 순차적으로 공개합니다.</p></div>
     <div class="projectGrid">
-      <article class="project"><div class="projectTop air"><span class="projectIndex">PROJECT / 001</span><span class="projectState">IN DEVELOPMENT</span><div class="projectGlyph">AIRHOPE</div></div><div class="projectBody"><h3>Airhope</h3><p>JUST의 진행 중 프로젝트. 기획과 개발을 진행하며 핵심 게임플레이와 세부 정보를 구체화하고 있습니다.</p><div class="tags"><span>ROBLOX</span><span>GAME DESIGN</span><span>IN PROGRESS</span></div></div></article>
-      <article class="project"><div class="projectTop zombie"><span class="projectIndex">PROJECT / 002</span><span class="projectState">IN DEVELOPMENT</span><div class="projectGlyph">Z:D</div></div><div class="projectBody"><h3>Zombie Defance</h3><p>생존과 좀비를 테마로 준비 중인 프로젝트. 플레이 방식과 시스템을 개발하며 게임의 방향을 잡아 가고 있습니다.</p><div class="tags"><span>ROBLOX</span><span>SURVIVAL</span><span>IN PROGRESS</span></div></div></article>
+      <article class="project projectAir"><div class="projectTop air"><span class="projectIndex">PROJECT / 001</span><span class="projectState"><i></i> IN DEVELOPMENT</span><div class="projectGlyph">AIRHOPE</div><div class="projectOrbit o1"></div><div class="projectOrbit o2"></div><span class="projectFootLabel">CONCEPT IN PROGRESS</span></div><div class="projectBody"><div class="projectMeta"><span>ROBLOX EXPERIENCE</span><span>01 / 02</span></div><h3>Airhope</h3><p class="projectSummary">이름과 핵심 콘셉트를 바탕으로 게임의 방향을 구체화하고 있는 프로젝트입니다. 현재는 완성된 게임으로 소개하기보다, 실제 플레이 경험으로 발전시키는 과정에 집중합니다.</p><div class="projectBrief"><div><span>현재 상태</span><b>기획 · 개발 진행 중</b></div><div><span>공개 정보</span><b>세부 내용 준비 중</b></div></div><div class="tags"><span>CONCEPT DESIGN</span><span>PROTOTYPING</span><span>ITERATION</span></div><button class="projectMore" type="button" data-project="airhope">프로젝트 브리프 열기 <span aria-hidden="true">↗</span></button></div></article>
+      <article class="project projectZombie"><div class="projectTop zombie"><span class="projectIndex">PROJECT / 002</span><span class="projectState"><i></i> IN DEVELOPMENT</span><div class="projectGlyph">Z:D</div><div class="zombieScan"></div><span class="projectFootLabel">SURVIVAL CONCEPT</span></div><div class="projectBody"><div class="projectMeta"><span>ROBLOX EXPERIENCE</span><span>02 / 02</span></div><h3>Zombie Defance</h3><p class="projectSummary">좀비와 생존을 테마로 준비 중인 프로젝트입니다. 플레이 방식과 시스템을 개발하며, 반복 플레이가 지루하지 않고 조작이 명확한 게임 경험을 목표로 방향을 잡아 갑니다.</p><div class="projectBrief"><div><span>현재 상태</span><b>기획 · 개발 진행 중</b></div><div><span>핵심 테마</span><b>좀비 · 생존</b></div></div><div class="tags"><span>SURVIVAL</span><span>SYSTEM DESIGN</span><span>PLAYTEST</span></div><button class="projectMore" type="button" data-project="zombie">프로젝트 브리프 열기 <span aria-hidden="true">↗</span></button></div></article>
     </div>
-    <div class="noProjects">↗ 공개 완료된 게임: 아직 없음 · 프로젝트 이름과 개발 상태는 팀 진행 상황에 따라 변경될 수 있습니다.</div>
+    <div class="projectDisclaimer"><span class="disclaimerIcon">↗</span><div><b>개발 중인 프로젝트입니다.</b><p>이 사이트는 미공개 기능이나 출시일을 약속하지 않습니다. 실제로 확정된 정보와 제작 진행 상황에 맞춰 프로젝트 소개를 갱신합니다.</p></div></div>
+  </div>
+</section>
+<section class="section alt devlogSection" id="devlog">
+  <div class="wrap">
+    <div class="sectionHead"><div><div class="eyebrow">07 / TEAM DEVELOPMENT LOG</div><h2>만든 과정까지<br><span class="headlineGlow">팀의 자산으로.</span></h2></div><p>개발 일지, 버그 제보, 아이디어, 회의 내용을 한곳에 기록합니다. 팀원 로그인 후에만 노트가 표시되며, 기록은 Supabase 데이터베이스에 저장됩니다.</p></div>
+    <div class="devShell">
+      <aside class="devIntroCard">
+        <div class="devIntroTop">
+          <div class="devLogOrb" aria-hidden="true"><span>DEV</span></div>
+          <span class="eyebrow">PRIVATE WORKSPACE / 001</span>
+          <h3>작업은 기록하고,<br>문제는 공유하고,<br>진행은 함께 확인한다.</h3>
+          <p>개발 과정에서 생긴 작은 발견도 다음 빌드에 도움이 될 수 있어요. 오늘 한 일, 막힌 부분, 테스트 결과, 다음에 할 일을 구체적으로 남겨 보세요.</p>
+          <div class="devFeatureList">
+            <div class="devFeature"><span class="devFeatureIcon">✎</span><div><b>개발 노트</b><small>작업 내역과 다음 할 일 정리</small></div></div>
+            <div class="devFeature"><span class="devFeatureIcon">⌁</span><div><b>버그 · 아이디어</b><small>재현 방법과 개선점 공유</small></div></div>
+            <div class="devFeature"><span class="devFeatureIcon">↻</span><div><b>실시간 새로고침</b><small>다른 팀원의 기록도 자동 반영</small></div></div>
+          </div>
+        </div>
+        <div class="devIntroFoot"><span>JUST / INTERNAL TOOLS</span><span class="devSecurePill"><i></i> TEAM ACCESS ONLY</span></div>
+      </aside>
+      <div class="devPanel">
+        <div class="devPanelTop"><div><span class="devPanelKicker">JUST DATABASE / SUPABASE</span><h3>개발 워크스페이스</h3><p>팀 계정으로 로그인해 개발 노트를 관리하세요.</p></div><span class="devTinyStatus" id="devConnectionBadge">INITIALIZING</span></div>
+        <div class="devFeedback" id="devFeedback" role="status" aria-live="polite">Supabase 클라이언트를 확인하고 있습니다. SQL 설정과 팀 계정 등록을 마친 뒤 사용할 수 있습니다.</div>
+        <div id="devLoginView">
+          <div class="devAuthLayout">
+            <form class="devAuthCard" id="devLoginForm">
+              <span class="devPanelKicker">MEMBER AUTHENTICATION</span>
+              <h4>팀원 로그인</h4>
+              <p>이미 가입했고 관리자의 승인을 받은 팀원은 로그인해 개발 노트를 볼 수 있어요.</p>
+              <div class="devFieldGrid">
+                <div class="devField full"><label for="devLoginEmail">이메일</label><input id="devLoginEmail" type="email" autocomplete="username" placeholder="이메일 주소" required maxlength="254"></div>
+                <div class="devField full"><label for="devLoginPassword">비밀번호</label><input id="devLoginPassword" type="password" autocomplete="current-password" placeholder="비밀번호 입력" required maxlength="256"></div>
+              </div>
+              <div class="devFormActions"><button class="btn" id="devLoginButton" type="submit">로그인 <span aria-hidden="true">↗</span></button></div>
+              <div class="devAuthSwitch">아직 JUST 팀 계정이 없나요? <button class="devInlineLink" id="devShowSignupButton" type="button">회원가입 및 승인 신청</button></div>
+            </form>
+            <form class="devAuthCard" id="devSignupForm" hidden>
+              <span class="devPanelKicker">REQUEST TEAM ACCESS</span>
+              <h4>JUST 가입 신청</h4>
+              <p>정보를 제출하면 팀장 검토 목록에 요청이 등록됩니다. 승인 전에는 개발 노트와 내부 기록을 볼 수 없습니다.</p>
+              <div class="devFieldGrid">
+                <div class="devField"><label for="devSignupName">이름 *</label><input id="devSignupName" type="text" autocomplete="name" placeholder="이름" maxlength="40" required></div>
+                <div class="devField"><label for="devSignupStudentNo">학번 *</label><input id="devSignupStudentNo" type="text" inputmode="numeric" pattern="[0-9A-Za-z-]{2,12}" title="학번 또는 학교에서 사용하는 식별 번호를 입력해 주세요." placeholder="예: 10522" maxlength="12" required></div>
+                <div class="devField full"><label for="devSignupEmail">이메일 *</label><input id="devSignupEmail" type="email" autocomplete="email" placeholder="본인이 확인할 수 있는 이메일" maxlength="254" required></div>
+                <div class="devField"><label for="devSignupPassword">비밀번호 *</label><input id="devSignupPassword" type="password" autocomplete="new-password" minlength="8" placeholder="8자 이상" maxlength="256" required></div>
+                <div class="devField"><label for="devSignupPasswordConfirm">비밀번호 확인 *</label><input id="devSignupPasswordConfirm" type="password" autocomplete="new-password" minlength="8" placeholder="비밀번호 다시 입력" maxlength="256" required></div>
+                <div class="devField full"><label for="devSignupMotivation">지원 동기 · 관심 역할</label><textarea id="devSignupMotivation" maxlength="800" placeholder="어떤 게임 제작에 참여하고 싶은가요? (선택)" style="min-height:90px"></textarea><span class="devFieldHint">최대 800자 · 비밀번호는 관리자에게 공유되지 않습니다.</span></div>
+              </div>
+              <div class="devFormActions"><button class="btn" id="devSignupButton" type="submit">가입 신청 보내기 <span aria-hidden="true">↗</span></button><button class="btn secondary" id="devHideSignupButton" type="button">로그인으로 돌아가기</button></div>
+              <div class="devAuthSwitch">신청했다고 바로 팀원이 되지는 않아요. 팀장 승인 후 접근 권한이 활성화됩니다.</div>
+            </form>
+          </div>
+          <div class="devLogLegal">가입 시 Supabase 계정이 생성되고, 신청서는 비공개 승인 대기 목록에 저장됩니다. 팀장은 신청을 승인하거나 반려할 수 있습니다. 이메일 확인 기능이 켜져 있으면 메일 인증을 완료해야 로그인할 수 있습니다.</div>
+        </div>
+        <div id="devPendingView" hidden>
+          <div class="devPendingCard">
+            <div class="devPendingIcon" aria-hidden="true">◷</div>
+            <span class="devPanelKicker">TEAM ACCESS REVIEW</span>
+            <h4 id="devPendingStatus">승인 대기 중</h4>
+            <p id="devPendingDetail">가입 신청이 접수되었습니다. 팀장 검토가 끝날 때까지 기다려 주세요.</p>
+            <div class="devPendingMeta"><div><small>신청자</small><b id="devPendingName">—</b></div><div><small>학번</small><b id="devPendingStudentNo">—</b></div><div><small>신청 날짜</small><b id="devPendingDate">—</b></div></div>
+            <div class="devFormActions"><button class="btn" id="devPendingRefreshButton" type="button">권한 상태 확인 ↻</button><button class="btn secondary" id="devPendingReconsiderButton" type="button" hidden>재검토 요청 ↗</button><button class="devTextButton" id="devPendingLogoutButton" type="button">로그아웃</button></div>
+          </div>
+        </div>
+        <div id="devAppView" hidden>
+          <div class="devToolbar"><div class="devMemberChip"><div class="devMemberAvatar" id="devMemberAvatar">J</div><div class="devMemberWho"><b id="devMemberName">JUST MEMBER</b><small id="devMemberRole">TEAM MEMBER · AUTHENTICATED</small></div></div><button class="devTextButton" id="devLogoutButton" type="button">로그아웃 ↗</button></div>
+          <section class="devJoinPanel" id="devJoinRequestsPanel" hidden>
+            <div class="devJoinPanelTop"><div><span class="devPanelKicker">TEAM ACCESS CONTROL</span><h4>가입 승인 요청</h4><p>대기 중인 신청을 검토하세요. 승인하면 신청자가 개발 워크스페이스에 접근할 수 있습니다.</p></div><span class="devJoinCount" id="devJoinRequestCount">0 PENDING</span></div>
+            <div class="devJoinRequests" id="devJoinRequestsList"><div class="devEmptyState"><strong>요청을 불러오는 중...</strong></div></div>
+          </section>
+          <form class="devEditor" id="devNoteForm">
+            <div class="devEditorHead"><h4 id="devEditorTitle">새 개발 노트</h4><span>NOTE EDITOR / 01</span></div>
+            <input type="hidden" id="devNoteId" value="">
+            <div class="devFieldGrid">
+              <div class="devField full"><label for="devNoteTitle">제목 *</label><input id="devNoteTitle" type="text" placeholder="예: Airhope 이동 시스템 1차 테스트" maxlength="120" required></div>
+              <div class="devField"><label for="devNoteProject">프로젝트 *</label><select id="devNoteProject" required><option value="팀 공통">팀 공통</option><option value="Airhope">Airhope</option><option value="Zombie Defance">Zombie Defance</option></select></div>
+              <div class="devField"><label for="devNoteCategory">기록 종류 *</label><select id="devNoteCategory" required><option value="개발 일지">개발 일지</option><option value="버그 제보">버그 제보</option><option value="아이디어">아이디어</option><option value="회의록">회의록</option><option value="공지">공지</option></select></div>
+              <div class="devField full"><label for="devNoteStatus">진행 상태 *</label><select id="devNoteStatus" required><option value="진행 중">진행 중</option><option value="아이디어">아이디어</option><option value="테스트 중">테스트 중</option><option value="완료">완료</option><option value="보류">보류</option></select></div>
+              <div class="devField full"><label for="devNoteBody">내용 *</label><textarea id="devNoteBody" placeholder="무엇을 작업했나요?\n문제가 있다면 재현 방법과 예상 결과를 적어 주세요.\n다음 작업도 함께 기록하면 좋아요." maxlength="8000" required></textarea><span class="devFieldHint">최대 8,000자 · 비밀번호나 비밀 키 등 민감한 정보를 기록하지 마세요.</span></div>
+            </div>
+            <div class="devFormActions"><button class="btn" id="devNoteSave" type="submit">노트 저장 <span aria-hidden="true">↗</span></button><button class="btn secondary" id="devNoteCancel" type="button" hidden>수정 취소</button></div>
+          </form>
+          <div class="devFeedHead"><div><h4>팀 개발 기록</h4><p>최신 수정 순으로 표시됩니다.</p></div><span class="devCount" id="devNoteCount">0 RECORDS</span></div>
+          <div class="devFilters"><input id="devSearch" type="search" placeholder="제목·내용·작성자 검색" aria-label="개발 노트 검색"><select id="devProjectFilter" aria-label="프로젝트 필터"><option value="all">모든 프로젝트</option><option value="팀 공통">팀 공통</option><option value="Airhope">Airhope</option><option value="Zombie Defance">Zombie Defance</option></select><select id="devStatusFilter" aria-label="상태 필터"><option value="all">모든 상태</option><option value="아이디어">아이디어</option><option value="진행 중">진행 중</option><option value="테스트 중">테스트 중</option><option value="완료">완료</option><option value="보류">보류</option></select><select id="devCategoryFilter" aria-label="기록 종류 필터"><option value="all">모든 기록 종류</option><option value="개발 일지">개발 일지</option><option value="버그 제보">버그 제보</option><option value="아이디어">아이디어</option><option value="회의록">회의록</option><option value="공지">공지</option></select></div>
+          <div class="devNotesList" id="devNotesList"><div class="devEmptyState"><strong>기록을 불러오는 중...</strong>Supabase에서 개발 노트 목록을 확인하고 있습니다.</div></div>
+          <div class="devLogLegal">팀원은 모든 기록을 읽을 수 있으며, 각 작성자는 본인이 작성한 노트만 수정하거나 삭제할 수 있습니다. 기록이 저장되지 않으면 Supabase SQL 설정과 계정 등록 상태를 확인하세요.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="faq">
+  <div class="wrap faqLayout">
+    <div class="faqIntro"><div class="eyebrow">08 / FAQ</div><h2>지원하기 전에<br>자주 묻는 질문.</h2><p>처음 지원할 때 헷갈릴 만한 내용을 정리했습니다. 실력보다 중요한 것은 솔직한 자기 평가와 배우려는 태도입니다.</p><a class="faqCta" href="#apply">모집 안내로 이동 <span>↘</span></a></div>
+    <div class="faqList">
+      <details class="faqItem" open><summary><span>01</span> Roblox Studio를 잘 몰라도 지원할 수 있나요?<b>＋</b></summary><div class="faqAnswer">네. 입문자도 지원할 수 있습니다. 현재 실력을 솔직하게 선택하고, 앞으로 배우고 싶은 것과 해 보고 싶은 역할을 적어 주세요. 처음부터 모든 기능을 잘할 필요는 없습니다.</div></details>
+      <details class="faqItem"><summary><span>02</span> 어떤 역할을 선택해야 하나요?<b>＋</b></summary><div class="faqAnswer">맵 제작, Luau 스크립팅, 모델링·UI, 기획, 애니메이션·이펙트, 테스트 중 관심 있는 분야를 선택하면 됩니다. 잘 모르겠다면 “아직 잘 모르겠음”을 선택해도 괜찮습니다.</div></details>
+      <details class="faqItem"><summary><span>03</span> 퀴즈 점수가 낮으면 자동으로 탈락하나요?<b>＋</b></summary><div class="faqAnswer">퀴즈는 기초 지식을 확인하는 참고 자료입니다. 점수만으로 모든 것을 결정하지 않으며, 지원 동기·관심 역할·협업 태도와 함께 검토하는 것을 기준으로 합니다.</div></details>
+      <details class="faqItem"><summary><span>04</span> 지원 후에는 어떤 절차로 진행되나요?<b>＋</b></summary><div class="faqAnswer">지원서 제출 → 내용 검토 → 필요한 경우 간단한 추가 질문 또는 작은 제작 경험 확인 → 합류 여부 논의 순서로 진행할 수 있습니다. 실제 절차나 일정은 모집 상황에 따라 달라질 수 있습니다.</div></details>
+      <details class="faqItem"><summary><span>05</span> 지원서 정보는 어디에 사용되나요?<b>＋</b></summary><div class="faqAnswer">학번과 이름을 포함한 지원 정보는 팀원 모집 및 지원 검토 목적으로 담당자에게 전달됩니다. 제출 전 입력 내용을 확인하고, 동의 항목을 확인한 뒤 제출해 주세요.</div></details>
+    </div>
   </div>
 </section>
 <section class="section alt" id="apply">
   <div class="wrap">
-    <div class="sectionHead"><div><div class="eyebrow">04 / APPLICATION</div><h2>Build with JUST.</h2></div><p>지원서를 작성하고 Roblox Studio 기초 역량 평가 20문항에 답해 주세요. 정답률뿐 아니라 배우려는 자세와 협업 태도도 중요합니다.</p></div>
+    <div class="sectionHead"><div><div class="eyebrow">09 / APPLICATION</div><h2>다음 프로젝트의<br>플레이어가 아니라 제작자로.</h2></div><p>지원서를 통해 관심 역할과 만들고 싶은 것을 알려 주세요. Roblox Studio 기초 평가 20문항은 현재 수준을 파악하기 위한 참고 자료이며, 함께 성장할 준비가 되어 있는지도 중요하게 봅니다.</p></div>
     <div class="applyIntro">
-      <aside class="applyAside"><h3>지원 전에 확인해 주세요.</h3><p>JUST는 함께 배우고 결과물을 만들어 갈 팀원을 찾습니다.</p><ul><li>학번과 이름을 정확히 작성해 주세요.</li><li>Roblox Studio 실력은 솔직하게 선택해 주세요.</li><li>총 20문항이며 각 문항은 5점입니다.</li><li>70점은 참고 기준이며, 점수만으로 모든 것을 결정하지 않습니다.</li></ul><div class="note">지원서에 학번·이름이 포함됩니다. 제출 전 입력 내용을 확인해 주세요. 이 페이지는 입력 내용을 별도로 저장하지 않도록 제작되었으며, 제출은 외부 이메일 전송 서비스를 이용합니다.</div></aside>
+      <aside class="applyAside"><span class="applyStep">JOINING / 01—04</span><h3>지원은 솔직하게,<br>검토는 신중하게.</h3><p>JUST는 완성된 개발자만이 아니라 함께 배우고 실제 결과물을 만들어 갈 팀원을 찾습니다.</p><div class="applyChecklist"><div><span>01</span><p><b>지원서 작성</b><small>학번 · 이름 · 관심 역할</small></p></div><div><span>02</span><p><b>기초 퀴즈 응시</b><small>20문항 · 총 100점</small></p></div><div><span>03</span><p><b>지원 내용 검토</b><small>동기 · 관심 · 협업 태도</small></p></div><div><span>04</span><p><b>필요 시 추가 확인</b><small>간단한 질문 또는 제작 경험</small></p></div></div><div class="note"><b>개인정보 안내</b><br>지원서의 학번·이름·답변은 팀원 모집 및 지원 검토 목적으로 담당자에게 이메일로 전송됩니다. 입력 내용을 확인하고 동의한 뒤 제출해 주세요. 제출은 외부 이메일 전송 서비스(FormSubmit)를 이용합니다.</div></aside>
       <div class="formShell">
-        <div class="formHead"><h3>JUST 팀원 지원서</h3><span class="required">* 필수 항목</span></div>
+        <div class="formHead"><div><span class="formEyebrow">APPLICATION FORM / 2026</span><h3>JUST 팀원 지원서</h3><p>아래 항목을 작성한 뒤 20개 문항에 답해 주세요.</p></div><span class="required">* 필수 항목</span></div>
         <form id="applicationForm">
           <input type="text" name="_honey" id="honey" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="_subject" value="JUST 팀원 지원서">
@@ -223,7 +834,7 @@ textarea{resize:vertical;min-height:96px}
             <div class="field full"><label for="role">관심 있는 역할</label><select id="role" name="희망 역할"><option value="아직 잘 모르겠음">아직 잘 모르겠음</option><option>맵 제작 / 빌딩</option><option>LuaU 스크립팅</option><option>모델링 / UI 디자인</option><option>게임 기획</option><option>애니메이션 / 이펙트</option><option>테스트 / 버그 찾기</option><option>여러 역할에 도전</option></select></div>
             <div class="field full"><label for="motivation">지원 동기 / 만들고 싶은 것</label><textarea id="motivation" name="지원 동기" maxlength="1200" placeholder="어떤 게임을 만들고 싶은지, 팀에서 무엇을 해보고 싶은지 적어 주세요."></textarea><div class="hint">선택 항목 · 최대 1,200자</div></div>
           </div>
-          <div class="quizIntro"><h4>Roblox Studio 역량 평가</h4><span id="answered">0 / 20 답변</span></div>
+          <div class="quizIntro"><div><span class="formEyebrow">SKILL CHECK / 20 QUESTIONS</span><h4>Roblox Studio 역량 평가</h4><p>문항마다 가장 적절한 답 하나를 선택하세요. 모든 문항은 5점이며 총 100점입니다.</p></div><span id="answered">0 / 20 답변</span></div>
           <div class="progress"><i id="progressBar"></i></div>
           <div id="quiz"></div>
           <div class="quizMissing" id="quizMissing" aria-live="polite"></div>
@@ -237,6 +848,16 @@ textarea{resize:vertical;min-height:96px}
 </section>
 </main>
 <footer class="footer"><div class="wrap footerin"><div><b>JUST | 저스트</b><div style="margin-top:7px">Just Imagine. Just Create.</div></div><div>INDEPENDENT ROBLOX STUDIO · EST. 2026</div><div>© JUST. All rights reserved.</div></div></footer>
+<dialog aria-labelledby="projectDialogTitle" class="projectDialog" id="projectDialog">
+  <button aria-label="브리프 닫기" class="dialogClose" type="button" data-dialog-close>×</button>
+  <div class="dialogKicker"><span class="liveDot"></span> JUST / PROJECT BRIEF <span id="dialogProjectCode">001</span></div>
+  <div class="dialogArtwork" id="dialogArtwork"><span id="dialogWordmark">AIRHOPE</span><i></i><b></b></div>
+  <div class="dialogBody"><span class="dialogState">DEVELOPMENT IN PROGRESS</span><h2 id="projectDialogTitle">Airhope</h2><p id="projectDialogLead"></p>
+    <div class="dialogInfoGrid"><div><span>PROJECT TYPE</span><b id="dialogType">ROBLOX EXPERIENCE</b></div><div><span>PUBLIC STATUS</span><b>정보 준비 중</b></div><div><span>DESIGN FOCUS</span><b id="dialogFocus">콘셉트 구체화</b></div></div>
+    <div class="dialogBoundary"><strong>공개 정보 안내</strong><p id="dialogBoundaryText">이 브리프는 현재 공개 가능한 설명입니다. 미확정 기능이나 출시일은 약속하지 않습니다.</p></div>
+    <button class="btn dialogDone" type="button" data-dialog-close>확인했어요 <span aria-hidden="true">↗</span></button>
+  </div>
+</dialog>
 <a class="backtop" href="#top" aria-label="맨 위로">↑</a>
 <script>
 const questions = [
@@ -310,6 +931,789 @@ form.addEventListener('submit',async (event)=>{
    if(btn.disabled && btn.textContent==='제출 중...') {btn.disabled=false;btn.innerHTML='지원서 제출하기 <span>↗</span>';}
  }
 });
+
+// Motion system: reveal, scroll progress, section-aware navigation and mobile menu.
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const progress = document.getElementById('scrollMeterFill');
+  const onScroll = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const amount = max > 0 ? Math.min(100, Math.max(0, window.scrollY / max * 100)) : 0;
+    if (progress) progress.style.width = amount + '%';
+    document.body.classList.toggle('scrolled', window.scrollY > 12);
+  };
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  const menu = document.getElementById('primaryLinks');
+  const menuToggle = document.getElementById('menuToggle');
+  const closeMenu = () => { if(menu && menuToggle){menu.classList.remove('is-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','메뉴 열기');} };
+  if(menu && menuToggle){
+    menuToggle.addEventListener('click', () => {
+      const opened = menuToggle.getAttribute('aria-expanded') !== 'true';
+      menuToggle.setAttribute('aria-expanded', String(opened));
+      menuToggle.setAttribute('aria-label', opened ? '메뉴 닫기' : '메뉴 열기');
+      menu.classList.toggle('is-open', opened);
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => {if(e.key === 'Escape') closeMenu();});
+    window.addEventListener('resize', () => {if(window.innerWidth > 720) closeMenu();}, {passive:true});
+  }
+
+  const sections = [...document.querySelectorAll('main section[id]')];
+  const navAnchors = [...document.querySelectorAll('#primaryLinks a[href^="#"]')];
+  if ('IntersectionObserver' in window && sections.length) {
+    const activeObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          navAnchors.forEach(a => {
+            if(a.getAttribute('href') === '#' + entry.target.id) a.setAttribute('aria-current','location');
+            else a.removeAttribute('aria-current');
+          });
+        }
+      });
+    }, {rootMargin:'-28% 0px -62% 0px',threshold:0});
+    sections.forEach(section => activeObserver.observe(section));
+  }
+
+  if (reduce || !('IntersectionObserver' in window)) return;
+  document.body.classList.add('reveal-ready');
+  const targets = document.querySelectorAll('.sectionHead,.value,.pulseStat,.person,.teamFootnote,.qualityCard,.qualityStatement,.recruitStrip,.flowStep,.principle,.project,.projectDisclaimer,.faqItem,.applyAside,.formShell');
+  targets.forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = `${(i % 4) * 65}ms`;
+  });
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.10, rootMargin: '0px 0px -30px 0px'});
+  targets.forEach(el => revealObserver.observe(el));
+})();
+
+// Lightweight animated particle network. Automatically stops for reduced-motion users.
+(() => {
+  const canvas = document.getElementById('ambientCanvas');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!canvas || reduce) return;
+  const ctx = canvas.getContext('2d', {alpha:true});
+  if(!ctx) return;
+  let width=0,height=0,dpr=1,points=[],raf=0,last=0;
+  const pointer={x:-1000,y:-1000};
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,1.5);width=window.innerWidth;height=window.innerHeight;
+    canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);canvas.style.width=width+'px';canvas.style.height=height+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
+    const count=Math.min(width<600?20:48,Math.max(12,Math.floor(width*height/28000)));
+    points=Array.from({length:count},()=>({x:Math.random()*width,y:Math.random()*height,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*1.3+.45}));
+  }
+  function draw(now){
+    raf=requestAnimationFrame(draw);
+    if(now-last<32)return;last=now;
+    ctx.clearRect(0,0,width,height);
+    for(let i=0;i<points.length;i++){
+      const a=points[i];a.x+=a.vx;a.y+=a.vy;
+      if(a.x<-10)a.x=width+10;if(a.x>width+10)a.x=-10;if(a.y<-10)a.y=height+10;if(a.y>height+10)a.y=-10;
+      const dx=pointer.x-a.x,dy=pointer.y-a.y,dist=Math.hypot(dx,dy);
+      if(dist<130){a.x-=dx/(dist||1)*.025;a.y-=dy/(dist||1)*.025;}
+      ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fillStyle='rgba(174,199,255,.54)';ctx.fill();
+      for(let j=i+1;j<points.length;j++){
+        const b=points[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<112){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(145,177,242,${(1-d/112)*.12})`;ctx.lineWidth=.7;ctx.stroke();}
+      }
+    }
+  }
+  window.addEventListener('resize',resize,{passive:true});
+  window.addEventListener('pointermove',e=>{pointer.x=e.clientX;pointer.y=e.clientY;},{passive:true});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);}else if(!reduce){last=0;raf=requestAnimationFrame(draw);}});
+  resize();raf=requestAnimationFrame(draw);
+})();
+
+// Subtle card tilt on pointer devices only; touch and reduced-motion users are unaffected.
+(() => {
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.querySelectorAll('.person,.project,.flowStep').forEach(card=>{
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(900px) translateY(-3px) rotateX(${-y*2.6}deg) rotateY(${x*2.6}deg)`;
+    });
+    card.addEventListener('pointerleave',()=>{card.style.transform='';});
+  });
+})();
+
 </script>
+
+<script>
+(() => {
+  'use strict';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const loader = document.getElementById('studioLoader');
+  if (loader && !reduceMotion) {
+    loader.classList.add('active');
+    const hide = () => { loader.classList.remove('active'); };
+    window.addEventListener('load', () => setTimeout(hide, 520), { once: true });
+    setTimeout(hide, 1350);
+  }
+
+  // Desktop pointer halo follows gently; it never intercepts clicks.
+  const glow = document.getElementById('cursorGlow');
+  if (glow && !reduceMotion && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    let queued = false, px = -500, py = -500;
+    window.addEventListener('pointermove', (event) => {
+      px = event.clientX; py = event.clientY;
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(() => {
+          glow.style.transform = `translate3d(${px - 180}px,${py - 180}px,0)`;
+          glow.classList.add('visible'); queued = false;
+        });
+      }
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => glow.classList.remove('visible'));
+  }
+
+  // Mouse-aware light reflections for cards: CSS handles every animation frame.
+  if (!reduceMotion && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    document.querySelectorAll('[data-spotlight], .person, .project, .qualityCard, .flowStep, .value').forEach((card) => {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+        card.style.setProperty('--my', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+      }, { passive: true });
+    });
+  }
+
+  // Count-up only when the studio status panel first enters view.
+  const counters = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    const countObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target; observer.unobserve(el);
+        const end = Number(el.dataset.count || 0); const startAt = performance.now(); const duration = 900;
+        const frame = (now) => {
+          const t = Math.min(1, (now - startAt) / duration);
+          const eased = 1 - Math.pow(1 - t, 4);
+          el.textContent = String(Math.round(end * eased));
+          if (t < 1) requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+      });
+    }, { threshold: .55 });
+    counters.forEach((el) => countObserver.observe(el));
+  }
+
+  // Accessible project brief dialog.
+  const dialog = document.getElementById('projectDialog');
+  const projectInfo = {
+    airhope: {
+      code: '001', title: 'Airhope', wordmark: 'AIRHOPE', type: 'ROBLOX EXPERIENCE', focus: '콘셉트와 핵심 경험 구체화',
+      lead: 'Airhope는 현재 기획과 개발을 진행하는 JUST의 프로젝트입니다. 이름을 바탕으로 정체성과 플레이 경험을 더 명확하게 설계하고, 실제로 구현 가능한 형태로 발전시키는 데 초점을 둡니다.',
+      boundary: '상세 플레이 방식, 확정 기능, 이미지, 테스트 일정 및 출시일은 아직 이 페이지에서 확정 정보로 안내하지 않습니다.'
+    },
+    zombie: {
+      code: '002', title: 'Zombie Defance', wordmark: 'Z:D', type: 'ROBLOX EXPERIENCE', focus: '좀비 · 생존 콘셉트 개발',
+      lead: 'Zombie Defance는 좀비와 생존을 테마로 준비 중인 JUST의 프로젝트입니다. 시스템과 플레이 흐름을 구체화하며, 목표와 조작이 명확한 경험을 만들어 가는 단계입니다.',
+      boundary: '실제 게임 모드, 적 행동, 성장 시스템, 공개 일정 등은 확정된 내용이 공유되기 전까지 약속된 기능으로 간주하지 않습니다.'
+    }
+  };
+  function openBrief(key, trigger) {
+    if (!dialog || !projectInfo[key]) return;
+    const data = projectInfo[key];
+    document.getElementById('dialogProjectCode').textContent = data.code;
+    document.getElementById('projectDialogTitle').textContent = data.title;
+    document.getElementById('dialogWordmark').textContent = data.wordmark;
+    document.getElementById('dialogType').textContent = data.type;
+    document.getElementById('dialogFocus').textContent = data.focus;
+    document.getElementById('dialogProjectLead').textContent = data.lead;
+    document.getElementById('dialogBoundaryText').textContent = data.boundary;
+    const artwork = document.getElementById('dialogArtwork');
+    artwork.classList.toggle('zombieMode', key === 'zombie');
+    dialog.dataset.returnFocus = trigger ? 'true' : 'false';
+    dialog._returnElement = trigger || null;
+    if (typeof dialog.showModal === 'function') dialog.showModal(); else dialog.setAttribute('open', '');
+    document.body.classList.add('dialog-open');
+  }
+  document.querySelectorAll('[data-project]').forEach((button) => button.addEventListener('click', () => openBrief(button.dataset.project, button)));
+  function closeBrief() {
+    if (!dialog) return;
+    if (typeof dialog.close === 'function' && dialog.open) dialog.close(); else dialog.removeAttribute('open');
+  }
+  if (dialog) {
+    dialog.querySelectorAll('[data-dialog-close]').forEach((button) => button.addEventListener('click', closeBrief));
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) closeBrief(); });
+    dialog.addEventListener('close', () => { document.body.classList.remove('dialog-open'); if (dialog._returnElement && dialog._returnElement.isConnected) dialog._returnElement.focus(); });
+  }
+
+  // Optional subtle magnetic pull on primary CTA buttons, limited to fine pointers.
+  if (!reduceMotion && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    document.querySelectorAll('.heroPrimary, .navcta').forEach((button) => {
+      button.addEventListener('pointermove', (event) => {
+        const r = button.getBoundingClientRect();
+        const x = (event.clientX - r.left - r.width / 2) / r.width;
+        const y = (event.clientY - r.top - r.height / 2) / r.height;
+        button.style.transform = `translate(${x * 3}px,${y * 2}px) translateY(-2px)`;
+      }, { passive: true });
+      button.addEventListener('pointerleave', () => { button.style.transform = ''; });
+    });
+  }
+})();
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+  'use strict';
+  const SUPABASE_URL = 'https://lyxkmvaweoeqayvjteof.supabase.co';
+  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_AzKULYWpCxOT7u3AJq4l6w_EEH3t6wo';
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('devFeedback');
+  const badge = $('devConnectionBadge');
+  const loginView = $('devLoginView');
+  const pendingView = $('devPendingView');
+  const appView = $('devAppView');
+  const signupForm = $('devSignupForm');
+  const joinRequestsList = $('devJoinRequestsList');
+  const notesList = $('devNotesList');
+  const noteForm = $('devNoteForm');
+  let db = null;
+  let currentUser = null;
+  let currentMember = null;
+  let currentJoinRequest = null;
+  let notes = [];
+  let isLoadingJoinRequests = false;
+  let realtimeChannel = null;
+  let sessionRun = 0;
+  let isLoadingNotes = false;
+  let suppressGenericSignedOutNotice = false;
+
+  function message(text, kind = '') {
+    if (!feedback) return;
+    feedback.textContent = text;
+    feedback.className = 'devFeedback' + (kind ? ' is-' + kind : '');
+  }
+  function setBadge(text) { if (badge) badge.textContent = text; }
+  function esc(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (ch) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  }
+  function formatDate(value) {
+    const date = value ? new Date(value) : null;
+    if (!date || Number.isNaN(date.getTime())) return '날짜 정보 없음';
+    return new Intl.DateTimeFormat('ko-KR', { dateStyle: 'medium', timeStyle: 'short' }).format(date);
+  }
+  function normalizeStatus(status) {
+    if (status === '완료') return 'status-done';
+    if (status === '보류') return 'status-hold';
+    if (status === '진행 중' || status === '테스트 중') return 'status-running';
+    return '';
+  }
+  function isStudioAdmin(member = currentMember) {
+    const role = String(member?.role_title || '').trim();
+    return !!member && member.is_active !== false && (role === '팀장' || ['OWNER', 'ADMIN', 'STUDIO ADMIN'].includes(role.toUpperCase()));
+  }
+  function showLogin() {
+    loginView.hidden = false;
+    pendingView.hidden = true;
+    appView.hidden = true;
+    $('devLoginForm').hidden = false;
+    signupForm.hidden = true;
+    $('devLoginButton').disabled = false;
+    $('devLoginButton').innerHTML = '로그인 <span aria-hidden="true">↗</span>';
+    $('devSignupButton').disabled = false;
+    $('devSignupButton').innerHTML = '가입 신청 보내기 <span aria-hidden="true">↗</span>';
+  }
+  function showPendingView(request) {
+    loginView.hidden = true;
+    appView.hidden = true;
+    pendingView.hidden = false;
+    $('devPendingName').textContent = request?.display_name || currentUser?.user_metadata?.display_name || '신청자';
+    $('devPendingStudentNo').textContent = request?.student_no || currentUser?.user_metadata?.student_no || '—';
+    $('devPendingDate').textContent = formatDate(request?.created_at);
+    const state = request?.status || 'pending';
+    $('devPendingReconsiderButton').hidden = state !== 'rejected';
+    if (state === 'rejected') {
+      $('devPendingStatus').textContent = '이번 신청은 승인되지 않았어요';
+      $('devPendingDetail').textContent = (request?.decision_note ? '관리자 안내: ' + request.decision_note + '\n' : '') + '정보를 보완한 뒤 재검토 요청을 보낼 수 있습니다. 팀 내부 노트는 승인 전까지 잠겨 있습니다.';
+      setBadge('NOT APPROVED');
+    } else if (state === 'approved') {
+      $('devPendingStatus').textContent = '승인 처리 완료';
+      $('devPendingDetail').textContent = '승인은 기록되어 있지만 팀원 권한이 아직 확인되지 않았어요. 아래 버튼으로 권한 상태를 다시 확인해 주세요.';
+      setBadge('CHECK ACCESS');
+    } else {
+      $('devPendingStatus').textContent = '가입 신청 · 승인 대기 중';
+      $('devPendingDetail').textContent = '신청이 접수되었습니다. 팀장이 검토한 뒤 승인하면 개발 노트와 팀 내부 워크스페이스를 사용할 수 있어요.';
+      setBadge('PENDING APPROVAL');
+    }
+  }
+  function showApp() {
+    loginView.hidden = true;
+    pendingView.hidden = true;
+    appView.hidden = false;
+    $('devMemberName').textContent = currentMember.display_name;
+    $('devMemberRole').textContent = currentMember.role_title + ' · TEAM MEMBER';
+    $('devMemberAvatar').textContent = Array.from(currentMember.display_name || 'J')[0];
+    $('devJoinRequestsPanel').hidden = !isStudioAdmin(currentMember);
+  }
+  function clearEditing() {
+    noteForm.reset();
+    $('devNoteId').value = '';
+    $('devEditorTitle').textContent = '새 개발 노트';
+    $('devNoteSave').innerHTML = '노트 저장 <span aria-hidden="true">↗</span>';
+    $('devNoteCancel').hidden = true;
+  }
+  function renderNotes() {
+    const query = $('devSearch').value.trim().toLocaleLowerCase('ko-KR');
+    const project = $('devProjectFilter').value;
+    const status = $('devStatusFilter').value;
+    const category = $('devCategoryFilter').value;
+    const filtered = notes.filter((note) => {
+      if (project !== 'all' && note.project !== project) return false;
+      if (status !== 'all' && note.status !== status) return false;
+      if (category !== 'all' && note.category !== category) return false;
+      if (query) {
+        const haystack = [note.title, note.body, note.author_name, note.project, note.category, note.status].join(' ').toLocaleLowerCase('ko-KR');
+        if (!haystack.includes(query)) return false;
+      }
+      return true;
+    });
+    $('devNoteCount').textContent = `${filtered.length} / ${notes.length} RECORDS`;
+    if (!filtered.length) {
+      notesList.innerHTML = `<div class="devEmptyState"><strong>${notes.length ? '검색 결과가 없어요.' : '아직 등록된 개발 노트가 없어요.'}</strong>${notes.length ? '검색어나 필터를 변경해 보세요.' : '첫 번째 개발 기록을 작성해 팀의 지식 베이스를 시작하세요.'}</div>`;
+      return;
+    }
+    notesList.innerHTML = filtered.map((note) => {
+      const own = currentUser && note.author_id === currentUser.id;
+      return `<article class="devNoteCard" data-note-card="${esc(note.id)}">
+        <div class="devNoteMeta"><span class="devBadge">${esc(note.project)}</span><span class="devBadge">${esc(note.category)}</span><span class="devBadge ${normalizeStatus(note.status)}">${esc(note.status)}</span></div>
+        <h5>${esc(note.title)}</h5><p class="devNoteBody">${esc(note.body)}</p>
+        <div class="devNoteFoot"><span><span class="devNoteAuthor">${esc(note.author_name || 'JUST 팀원')}</span> · ${esc(formatDate(note.updated_at || note.created_at))}${note.updated_at && note.created_at && note.updated_at !== note.created_at ? ' · 수정됨' : ''}</span>
+          ${own ? `<span class="devNoteActions"><button type="button" data-edit-note="${esc(note.id)}">수정</button><button type="button" data-delete-note="${esc(note.id)}">삭제</button></span>` : ''}
+        </div></article>`;
+    }).join('');
+    notesList.querySelectorAll('[data-edit-note]').forEach((button) => button.addEventListener('click', () => editNote(button.dataset.editNote)));
+    notesList.querySelectorAll('[data-delete-note]').forEach((button) => button.addEventListener('click', () => deleteNote(button.dataset.deleteNote)));
+  }
+  function renderJoinRequests(requests) {
+    if (!joinRequestsList) return;
+    const items = requests || [];
+    $('devJoinRequestCount').textContent = `${items.length} PENDING`;
+    if (!items.length) {
+      joinRequestsList.innerHTML = '<div class="devEmptyState"><strong>대기 중인 신청이 없어요.</strong>새 가입 신청이 들어오면 이곳에 표시됩니다.</div>';
+      return;
+    }
+    joinRequestsList.innerHTML = items.map((req) => `
+      <article class="devJoinRequest">
+        <div class="devJoinRequestHead"><div><h5>${esc(req.display_name)} · ${esc(req.student_no)}</h5><small>${esc(req.request_email || '이메일 정보 없음')} · 신청일 ${esc(formatDate(req.created_at))}</small></div><span class="devBadge status-running">승인 대기</span></div>
+        <p class="devJoinRequestBody">${esc(req.motivation || '지원 동기를 작성하지 않았습니다.')}</p>
+        <div class="devJoinRequestActions"><button type="button" data-approve-join="${esc(req.user_id)}">승인하고 팀원 등록</button><button type="button" data-reject-join="${esc(req.user_id)}">반려</button></div>
+      </article>`).join('');
+    joinRequestsList.querySelectorAll('[data-approve-join]').forEach((button) => button.addEventListener('click', () => decideJoinRequest(button.dataset.approveJoin, 'approve', button)));
+    joinRequestsList.querySelectorAll('[data-reject-join]').forEach((button) => button.addEventListener('click', () => decideJoinRequest(button.dataset.rejectJoin, 'reject', button)));
+  }
+  async function loadJoinRequests(silent = false) {
+    if (!db || !currentMember || !isStudioAdmin(currentMember) || isLoadingJoinRequests) return;
+    isLoadingJoinRequests = true;
+    try {
+      const { data, error } = await db.from('team_join_requests')
+        .select('user_id,display_name,student_no,request_email,motivation,status,created_at')
+        .eq('status', 'pending').order('created_at', { ascending: true }).limit(50);
+      if (error) throw error;
+      // Email addresses are intentionally fetched from Auth server-side only, never exposed through a public profile table.
+      renderJoinRequests(data || []);
+      if (!silent && (data || []).length) message(`검토할 가입 요청 ${data.length}건이 있습니다. 각 신청을 읽고 승인 또는 반려해 주세요.`, 'success');
+    } catch (error) {
+      const raw = String(error?.message || error);
+      renderJoinRequests([]);
+      message('가입 요청을 불러오지 못했습니다. 03_join_requests_approval.sql이 실행됐는지와 이 계정의 역할이 팀장인지 확인하세요.\n오류: ' + raw, 'error');
+    } finally {
+      isLoadingJoinRequests = false;
+    }
+  }
+  async function decideJoinRequest(userId, decision, button) {
+    if (!db || !currentMember || !isStudioAdmin(currentMember)) return;
+    let decisionNote = '';
+    if (decision === 'approve') {
+      if (!window.confirm('이 신청을 승인하고 해당 계정을 JUST 팀원으로 등록할까요?')) return;
+    } else {
+      const entered = window.prompt('반려 사유 또는 안내를 입력하세요. 비워 두어도 됩니다.', '');
+      if (entered === null) return;
+      decisionNote = entered.trim().slice(0, 500);
+      if (!window.confirm('이 가입 신청을 반려할까요? 신청자는 내부 노트에 접근할 수 없습니다.')) return;
+    }
+    const oldText = button.textContent;
+    button.disabled = true;
+    button.textContent = decision === 'approve' ? '승인 처리 중…' : '반려 처리 중…';
+    try {
+      const rpcName = decision === 'approve' ? 'approve_team_join_request' : 'reject_team_join_request';
+      const args = decision === 'approve'
+        ? { p_request_user_id: userId }
+        : { p_request_user_id: userId, p_decision_note: decisionNote };
+      const { error } = await db.rpc(rpcName, args);
+      if (error) throw error;
+      message(decision === 'approve' ? '승인 완료! 신청자의 팀원 권한이 활성화되었습니다.' : '신청을 반려했습니다. 신청자는 로그인해 결과를 확인할 수 있습니다.', 'success');
+      await loadJoinRequests(true);
+    } catch (error) {
+      message('요청을 처리하지 못했습니다. SQL 함수를 설치했는지, 현재 계정이 팀장 권한인지 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+      button.disabled = false;
+      button.textContent = oldText;
+    }
+  }
+  async function refreshAccessStatus() {
+    if (!db) return;
+    const { data, error } = await db.auth.getSession();
+    if (error) { message('로그인 상태 확인에 실패했습니다: ' + error.message, 'error'); return; }
+    if (!data.session) { showLogin(); message('로그인 후 권한 상태를 확인해 주세요.'); return; }
+    await applySession(data.session, true);
+  }
+
+  async function loadNotes(silent = false) {
+    if (!db || !currentMember || isLoadingNotes) return;
+    isLoadingNotes = true;
+    try {
+      const { data, error } = await db.from('dev_notes')
+        .select('id,title,project,category,status,body,author_id,author_name,created_at,updated_at')
+        .order('updated_at', { ascending: false }).limit(100);
+      if (error) throw error;
+      notes = data || [];
+      renderNotes();
+      setBadge('CONNECTED');
+      if (!silent) message('Supabase에 연결되었습니다. 개발 노트는 데이터베이스에 저장되며 팀원에게 자동으로 반영됩니다.', 'success');
+    } catch (error) {
+      setBadge('SETUP REQUIRED');
+      const raw = String(error?.message || error);
+      if (/dev_notes|schema cache|does not exist|Could not find/i.test(raw)) {
+        message('개발 노트 테이블을 찾지 못했습니다. 다운로드한 01_supabase_setup.sql 파일을 Supabase → SQL Editor에서 실행했는지 확인하세요.', 'error');
+      } else {
+        message('개발 노트를 불러오지 못했습니다. RLS 정책과 팀원 등록을 확인하세요.\n오류: ' + raw, 'error');
+      }
+    } finally {
+      isLoadingNotes = false;
+    }
+  }
+  function startRealtime() {
+    if (!db || realtimeChannel) return;
+    realtimeChannel = db.channel('just-dev-notes-live')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'dev_notes' }, () => {
+        if (currentMember) loadNotes(true);
+      })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'team_join_requests' }, () => {
+        if (currentMember && isStudioAdmin(currentMember)) loadJoinRequests(true);
+      })
+      .subscribe((status) => {
+        if (status === 'SUBSCRIBED') setBadge('LIVE');
+        else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') setBadge('SYNC RETRY');
+      });
+  }
+  async function stopRealtime() {
+    if (db && realtimeChannel) {
+      const channel = realtimeChannel;
+      realtimeChannel = null;
+      try { await db.removeChannel(channel); } catch (_) { /* cleanup only */ }
+    }
+  }
+  async function clearSession() {
+    sessionRun++;
+    currentUser = null;
+    currentMember = null;
+    currentJoinRequest = null;
+    notes = [];
+    await stopRealtime();
+    showLogin();
+    clearEditing();
+    renderNotes();
+    setBadge('SIGNED OUT');
+  }
+  async function applySession(session, force = false) {
+    const run = ++sessionRun;
+    if (!session || !session.user) {
+      const suppressNotice = suppressGenericSignedOutNotice;
+      suppressGenericSignedOutNotice = false;
+      await clearSession();
+      if (!suppressNotice) message('팀원은 로그인할 수 있고, 신규 사용자는 회원가입 후 팀장 승인을 받아야 합니다.');
+      return;
+    }
+    if (!force && currentUser && currentUser.id === session.user.id && (currentMember || currentJoinRequest)) return;
+    setBadge('VERIFYING');
+    message('로그인 정보를 확인하고 팀원 또는 가입 신청 상태를 확인하고 있습니다.');
+    try {
+      const { data: member, error } = await db.from('studio_members')
+        .select('user_id,display_name,role_title,is_active')
+        .eq('user_id', session.user.id).eq('is_active', true).maybeSingle();
+      if (run !== sessionRun) return;
+      if (error) throw error;
+      if (member) {
+        currentUser = session.user;
+        currentMember = member;
+        currentJoinRequest = null;
+        showApp();
+        startRealtime();
+        await loadNotes();
+        if (isStudioAdmin(currentMember)) await loadJoinRequests(true);
+        return;
+      }
+      const { data: request, error: requestError } = await db.from('team_join_requests')
+        .select('user_id,display_name,student_no,motivation,status,created_at,decided_at,decision_note')
+        .eq('user_id', session.user.id).maybeSingle();
+      if (run !== sessionRun) return;
+      if (requestError) throw requestError;
+      if (request) {
+        currentUser = session.user;
+        currentMember = null;
+        currentJoinRequest = request;
+        await stopRealtime();
+        showPendingView(request);
+        message(request.status === 'rejected' ? '가입 신청 결과를 확인해 주세요.' : '가입 신청은 접수됐으며, 팀장 승인 전까지 내부 콘텐츠 접근이 제한됩니다.', request.status === 'rejected' ? 'error' : 'success');
+        return;
+      }
+      suppressGenericSignedOutNotice = true;
+      await db.auth.signOut();
+      if (run !== sessionRun) return;
+      currentUser = null;
+      currentMember = null;
+      currentJoinRequest = null;
+      showLogin();
+      setBadge('NO ACCESS');
+      message('이 계정은 활성 팀원으로 등록되어 있지 않고 가입 신청 기록도 찾지 못했습니다. 회원가입을 진행하거나 팀장에게 확인해 주세요.', 'error');
+    } catch (error) {
+      if (run !== sessionRun) return;
+      setBadge('SETUP REQUIRED');
+      currentUser = null;
+      currentMember = null;
+      currentJoinRequest = null;
+      showLogin();
+      const raw = String(error?.message || error);
+      if (/team_join_requests|schema cache|does not exist|Could not find|approve_team_join_request|reject_team_join_request/i.test(raw)) {
+        message('가입 승인 시스템의 SQL 설정이 아직 적용되지 않았습니다. 03_join_requests_approval.sql을 Supabase → SQL Editor에서 실행한 뒤 새로고침하세요.\n오류: ' + raw, 'error');
+      } else if (/studio_members/i.test(raw)) {
+        message('팀원 권한 테이블을 찾지 못했습니다. 01_supabase_setup.sql이 실행됐는지 확인하세요.\n오류: ' + raw, 'error');
+      } else {
+        message('팀원 권한을 확인하지 못했습니다. SQL/RLS 설정을 확인하세요.\n오류: ' + raw, 'error');
+      }
+    }
+  }
+  async function editNote(id) {
+    const note = notes.find((item) => String(item.id) === String(id));
+    if (!note || !currentUser || note.author_id !== currentUser.id) return;
+    $('devNoteId').value = note.id;
+    $('devNoteTitle').value = note.title;
+    $('devNoteProject').value = note.project;
+    $('devNoteCategory').value = note.category;
+    $('devNoteStatus').value = note.status;
+    $('devNoteBody').value = note.body;
+    $('devEditorTitle').textContent = '개발 노트 수정';
+    $('devNoteSave').innerHTML = '변경 사항 저장 <span aria-hidden="true">↗</span>';
+    $('devNoteCancel').hidden = false;
+    $('devNoteTitle').focus();
+    $('devNoteForm').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+  }
+  async function deleteNote(id) {
+    const note = notes.find((item) => String(item.id) === String(id));
+    if (!note || !currentUser || note.author_id !== currentUser.id) return;
+    if (!window.confirm(`“${note.title}” 노트를 삭제할까요? 이 작업은 되돌릴 수 없습니다.`)) return;
+    try {
+      const { error } = await db.from('dev_notes').delete().eq('id', note.id);
+      if (error) throw error;
+      message('개발 노트를 삭제했습니다.', 'success');
+      await loadNotes(true);
+    } catch (error) {
+      message('삭제하지 못했습니다. 본인이 작성한 노트인지와 RLS 정책을 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+    }
+  }
+
+  if (window.supabase && typeof window.supabase.createClient === 'function') {
+    try {
+      db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+      setBadge('READY TO CONNECT');
+      message('Supabase 설정값이 준비되었습니다. SQL 설치와 팀원 계정 등록을 마친 뒤 로그인하세요.');
+      db.auth.onAuthStateChange((event, session) => {
+        setTimeout(() => { void applySession(session); }, 0);
+      });
+      db.auth.getSession().then(({ data, error }) => {
+        if (error) throw error;
+        void applySession(data.session);
+      }).catch((error) => message('로그인 세션을 확인할 수 없습니다. 페이지를 새로고침한 뒤 다시 시도하세요.\n오류: ' + String(error?.message || error), 'error'));
+    } catch (error) {
+      setBadge('INIT ERROR');
+      message('Supabase 초기화에 실패했습니다. 연결 설정을 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+      $('devLoginButton').disabled = true;
+    }
+  } else {
+    setBadge('SDK UNAVAILABLE');
+    message('Supabase 라이브러리를 불러오지 못했습니다. 인터넷 연결 또는 CDN 차단 여부를 확인한 뒤 새로고침하세요.', 'error');
+    $('devLoginButton').disabled = true;
+  }
+
+  $('devShowSignupButton').addEventListener('click', () => {
+    $('devLoginForm').hidden = true;
+    signupForm.hidden = false;
+    message('가입 정보를 입력해 주세요. 접수 후 팀장의 검토를 거쳐야 내부 노트를 볼 수 있습니다.');
+    $('devSignupName').focus();
+  });
+  $('devHideSignupButton').addEventListener('click', () => {
+    signupForm.reset();
+    showLogin();
+    message('로그인 화면으로 돌아왔습니다.');
+  });
+  signupForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!db) return;
+    const displayName = $('devSignupName').value.trim();
+    const studentNo = $('devSignupStudentNo').value.trim();
+    const email = $('devSignupEmail').value.trim();
+    const password = $('devSignupPassword').value;
+    const passwordConfirm = $('devSignupPasswordConfirm').value;
+    const motivation = $('devSignupMotivation').value.trim();
+    if (displayName.length < 2 || studentNo.length < 2) {
+      message('이름과 학번을 정확히 입력해 주세요.', 'error');
+      return;
+    }
+    if (password.length < 8) {
+      message('비밀번호는 8자 이상으로 설정해 주세요.', 'error');
+      return;
+    }
+    if (password !== passwordConfirm) {
+      message('비밀번호와 비밀번호 확인이 일치하지 않습니다.', 'error');
+      $('devSignupPasswordConfirm').focus();
+      return;
+    }
+    const button = $('devSignupButton');
+    button.disabled = true;
+    button.textContent = '가입 신청 제출 중…';
+    message('계정을 만들고 승인 요청을 등록하고 있습니다.');
+    try {
+      const { data, error } = await db.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { display_name: displayName, student_no: studentNo, motivation, join_request: true },
+          emailRedirectTo: window.location.origin + window.location.pathname + '#devlog'
+        }
+      });
+      if (error) throw error;
+      signupForm.reset();
+      if (data?.session) {
+        message('가입 신청이 접수됐습니다. 팀장의 승인을 기다려 주세요.', 'success');
+        // Auth state listener will show the pending-request screen.
+        setTimeout(() => { void refreshAccessStatus(); }, 250);
+      } else {
+        showLogin();
+        $('devLoginEmail').value = email;
+        message('가입 신청을 접수했습니다. 이메일 확인 기능이 켜져 있다면 받은 메일의 인증 링크를 먼저 눌러 주세요. 팀장은 승인 목록에서 이 신청을 확인할 수 있습니다. 인증 후 같은 이메일과 비밀번호로 로그인하면 진행 상태를 볼 수 있어요.', 'success');
+      }
+    } catch (error) {
+      const raw = String(error?.message || error);
+      if (/already registered|already exists|User already registered/i.test(raw)) {
+        message('이미 가입된 이메일일 수 있어요. 로그인해 보거나, 비밀번호를 잊었다면 Supabase Auth에서 비밀번호 재설정 기능을 설정해야 합니다.', 'error');
+      } else if (/team_join_requests|trigger|Database error saving new user/i.test(raw)) {
+        message('가입 신청 테이블 또는 가입 요청 트리거를 찾지 못했습니다. 03_join_requests_approval.sql을 먼저 실행해 주세요.\n오류: ' + raw, 'error');
+      } else {
+        message('가입 신청을 완료하지 못했습니다. 이메일 주소와 Supabase Auth 설정을 확인해 주세요.\n오류: ' + raw, 'error');
+      }
+    } finally {
+      button.disabled = false;
+      button.innerHTML = '가입 신청 보내기 <span aria-hidden="true">↗</span>';
+    }
+  });
+
+  $('devLoginForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!db) return;
+    const email = $('devLoginEmail').value.trim();
+    const password = $('devLoginPassword').value;
+    $('devLoginButton').disabled = true;
+    $('devLoginButton').textContent = '로그인 확인 중...';
+    message('Supabase Auth에서 계정을 확인하고 있습니다.');
+    try {
+      const { error } = await db.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      message('인증되었습니다. 활성 팀원 권한을 확인합니다.');
+    } catch (error) {
+      setBadge('LOGIN FAILED');
+      message('로그인하지 못했습니다. 이메일·비밀번호가 정확한지, Supabase Auth에 계정이 생성·확인되어 있는지 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+      $('devLoginButton').disabled = false;
+      $('devLoginButton').innerHTML = '로그인 <span aria-hidden="true">↗</span>';
+    }
+  });
+  $('devPendingRefreshButton').addEventListener('click', async () => {
+    const button = $('devPendingRefreshButton');
+    button.disabled = true;
+    button.textContent = '확인 중…';
+    try { await refreshAccessStatus(); }
+    finally { button.disabled = false; button.textContent = '권한 상태 확인 ↻'; }
+  });
+  $('devPendingReconsiderButton').addEventListener('click', async () => {
+    if (!db || !currentUser) return;
+    const button = $('devPendingReconsiderButton');
+    button.disabled = true;
+    try {
+      const { error } = await db.rpc('request_team_join_reconsideration');
+      if (error) throw error;
+      message('재검토 요청을 다시 보냈습니다. 팀장의 검토를 기다려 주세요.', 'success');
+      await refreshAccessStatus();
+    } catch (error) {
+      message('재검토 요청을 보내지 못했습니다. 03_join_requests_approval.sql이 적용됐는지 확인해 주세요.\n오류: ' + String(error?.message || error), 'error');
+    } finally { button.disabled = false; }
+  });
+  $('devPendingLogoutButton').addEventListener('click', async () => {
+    if (!db) return;
+    const { error } = await db.auth.signOut();
+    if (error) message('로그아웃하지 못했습니다: ' + error.message, 'error');
+    else { await clearSession(); message('로그아웃했습니다.', 'success'); }
+  });
+
+  $('devLogoutButton').addEventListener('click', async () => {
+    if (!db) return;
+    try {
+      const { error } = await db.auth.signOut();
+      if (error) throw error;
+      await clearSession();
+      message('로그아웃했습니다.', 'success');
+    } catch (error) {
+      message('로그아웃 요청을 완료하지 못했습니다.\n오류: ' + String(error?.message || error), 'error');
+    }
+  });
+  noteForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!db || !currentUser || !currentMember) return;
+    const id = $('devNoteId').value;
+    const payload = {
+      title: $('devNoteTitle').value.trim(),
+      project: $('devNoteProject').value,
+      category: $('devNoteCategory').value,
+      status: $('devNoteStatus').value,
+      body: $('devNoteBody').value.trim()
+    };
+    if (payload.title.length < 2 || payload.body.length < 3) {
+      message('제목은 2자 이상, 내용은 3자 이상 입력해 주세요.', 'error');
+      return;
+    }
+    const button = $('devNoteSave');
+    button.disabled = true;
+    button.textContent = '저장 중...';
+    try {
+      let result;
+      if (id) {
+        result = await db.from('dev_notes').update(payload).eq('id', id).select('id').single();
+      } else {
+        result = await db.from('dev_notes').insert(payload).select('id').single();
+      }
+      if (result.error) throw result.error;
+      clearEditing();
+      message(id ? '개발 노트를 수정했습니다.' : '새 개발 노트를 저장했습니다.', 'success');
+      await loadNotes(true);
+    } catch (error) {
+      message('저장에 실패했습니다. SQL 테이블·RLS 정책·팀원 등록을 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+    } finally {
+      button.disabled = false;
+      if (currentMember) button.innerHTML = $('devNoteId').value ? '변경 사항 저장 <span aria-hidden="true">↗</span>' : '노트 저장 <span aria-hidden="true">↗</span>';
+    }
+  });
+  $('devNoteCancel').addEventListener('click', () => { clearEditing(); message('수정을 취소했습니다.'); });
+  ['devSearch','devProjectFilter','devStatusFilter','devCategoryFilter'].forEach((id) => $(id).addEventListener('input', renderNotes));
+})();
+</script>
+
 </body>
 </html>
