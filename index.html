@@ -593,6 +593,18 @@ body>dialog.projectDialog{position:fixed!important;inset:0;margin:auto;z-index:2
 @media(max-width:720px){.devShell{grid-template-columns:1fr;gap:13px}.devIntroCard,.devPanel{padding:19px;border-radius:18px}.devIntroCard{gap:20px}.devLogOrb{width:54px;height:54px;border-radius:17px;margin-bottom:20px}.devFeatureList{grid-template-columns:1fr;gap:0;border-top:1px solid #ffffff12}.devFeature{border-top:0;border-bottom:1px solid #ffffff10;padding:11px 0}.devFeature:last-child{border-bottom:0}.devPanelTop{gap:8px}.devPanelTop h3{font-size:18px}.devTinyStatus{font-size:8px;padding:6px}.devAuthCard,.devEditor{padding:15px}.devFieldGrid{grid-template-columns:1fr;gap:12px}.devField.full{grid-column:auto}.devFilters{grid-template-columns:1fr}.devFeedHead{align-items:flex-start;flex-direction:column;gap:5px}.devFeedHead .devCount{align-self:flex-end}.devNoteFoot{align-items:flex-start;flex-direction:column}.devNoteActions{align-self:flex-end}.devFormActions .btn{flex:1}.devIntroFoot{align-items:flex-start;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.devIntroCard:before,.devLogOrb,.devLogOrb:before,.devLogOrb:after{animation:none!important}.devNoteCard{transition:none!important}.devNoteCard:hover{transform:none}}
 
+
+/* ADMIN CONTROL ROOM / PROJECT BRIEF LIBRARY */
+.devAdminCenter,.devBriefLibrary{position:relative;margin:0 0 22px;border:1px solid #a2bbff24;border-radius:22px;padding:clamp(15px,2.6vw,25px);background:radial-gradient(ellipse at 0 0,#8baeff0e,transparent 40%),linear-gradient(145deg,#101a2a,#0d131f);box-shadow:0 20px 60px #0002;overflow:hidden}
+.devAdminCenter:before,.devBriefLibrary:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 10%,#b3cbff05 45%,transparent 78%);background-size:210% 100%;animation:devAdminShimmer 12s linear infinite}
+@keyframes devAdminShimmer{to{background-position:-210% 0}}
+.devAdminHero,.devAdminPaneIntro,.devAdminWidgetHead,.devAdminSubhead{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.devAdminHero{margin-bottom:18px;align-items:center}.devAdminHero h3{margin:3px 0 6px;font-size:clamp(23px,3vw,34px);letter-spacing:-.04em;color:#f3f7ff}.devAdminHero p,.devAdminPaneIntro p,.devAdminSubhead p{margin:0;color:#92a1bb;font-size:11px;line-height:1.8;max-width:640px}.devAdminPulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:#7ce7bd;margin:0 0 5px 10px;box-shadow:0 0 0 5px #7ce7bd17,0 0 18px #7ce7bd7a;animation:devPulse 1.9s ease-in-out infinite}.devAdminTabs{display:flex;gap:7px;overflow:auto;padding:4px 0 11px;margin-bottom:17px;border-bottom:1px solid #ffffff12;scrollbar-width:thin}.devAdminTabs button{white-space:nowrap;border:1px solid #ffffff14;border-radius:10px;padding:10px 13px;background:#ffffff04;color:#8e9eb8;font-family:inherit;font-weight:700;font-size:10px;cursor:pointer;transition:transform .2s,border-color .2s,background .2s,color .2s}.devAdminTabs button:hover{transform:translateY(-2px);border-color:#a9c0ff58;color:#e8efff}.devAdminTabs button.is-active{background:linear-gradient(135deg,#a4beff1b,#67d9bd12);border-color:#a4beff4d;color:#eff4ff;box-shadow:inset 0 0 20px #a4beff06}.devAdminPane[hidden],.devAdminCenter[hidden]{display:none!important}.devAdminPane{animation:devPaneIn .26s ease both}@keyframes devPaneIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.devAdminStatGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:13px}.devAdminStat{position:relative;border:1px solid #ffffff12;border-radius:15px;padding:16px;background:linear-gradient(145deg,#18243a,#101725);overflow:hidden}.devAdminStat:after{content:"";position:absolute;width:90px;height:90px;right:-42px;top:-45px;border-radius:50%;background:#91b6ff0a;filter:blur(3px)}.devAdminStat span{display:block;color:#92a1bb;font-size:10px}.devAdminStat strong{display:block;color:#eff4ff;font-size:clamp(23px,3vw,34px);line-height:1.35;letter-spacing:-.05em;margin:6px 0}.devAdminStat small{display:block;color:#687995;font-size:9px;line-height:1.6}.devAdminOverviewGrid{display:grid;grid-template-columns:1.08fr .92fr;gap:12px}.devAdminWidget{border:1px solid #ffffff12;border-radius:16px;padding:16px;background:#0a111d8c;min-width:0}.devAdminWidgetHead{align-items:center;margin-bottom:14px}.devAdminWidgetHead h4,.devAdminSubhead h4{font-size:14px;margin:4px 0 0;color:#e9efff}.devAdminQuickActions{display:grid;gap:7px}.devAdminQuickActions button{width:100%;display:grid;grid-template-columns:29px 1fr 18px;align-items:center;gap:9px;text-align:left;border:1px solid #ffffff12;border-radius:10px;padding:11px;background:#ffffff03;color:#cbd6eb;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}.devAdminQuickActions button:hover{background:#91b3ff0c;border-color:#a6c2ff44;transform:translateX(3px)}.devAdminQuickActions span{color:#7085ab;font:800 10px monospace}.devAdminQuickActions b{font-size:10px}.devAdminQuickActions i{font-style:normal;color:#8edec8}.devAdminSystemDot{width:9px;height:9px;border-radius:50%;background:#8de2bc;box-shadow:0 0 0 5px #8de2bc14,0 0 16px #8de2bc65}.devAdminHealthRow{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff0b;color:#8d9ab1;font-size:10px}.devAdminHealthRow b{color:#dbe6fb;text-align:right}.devAdminHint,.devAdminInlineHelp{font-size:9px;line-height:1.8;color:#74839c}.devAdminHint{margin:13px 0 0}.devAdminRecent{margin-top:16px;border:1px solid #ffffff12;border-radius:16px;padding:16px;background:#0a111d80}.devAdminPaneIntro{margin:0 0 16px;align-items:center}.devAdminPaneIntro h4{font-size:18px;margin:4px 0 5px;color:#eef4ff}.devAdminPaneIntro .btn,.devAdminHero .devTextButton{flex:none}.devAdminSubhead{align-items:center;margin:20px 0 12px}.devAdminSubhead p{font-size:10px}.devAdminInlineHelp{padding:12px 13px;margin-bottom:12px;border:1px solid #90b5ff1c;border-radius:10px;background:#90b5ff06}.devAdminMemberList,.devBriefAdminList,.devAdminModerationList,.devAdminAuditList{display:grid;gap:9px}.devAdminMember{display:grid;grid-template-columns:minmax(140px,1fr) minmax(120px,.72fr) auto auto;align-items:center;gap:10px;padding:13px;border:1px solid #ffffff12;border-radius:13px;background:#0b121f;min-width:0}.devAdminMemberIdentity{min-width:0}.devAdminMemberIdentity b,.devAdminMemberIdentity small{display:block;overflow-wrap:anywhere}.devAdminMemberIdentity b{font-size:11px;color:#e4ecfb}.devAdminMemberIdentity small{font-size:9px;color:#7788a4;margin-top:4px}.devAdminControl{min-width:0;width:100%;border:1px solid #2d3b55;background:#0a101b;color:#e5edfc;border-radius:8px;padding:9px 10px;font-size:10px}.devAdminActiveToggle{display:flex;align-items:center;gap:6px;font-size:9px;color:#9babc3;white-space:nowrap}.devAdminActiveToggle input{accent-color:#73d9b9}.devAdminMember button,.devBriefAdminActions button,.devAdminModerationActions button{border:1px solid #a4bcff31;border-radius:8px;background:#a4bcff0b;color:#dce7ff;padding:9px 11px;font-size:9px;font-weight:800;cursor:pointer;transition:.2s}.devAdminMember button:hover,.devBriefAdminActions button:hover,.devAdminModerationActions button:hover{border-color:#96b8ff80;background:#96b8ff13}.devAdminMember button:disabled,.devBriefAdminActions button:disabled,.devAdminModerationActions button:disabled{opacity:.45;cursor:wait}
+.devBriefForm{border:1px solid #9ab8ff27;border-radius:17px;padding:16px;background:linear-gradient(145deg,#131d2e,#0b111c);margin:12px 0 18px}.devBriefForm input[type=file]{width:100%;color:#a8b6cc;font-size:10px}.devBriefForm input[type=file]::file-selector-button{border:1px solid #a4bcff30;background:#a4bcff0d;color:#dce8ff;border-radius:7px;padding:8px 10px;margin-right:10px;cursor:pointer}.devBriefLibraryGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.devBriefCard{position:relative;overflow:hidden;border:1px solid #ffffff13;border-radius:15px;padding:15px;background:linear-gradient(150deg,#17243a,#0d1420);min-width:0;transition:transform .22s,border-color .22s}.devBriefCard:hover{transform:translateY(-3px);border-color:#a8c2ff45}.devBriefCard:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(#91b7ff,#75dfc1)}.devBriefCardTop{display:flex;align-items:flex-start;justify-content:space-between;gap:9px;margin-bottom:10px}.devBriefCard h5{margin:0;color:#edf3ff;font-size:13px;line-height:1.5;overflow-wrap:anywhere}.devBriefCard p{white-space:pre-wrap;overflow-wrap:anywhere;color:#9cabc2;font-size:10px;line-height:1.8;margin:10px 0 13px}.devBriefMeta{display:flex;gap:6px;flex-wrap:wrap}.devBriefMeta .devBadge{font-size:8px}.devBriefFine{font-size:9px;color:#7485a0;line-height:1.7}.devBriefCardActions,.devBriefAdminActions,.devAdminModerationActions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:12px}.devBriefCardActions button,.devBriefCardActions a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #9fbcff35;border-radius:8px;background:#9fbcff0b;color:#deebff;padding:9px 11px;font-size:9px;font-weight:800;cursor:pointer}.devBriefCardActions button:hover,.devBriefCardActions a:hover{background:#9fbcff16}.devBriefCardActions .devBriefDelete,.devBriefAdminActions .danger,.devAdminModerationActions .danger{border-color:#ff92922b;color:#ffb7b7;background:#ff92920a}.devBriefState{font-size:8px;font-weight:900;letter-spacing:.7px;border-radius:30px;padding:5px 7px;white-space:nowrap;border:1px solid #ffffff15;color:#a3b2c9;background:#ffffff05}.devBriefState.published{color:#91e4c6;border-color:#74dabc2d;background:#74dabc0a}.devBriefState.draft{color:#f1c77c;border-color:#f1c77c2b;background:#f1c77c0a}.devAdminToolBar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.devAdminAuditItem{display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:10px;align-items:start;padding:12px;border:1px solid #ffffff0e;border-radius:11px;background:#0b121e}.devAdminAuditItem time{font-size:9px;color:#7989a4;line-height:1.6}.devAdminAuditItem b{display:block;color:#dfe8fb;font-size:10px}.devAdminAuditItem p{margin:4px 0 0;color:#8797b2;font-size:9px;line-height:1.7;overflow-wrap:anywhere}.devAdminAuditItem .devBadge{font-size:8px;align-self:start}.devAdminModeration{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px;border:1px solid #ffffff10;border-radius:11px;background:#0b121e}.devAdminModeration b{display:block;color:#dce6f7;font-size:10px;line-height:1.6;overflow-wrap:anywhere}.devAdminModeration small{display:block;color:#8191ac;font-size:9px;line-height:1.7;margin-top:4px}.devAdminModerationActions{margin:0}.devAdminLogHeading{margin-top:24px}.devBriefLibrary{margin-top:20px}.devBriefLibrary>.devAdminPaneIntro{margin-bottom:13px}
+@media(max-width:760px){.devAdminStatGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.devAdminOverviewGrid{grid-template-columns:1fr}.devBriefLibraryGrid{grid-template-columns:1fr}.devAdminMember{grid-template-columns:minmax(0,1fr) auto;align-items:start}.devAdminMemberIdentity{grid-column:1/-1}.devAdminMember .devAdminControl{grid-column:1/2}.devAdminMember .devAdminActiveToggle{grid-column:2/3;align-self:center}.devAdminMember button{grid-column:1/-1}.devAdminAuditItem{grid-template-columns:1fr auto}.devAdminAuditItem time{grid-column:1/-1}.devAdminPaneIntro{align-items:flex-start;flex-direction:column}.devAdminHero{align-items:flex-start;flex-direction:column}.devAdminToolBar .btn{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){.devAdminCenter:before,.devBriefLibrary:before,.devAdminPulse{animation:none!important}.devAdminPane{animation:none!important}.devAdminQuickActions button,.devBriefCard,.devAdminTabs button{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -770,9 +782,76 @@ body>dialog.projectDialog{position:fixed!important;inset:0;margin:auto;z-index:2
         </div>
         <div id="devAppView" hidden>
           <div class="devToolbar"><div class="devMemberChip"><div class="devMemberAvatar" id="devMemberAvatar">J</div><div class="devMemberWho"><b id="devMemberName">JUST MEMBER</b><small id="devMemberRole">TEAM MEMBER · AUTHENTICATED</small></div></div><button class="devTextButton" id="devLogoutButton" type="button">로그아웃 ↗</button></div>
-          <section class="devJoinPanel" id="devJoinRequestsPanel" hidden>
+
+          <section class="devAdminCenter" id="devAdminCenter" hidden aria-label="JUST 관리자 센터">
+            <div class="devAdminHero">
+              <div><span class="devPanelKicker">JUST STUDIO / CONTROL ROOM</span><h3>관리자 센터<span class="devAdminPulse"></span></h3><p>가입 승인부터 팀 운영, 프로젝트 문서와 기록 관리까지 한곳에서 관리합니다.</p></div>
+              <button class="devTextButton" id="devAdminRefresh" type="button">전체 새로고침 ↻</button>
+            </div>
+            <div class="devAdminTabs" role="tablist" aria-label="관리자 메뉴">
+              <button type="button" class="is-active" role="tab" aria-selected="true" data-admin-tab="overview">대시보드</button>
+              <button type="button" role="tab" aria-selected="false" data-admin-tab="requests">가입 승인</button>
+              <button type="button" role="tab" aria-selected="false" data-admin-tab="members">팀원 관리</button>
+              <button type="button" role="tab" aria-selected="false" data-admin-tab="briefs">프로젝트 브리프</button>
+              <button type="button" role="tab" aria-selected="false" data-admin-tab="tools">기록·감사 로그</button>
+            </div>
+            <div class="devAdminPane" id="devAdminOverviewPane" role="tabpanel">
+              <div class="devAdminStatGrid">
+                <article class="devAdminStat"><span>활성 팀원</span><strong id="devAdminStatMembers">—</strong><small>현재 접근 가능한 계정</small></article>
+                <article class="devAdminStat"><span>가입 대기</span><strong id="devAdminStatRequests">—</strong><small>검토가 필요한 신청</small></article>
+                <article class="devAdminStat"><span>프로젝트 브리프</span><strong id="devAdminStatBriefs">—</strong><small id="devAdminStatBriefSub">공개 문서</small></article>
+                <article class="devAdminStat"><span>개발 노트</span><strong id="devAdminStatNotes">—</strong><small>최근 기록 전체</small></article>
+              </div>
+              <div class="devAdminOverviewGrid">
+                <article class="devAdminWidget"><div class="devAdminWidgetHead"><div><span class="devPanelKicker">QUICK ACTIONS</span><h4>빠른 작업</h4></div></div>
+                  <div class="devAdminQuickActions"><button type="button" data-admin-tab="requests"><span>01</span><b>가입 신청 검토</b><i>↗</i></button><button type="button" data-admin-tab="members"><span>02</span><b>팀원 역할 변경</b><i>↗</i></button><button type="button" data-admin-tab="briefs"><span>03</span><b>프로젝트 브리프 업로드</b><i>↗</i></button><button type="button" id="devAdminAnnouncement"><span>04</span><b>팀 공지 작성</b><i>↗</i></button></div>
+                </article>
+                <article class="devAdminWidget"><div class="devAdminWidgetHead"><div><span class="devPanelKicker">SYSTEM CHECK</span><h4>연결 상태</h4></div><span class="devAdminSystemDot" id="devAdminSystemDot"></span></div>
+                  <div class="devAdminHealthRow"><span>Supabase 연결</span><b id="devAdminHealthConnection">확인 중</b></div><div class="devAdminHealthRow"><span>내 권한</span><b id="devAdminHealthRole">팀장</b></div><div class="devAdminHealthRow"><span>브리프 저장소</span><b id="devAdminHealthStorage">확인 전</b></div><p class="devAdminHint">실제 권한은 화면 표시가 아니라 Supabase RLS와 데이터베이스 함수에서 확인합니다.</p>
+                </article>
+              </div>
+              <div class="devAdminRecent"><div class="devAdminWidgetHead"><div><span class="devPanelKicker">RECENT ACTIVITY</span><h4>최근 관리자 작업</h4></div><button type="button" class="devTextButton" data-admin-tab="tools">전체 로그 보기 ↗</button></div><div id="devAdminRecentAudit" class="devAdminAuditList"><div class="devEmptyState"><strong>로그를 불러오는 중...</strong></div></div></div>
+            </div>
+            <div class="devAdminPane" id="devAdminRequestsPane" role="tabpanel" hidden>
+              <div class="devAdminPaneIntro"><div><span class="devPanelKicker">TEAM ACCESS CONTROL</span><h4>가입 신청 검토</h4><p>승인된 계정만 팀원 권한을 받아 개발 노트와 공개 브리프에 접근할 수 있습니다.</p></div><button type="button" class="btn secondary" id="devAdminReloadRequests">신청 새로고침 ↻</button></div>
+          <section class="devJoinPanel" id="devJoinRequestsPanel">
             <div class="devJoinPanelTop"><div><span class="devPanelKicker">TEAM ACCESS CONTROL</span><h4>가입 승인 요청</h4><p>대기 중인 신청을 검토하세요. 승인하면 신청자가 개발 워크스페이스에 접근할 수 있습니다.</p></div><span class="devJoinCount" id="devJoinRequestCount">0 PENDING</span></div>
             <div class="devJoinRequests" id="devJoinRequestsList"><div class="devEmptyState"><strong>요청을 불러오는 중...</strong></div></div>
+          </section>
+            </div>
+            <div class="devAdminPane" id="devAdminMembersPane" role="tabpanel" hidden>
+              <div class="devAdminPaneIntro"><div><span class="devPanelKicker">MEMBER DIRECTORY</span><h4>팀원·권한 관리</h4><p>역할과 활성 상태를 변경할 수 있습니다. 마지막 팀장 계정은 잠금 방지 규칙으로 비활성화하거나 팀원으로 낮출 수 없습니다.</p></div><button type="button" class="btn secondary" id="devAdminReloadMembers">명단 새로고침 ↻</button></div>
+              <div class="devAdminInlineHelp">이메일은 팀장만 확인할 수 있습니다. `팀장` 역할을 부여하면 해당 계정에 관리자 기능도 열리므로 신중하게 변경하세요.</div>
+              <div class="devAdminMemberList" id="devAdminMemberList"><div class="devEmptyState"><strong>팀원 명단을 불러오는 중...</strong></div></div>
+            </div>
+            <div class="devAdminPane" id="devAdminBriefsPane" role="tabpanel" hidden>
+              <div class="devAdminPaneIntro"><div><span class="devPanelKicker">PROJECT DOCUMENT CONTROL</span><h4>프로젝트 브리프 관리</h4><p>PDF, Word, PowerPoint, 텍스트 문서, 이미지 파일을 비공개 저장소에 올리고 팀원에게 공개할 수 있습니다.</p></div></div>
+              <form class="devBriefForm" id="devBriefUploadForm">
+                <div class="devEditorHead"><h4>새 브리프 업로드</h4><span>PRIVATE FILE STORAGE</span></div>
+                <div class="devFieldGrid">
+                  <div class="devField full"><label for="devBriefTitle">문서 제목 *</label><input id="devBriefTitle" type="text" maxlength="120" placeholder="예: Airhope 게임 기획 브리프 v1.0" required></div>
+                  <div class="devField"><label for="devBriefProject">프로젝트 *</label><select id="devBriefProject" required><option value="Airhope">Airhope</option><option value="Zombie Defance">Zombie Defance</option><option value="팀 공통">팀 공통</option></select></div>
+                  <div class="devField"><label for="devBriefVisibility">공개 상태 *</label><select id="devBriefVisibility" required><option value="draft">비공개 초안</option><option value="published">팀원에게 공개</option></select></div>
+                  <div class="devField full"><label for="devBriefSummary">요약·버전·변경 내용 *</label><textarea id="devBriefSummary" maxlength="2500" required placeholder="문서의 목적, 버전, 주요 내용, 담당자, 다음 검토 항목 등을 적어 주세요."></textarea></div>
+                  <div class="devField full"><label for="devBriefFile">첨부 파일 *</label><input id="devBriefFile" type="file" accept=".pdf,.docx,.pptx,.txt,.md,.png,.jpg,.jpeg,.webp,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,text/plain,text/markdown,image/png,image/jpeg,image/webp" required><span class="devFieldHint">최대 20MB · PDF / DOCX / PPTX / TXT / MD / PNG / JPG / WEBP · 민감한 개인정보나 비밀번호를 업로드하지 마세요.</span></div>
+                </div>
+                <div class="devFormActions"><button class="btn" id="devBriefUploadButton" type="submit">브리프 업로드 <span aria-hidden="true">↗</span></button></div>
+              </form>
+              <div class="devAdminSubhead"><div><h4>업로드된 문서</h4><p>공개·비공개 전환, 파일 열기, 삭제를 관리합니다.</p></div><button type="button" class="devTextButton" id="devAdminReloadBriefs">문서 새로고침 ↻</button></div>
+              <div class="devBriefAdminList" id="devAdminBriefList"><div class="devEmptyState"><strong>브리프를 불러오는 중...</strong></div></div>
+            </div>
+            <div class="devAdminPane" id="devAdminToolsPane" role="tabpanel" hidden>
+              <div class="devAdminPaneIntro"><div><span class="devPanelKicker">AUDIT & MAINTENANCE</span><h4>기록 관리 · 감사 로그</h4><p>개발 노트를 CSV로 내보내고, 문제가 있는 기록을 관리자 권한으로 삭제하며, 운영 변경 내역을 확인합니다.</p></div></div>
+              <div class="devAdminToolBar"><button type="button" class="btn secondary" id="devAdminExportNotes">개발 노트 CSV 내보내기 ↓</button><button type="button" class="btn secondary" id="devAdminExportMembers">팀원 명단 CSV ↓</button><button type="button" class="btn secondary" id="devAdminReloadAudit">로그 새로고침 ↻</button></div>
+              <div class="devAdminSubhead"><div><h4>개발 노트 관리</h4><p>관리자는 작성자와 관계없이 노트를 삭제할 수 있습니다. 삭제 전 확인창이 표시됩니다.</p></div><span class="devCount" id="devAdminNoteModerationCount">0 RECORDS</span></div>
+              <div class="devAdminModerationList" id="devAdminNotesList"><div class="devEmptyState"><strong>노트를 불러오는 중...</strong></div></div>
+              <div class="devAdminSubhead devAdminLogHeading"><div><h4>관리자 작업 로그</h4><p>승인·반려, 팀원 권한 변경, 브리프 업로드·공개·삭제, 관리자 노트 삭제 기록</p></div></div>
+              <div class="devAdminAuditList" id="devAdminAuditList"><div class="devEmptyState"><strong>로그를 불러오는 중...</strong></div></div>
+            </div>
+          </section>
+          <section class="devBriefLibrary" id="devBriefLibraryPanel" aria-label="프로젝트 브리프 라이브러리">
+            <div class="devAdminPaneIntro"><div><span class="devPanelKicker">JUST PROJECT LIBRARY</span><h4>프로젝트 브리프</h4><p>공개된 기획 문서와 프로젝트 자료를 확인하세요. 파일은 로그인한 활성 팀원만 열 수 있습니다.</p></div><button type="button" class="devTextButton" id="devBriefLibraryRefresh">새로고침 ↻</button></div>
+            <div class="devBriefLibraryGrid" id="devBriefLibrary"><div class="devEmptyState"><strong>브리프를 불러오는 중...</strong></div></div>
           </section>
           <form class="devEditor" id="devNoteForm">
             <div class="devEditorHead"><h4 id="devEditorTitle">새 개발 노트</h4><span>NOTE EDITOR / 01</span></div>
@@ -1188,6 +1267,14 @@ form.addEventListener('submit',async (event)=>{
   let sessionRun = 0;
   let isLoadingNotes = false;
   let suppressGenericSignedOutNotice = false;
+  let briefs = [];
+  let adminMembers = [];
+  let auditLogs = [];
+  let isLoadingBriefs = false;
+  let isLoadingAdminMembers = false;
+  const BRIEF_BUCKET = 'just-project-briefs';
+  const BRIEF_MAX_BYTES = 20 * 1024 * 1024;
+
 
   function message(text, kind = '') {
     if (!feedback) return;
@@ -1255,9 +1342,14 @@ form.addEventListener('submit',async (event)=>{
     $('devMemberRole').textContent = currentMember.role_title + ' · TEAM MEMBER';
     $('devMemberAvatar').textContent = Array.from(currentMember.display_name || 'J')[0];
     $('devJoinRequestsPanel').hidden = !isStudioAdmin(currentMember);
+    $('devAdminCenter').hidden = !isStudioAdmin(currentMember);
+    $('devAdminHealthRole').textContent = isStudioAdmin(currentMember) ? '팀장 관리자' : (currentMember.role_title || '팀원');
+    selectAdminTab('overview');
   }
   function clearEditing() {
     noteForm.reset();
+    $('devNoteTitle').placeholder = '예: Airhope 이동 시스템 1차 테스트';
+    $('devNoteBody').placeholder = '무엇을 작업했나요?\n문제가 있다면 재현 방법과 예상 결과를 적어 주세요.\n다음 작업도 함께 기록하면 좋아요.';
     $('devNoteId').value = '';
     $('devEditorTitle').textContent = '새 개발 노트';
     $('devNoteSave').innerHTML = '노트 저장 <span aria-hidden="true">↗</span>';
@@ -1281,6 +1373,7 @@ form.addEventListener('submit',async (event)=>{
     $('devNoteCount').textContent = `${filtered.length} / ${notes.length} RECORDS`;
     if (!filtered.length) {
       notesList.innerHTML = `<div class="devEmptyState"><strong>${notes.length ? '검색 결과가 없어요.' : '아직 등록된 개발 노트가 없어요.'}</strong>${notes.length ? '검색어나 필터를 변경해 보세요.' : '첫 번째 개발 기록을 작성해 팀의 지식 베이스를 시작하세요.'}</div>`;
+      if (currentMember && isStudioAdmin(currentMember)) renderAdminNotes();
       return;
     }
     notesList.innerHTML = filtered.map((note) => {
@@ -1294,6 +1387,7 @@ form.addEventListener('submit',async (event)=>{
     }).join('');
     notesList.querySelectorAll('[data-edit-note]').forEach((button) => button.addEventListener('click', () => editNote(button.dataset.editNote)));
     notesList.querySelectorAll('[data-delete-note]').forEach((button) => button.addEventListener('click', () => deleteNote(button.dataset.deleteNote)));
+    if (currentMember && isStudioAdmin(currentMember)) renderAdminNotes();
   }
   function renderJoinRequests(requests) {
     if (!joinRequestsList) return;
@@ -1378,6 +1472,7 @@ form.addEventListener('submit',async (event)=>{
       if (error) throw error;
       notes = data || [];
       renderNotes();
+      if (currentMember && isStudioAdmin(currentMember)) renderAdminNotes();
       setBadge('CONNECTED');
       if (!silent) message('Supabase에 연결되었습니다. 개발 노트는 데이터베이스에 저장되며 팀원에게 자동으로 반영됩니다.', 'success');
     } catch (error) {
@@ -1399,7 +1494,16 @@ form.addEventListener('submit',async (event)=>{
         if (currentMember) loadNotes(true);
       })
       .on('postgres_changes', { event: '*', schema: 'public', table: 'team_join_requests' }, () => {
-        if (currentMember && isStudioAdmin(currentMember)) loadJoinRequests(true);
+        if (currentMember && isStudioAdmin(currentMember)) { loadJoinRequests(true); loadAdminOverview(); loadAuditLog(true); }
+      })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'project_briefs' }, () => {
+        if (currentMember) { loadBriefs(true); if (isStudioAdmin(currentMember)) { loadAdminOverview(); loadAuditLog(true); } }
+      })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'studio_members' }, () => {
+        if (currentMember && isStudioAdmin(currentMember)) { loadAdminMembers(); loadAdminOverview(); }
+      })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'studio_admin_audit' }, () => {
+        if (currentMember && isStudioAdmin(currentMember)) loadAuditLog(true);
       })
       .subscribe((status) => {
         if (status === 'SUBSCRIBED') setBadge('LIVE');
@@ -1419,8 +1523,12 @@ form.addEventListener('submit',async (event)=>{
     currentMember = null;
     currentJoinRequest = null;
     notes = [];
+    briefs = [];
+    adminMembers = [];
+    auditLogs = [];
     await stopRealtime();
     showLogin();
+    $('devAdminCenter').hidden = true;
     clearEditing();
     renderNotes();
     setBadge('SIGNED OUT');
@@ -1449,8 +1557,10 @@ form.addEventListener('submit',async (event)=>{
         currentJoinRequest = null;
         showApp();
         startRealtime();
-        await loadNotes();
-        if (isStudioAdmin(currentMember)) await loadJoinRequests(true);
+        await Promise.all([loadNotes(), loadBriefs(true)]);
+        if (isStudioAdmin(currentMember)) {
+          await Promise.all([loadJoinRequests(true), loadAdminMembers(), loadAuditLog(true), loadAdminOverview()]);
+        }
         return;
       }
       const { data: request, error: requestError } = await db.from('team_join_requests')
@@ -1520,6 +1630,348 @@ form.addEventListener('submit',async (event)=>{
     } catch (error) {
       message('삭제하지 못했습니다. 본인이 작성한 노트인지와 RLS 정책을 확인하세요.\n오류: ' + String(error?.message || error), 'error');
     }
+  }
+
+
+  function selectAdminTab(tab) {
+    const allowed = ['overview','requests','members','briefs','tools'];
+    if (!allowed.includes(tab)) tab = 'overview';
+    document.querySelectorAll('[data-admin-tab]').forEach((button) => {
+      const active = button.dataset.adminTab === tab;
+      if (button.getAttribute('role') === 'tab') {
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', active ? 'true' : 'false');
+      }
+    });
+    allowed.forEach((name) => {
+      const pane = $('devAdmin' + name.charAt(0).toUpperCase() + name.slice(1) + 'Pane');
+      if (pane) pane.hidden = name !== tab;
+    });
+    if (tab === 'overview') void loadAdminOverview();
+    if (tab === 'members') void loadAdminMembers();
+    if (tab === 'briefs') { void loadBriefs(true); }
+    if (tab === 'tools') { renderAdminNotes(); void loadAuditLog(true); }
+  }
+
+  function downloadCsv(filename, rows) {
+    const csv = rows.map((row) => row.map((value) => {
+      let text = String(value ?? '');
+      if (/^[=+@\-\t\r]/.test(text)) text = "'" + text;
+      return '"' + text.replace(/"/g, '""') + '"';
+    }).join(',')).join('\r\n');
+    const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url; anchor.download = filename; anchor.style.display = 'none';
+    document.body.appendChild(anchor); anchor.click(); anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  async function loadAdminOverview() {
+    if (!db || !currentMember || !isStudioAdmin(currentMember)) return;
+    $('devAdminHealthConnection').textContent = badge?.textContent || '연결 확인 중';
+    $('devAdminHealthStorage').textContent = '확인 중';
+    try {
+      const [membersResult, requestResult, briefResult, publishedResult, notesResult] = await Promise.all([
+        db.rpc('admin_list_studio_members'),
+        db.from('team_join_requests').select('user_id', { count: 'exact', head: true }).eq('status', 'pending'),
+        db.from('project_briefs').select('id', { count: 'exact', head: true }),
+        db.from('project_briefs').select('id', { count: 'exact', head: true }).eq('is_published', true),
+        db.from('dev_notes').select('id', { count: 'exact', head: true })
+      ]);
+      if (membersResult.error) throw membersResult.error;
+      if (requestResult.error) throw requestResult.error;
+      if (briefResult.error) throw briefResult.error;
+      if (publishedResult.error) throw publishedResult.error;
+      if (notesResult.error) throw notesResult.error;
+      adminMembers = membersResult.data || adminMembers;
+      $('devAdminStatMembers').textContent = String(adminMembers.filter((m) => m.is_active).length);
+      $('devAdminStatRequests').textContent = String(requestResult.count ?? 0);
+      $('devAdminStatBriefs').textContent = String(briefResult.count ?? 0);
+      $('devAdminStatBriefSub').textContent = `${publishedResult.count ?? 0}개 공개 · 나머지는 초안`;
+      $('devAdminStatNotes').textContent = String(notesResult.count ?? 0);
+      $('devAdminHealthConnection').textContent = '연결됨';
+      $('devAdminHealthStorage').textContent = '비공개 버킷 사용';
+      $('devAdminSystemDot').style.background = '#8de2bc';
+      renderAdminRecentAudit();
+    } catch (error) {
+      $('devAdminHealthConnection').textContent = '설정 확인 필요';
+      $('devAdminHealthStorage').textContent = 'SQL·버킷 확인 필요';
+      $('devAdminSystemDot').style.background = '#f0b66d';
+      message('관리자 통계를 불러오지 못했습니다. 04_admin_project_briefs.sql 실행 여부와 팀장 권한을 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+    }
+  }
+
+  async function loadAdminMembers() {
+    if (!db || !currentMember || !isStudioAdmin(currentMember) || isLoadingAdminMembers) return;
+    isLoadingAdminMembers = true;
+    try {
+      const { data, error } = await db.rpc('admin_list_studio_members');
+      if (error) throw error;
+      adminMembers = data || [];
+      renderAdminMembers();
+      await loadAdminOverview();
+    } catch (error) {
+      $('devAdminMemberList').innerHTML = `<div class="devEmptyState"><strong>팀원 명단을 불러오지 못했습니다.</strong>${esc(String(error?.message || error))}<br>04_admin_project_briefs.sql을 실행했는지 확인하세요.</div>`;
+      message('팀원 관리 기능의 SQL/RPC를 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+    } finally { isLoadingAdminMembers = false; }
+  }
+
+  function renderAdminMembers() {
+    const host = $('devAdminMemberList');
+    if (!host) return;
+    if (!adminMembers.length) { host.innerHTML = '<div class="devEmptyState"><strong>등록된 팀원이 없습니다.</strong></div>'; return; }
+    const roles = ['팀장','부팀장','개발팀장','팀원','기획','맵 제작','스크립터','UI/UX','테스터'];
+    host.innerHTML = adminMembers.map((member) => `<form class="devAdminMember" data-member-form="${esc(member.user_id)}">
+      <div class="devAdminMemberIdentity"><b>${esc(member.display_name)}${member.user_id === currentUser?.id ? ' · 내 계정' : ''}</b><small>${esc(member.user_email || '이메일 정보 없음')} · ${esc(formatDate(member.created_at))}${member.is_active ? ' · 활성' : ' · 비활성'}</small></div>
+      <select class="devAdminControl" name="role_title" aria-label="${esc(member.display_name)} 역할">${roles.map((role) => `<option value="${esc(role)}" ${member.role_title === role ? 'selected' : ''}>${esc(role)}</option>`).join('')}</select>
+      <label class="devAdminActiveToggle"><input type="checkbox" name="is_active" ${member.is_active ? 'checked' : ''}> 활성 계정</label>
+      <button type="submit">변경 저장</button>
+    </form>`).join('');
+    host.querySelectorAll('[data-member-form]').forEach((form) => form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!isStudioAdmin(currentMember)) return;
+      const userId = form.dataset.memberForm;
+      const name = form.querySelector('input[name="display_name"]')?.value || adminMembers.find((m) => m.user_id === userId)?.display_name || '';
+      const role = form.querySelector('select[name="role_title"]').value;
+      const active = form.querySelector('input[name="is_active"]').checked;
+      const button = form.querySelector('button[type="submit"]');
+      if (!window.confirm(`${name}님의 역할을 “${role}”, 계정 상태를 “${active ? '활성' : '비활성'}”으로 변경할까요?`)) return;
+      button.disabled = true; button.textContent = '저장 중…';
+      try {
+        const { error } = await db.rpc('admin_update_studio_member', { p_user_id: userId, p_display_name: name, p_role_title: role, p_is_active: active });
+        if (error) throw error;
+        message('팀원 정보가 저장되었습니다.', 'success');
+        await loadAdminMembers();
+        await loadAuditLog(true);
+      } catch (error) {
+        message('팀원 정보를 저장하지 못했습니다. 마지막 팀장 계정 보호 규칙이나 역할 값을 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+        button.disabled = false; button.textContent = '변경 저장';
+      }
+    }));
+  }
+
+  function briefFileIcon(fileName) {
+    const ext = String(fileName || '').split('.').pop().toLowerCase();
+    if (ext === 'pdf') return 'PDF';
+    if (ext === 'docx') return 'DOCX';
+    if (ext === 'pptx') return 'PPTX';
+    if (['png','jpg','jpeg','webp'].includes(ext)) return 'IMAGE';
+    return 'TEXT';
+  }
+
+  async function loadBriefs(silent = false) {
+    if (!db || !currentMember || isLoadingBriefs) return;
+    isLoadingBriefs = true;
+    try {
+      const { data, error } = await db.from('project_briefs')
+        .select('id,title,project,summary,file_path,file_name,file_size,mime_type,is_published,created_by,created_by_name,created_at,updated_at')
+        .order('updated_at', { ascending: false }).limit(100);
+      if (error) throw error;
+      briefs = data || [];
+      renderBriefLibrary();
+      renderAdminBriefs();
+      $('devAdminHealthStorage').textContent = '연결됨 · 비공개';
+      if (!silent && !isStudioAdmin(currentMember)) message('공개된 프로젝트 브리프를 불러왔습니다.', 'success');
+    } catch (error) {
+      const raw = String(error?.message || error);
+      $('devBriefLibrary').innerHTML = `<div class="devEmptyState"><strong>프로젝트 브리프를 불러오지 못했습니다.</strong>${esc(raw)}<br>04_admin_project_briefs.sql을 실행했는지 확인하세요.</div>`;
+      if (isStudioAdmin(currentMember)) $('devAdminBriefList').innerHTML = `<div class="devEmptyState"><strong>문서 관리 기능을 사용할 수 없습니다.</strong>${esc(raw)}</div>`;
+      if (!silent) message('프로젝트 브리프 기능의 SQL, Storage 버킷, RLS 정책을 확인하세요.\n오류: ' + raw, 'error');
+    } finally { isLoadingBriefs = false; }
+  }
+
+  function renderBriefCard(brief, adminMode = false) {
+    const state = brief.is_published ? '<span class="devBriefState published">팀원 공개</span>' : '<span class="devBriefState draft">비공개 초안</span>';
+    const buttons = `<div class="devBriefCardActions"><button type="button" data-open-brief="${esc(brief.id)}">파일 열기 ↗</button>${adminMode ? `<button type="button" data-toggle-brief="${esc(brief.id)}">${brief.is_published ? '공개 중지' : '팀원에게 공개'}</button><button type="button" class="devBriefDelete" data-delete-brief="${esc(brief.id)}">삭제</button>` : ''}</div>`;
+    return `<article class="devBriefCard"><div class="devBriefCardTop"><div class="devBriefMeta"><span class="devBadge">${esc(brief.project)}</span><span class="devBadge">${esc(briefFileIcon(brief.file_name))}</span></div>${adminMode ? state : ''}</div><h5>${esc(brief.title)}</h5><p>${esc(brief.summary)}</p><div class="devBriefFine">${esc(brief.file_name)} · ${esc(formatBytes(brief.file_size))}<br>${esc(brief.created_by_name || 'JUST 팀')} · ${esc(formatDate(brief.updated_at || brief.created_at))}</div>${buttons}</article>`;
+  }
+
+  function renderBriefLibrary() {
+    const host = $('devBriefLibrary');
+    if (!host) return;
+    const shown = briefs.filter((brief) => brief.is_published || isStudioAdmin(currentMember));
+    if (!shown.length) { host.innerHTML = '<div class="devEmptyState"><strong>아직 공개된 프로젝트 브리프가 없습니다.</strong>팀장이 자료를 업로드하고 공개하면 이곳에 표시됩니다.</div>'; return; }
+    host.innerHTML = shown.map((brief) => renderBriefCard(brief, false)).join('');
+    bindBriefCardActions(host, false);
+  }
+
+  function renderAdminBriefs() {
+    const host = $('devAdminBriefList');
+    if (!host || !currentMember || !isStudioAdmin(currentMember)) return;
+    if (!briefs.length) { host.innerHTML = '<div class="devEmptyState"><strong>아직 업로드된 브리프가 없습니다.</strong>위 양식으로 첫 프로젝트 자료를 추가하세요.</div>'; return; }
+    host.innerHTML = briefs.map((brief) => renderBriefCard(brief, true)).join('');
+    bindBriefCardActions(host, true);
+  }
+
+  function bindBriefCardActions(host, adminMode) {
+    host.querySelectorAll('[data-open-brief]').forEach((button) => button.addEventListener('click', async () => {
+      const brief = briefs.find((item) => item.id === button.dataset.openBrief);
+      if (!brief || !currentMember) return;
+      const popup = window.open('about:blank', '_blank');
+      button.disabled = true; const old = button.textContent; button.textContent = '파일 준비 중…';
+      try {
+        const { data, error } = await db.storage.from(BRIEF_BUCKET).createSignedUrl(brief.file_path, 600, { download: false });
+        if (error) throw error;
+        if (popup) { popup.opener = null; popup.location.href = data.signedUrl; }
+        else window.location.href = data.signedUrl;
+      } catch (error) {
+        if (popup) popup.close();
+        message('파일 링크를 만들지 못했습니다. Storage 정책과 브리프 파일 경로를 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+      } finally { button.disabled = false; button.textContent = old; }
+    }));
+    if (adminMode) {
+      host.querySelectorAll('[data-toggle-brief]').forEach((button) => button.addEventListener('click', async () => {
+        if (!isStudioAdmin(currentMember)) return;
+        const brief = briefs.find((item) => item.id === button.dataset.toggleBrief);
+        if (!brief) return;
+        const published = !brief.is_published;
+        if (!window.confirm(published ? `“${brief.title}” 문서를 팀원에게 공개할까요?` : `“${brief.title}” 문서 공개를 중지할까요?`)) return;
+        button.disabled = true;
+        try {
+          const { error } = await db.from('project_briefs').update({ is_published: published }).eq('id', brief.id);
+          if (error) throw error;
+          message(published ? '브리프를 팀원에게 공개했습니다.' : '브리프 공개를 중지했습니다.', 'success');
+          await loadBriefs(true); await loadAuditLog(true); await loadAdminOverview();
+        } catch (error) { message('공개 상태를 바꾸지 못했습니다.\n오류: ' + String(error?.message || error), 'error'); button.disabled = false; }
+      }));
+      host.querySelectorAll('[data-delete-brief]').forEach((button) => button.addEventListener('click', async () => {
+        if (!isStudioAdmin(currentMember)) return;
+        const brief = briefs.find((item) => item.id === button.dataset.deleteBrief);
+        if (!brief || !window.confirm(`“${brief.title}”과 첨부 파일을 삭제할까요? 되돌릴 수 없습니다.`)) return;
+        button.disabled = true;
+        try {
+          const { error: storageError } = await db.storage.from(BRIEF_BUCKET).remove([brief.file_path]);
+          if (storageError) throw storageError;
+          const { error } = await db.from('project_briefs').delete().eq('id', brief.id);
+          if (error) throw error;
+          message('프로젝트 브리프를 삭제했습니다.', 'success');
+          await loadBriefs(true); await loadAuditLog(true); await loadAdminOverview();
+        } catch (error) { message('브리프 삭제에 실패했습니다. Storage 파일과 RLS 정책을 확인하세요.\n오류: ' + String(error?.message || error), 'error'); button.disabled = false; }
+      }));
+    }
+  }
+
+  function formatBytes(bytes) {
+    const n = Number(bytes || 0);
+    if (!n) return '크기 정보 없음';
+    if (n < 1024) return `${n} B`;
+    if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
+    return `${(n / (1024 * 1024)).toFixed(1)} MB`;
+  }
+
+  async function uploadProjectBrief(event) {
+    event.preventDefault();
+    if (!db || !currentUser || !currentMember || !isStudioAdmin(currentMember)) return;
+    const title = $('devBriefTitle').value.trim();
+    const project = $('devBriefProject').value;
+    const summary = $('devBriefSummary').value.trim();
+    const file = $('devBriefFile').files?.[0];
+    const isPublished = $('devBriefVisibility').value === 'published';
+    if (title.length < 2 || summary.length < 5 || !file) { message('제목, 요약, 첨부 파일을 모두 입력해 주세요.', 'error'); return; }
+    if (file.size > BRIEF_MAX_BYTES) { message('파일 크기는 20MB 이하여야 합니다.', 'error'); return; }
+    const extension = (file.name.split('.').pop() || '').toLowerCase();
+    const allowed = ['pdf','docx','pptx','txt','md','png','jpg','jpeg','webp'];
+    if (!allowed.includes(extension)) { message('지원하는 파일 형식은 PDF, DOCX, PPTX, TXT, MD, PNG, JPG, WEBP입니다.', 'error'); return; }
+    const mimeByExt = {pdf:'application/pdf',docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',pptx:'application/vnd.openxmlformats-officedocument.presentationml.presentation',txt:'text/plain',md:'text/markdown',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp'};
+    const contentType = mimeByExt[extension];
+    const safeBase = file.name.split(/[\\/]/).pop().replace(/[^a-zA-Z0-9가-힣._-]/g, '_').slice(-100) || `brief.${extension}`;
+    const unique = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    const path = `${currentUser.id}/${unique}.${extension}`;
+    const button = $('devBriefUploadButton'); button.disabled = true; button.textContent = '파일 업로드 중…';
+    let uploaded = false;
+    try {
+      const { error: storageError } = await db.storage.from(BRIEF_BUCKET).upload(path, file, { cacheControl: '3600', upsert: false, contentType });
+      if (storageError) throw storageError;
+      uploaded = true;
+      button.textContent = '문서 정보 저장 중…';
+      const { error } = await db.from('project_briefs').insert({
+        title, project, summary, file_path: path, file_name: safeBase, file_size: file.size,
+        mime_type: contentType, is_published: isPublished, created_by: currentUser.id, created_by_name: currentMember.display_name
+      });
+      if (error) throw error;
+      $('devBriefUploadForm').reset();
+      message(isPublished ? '브리프 업로드와 공개를 완료했습니다.' : '브리프를 비공개 초안으로 저장했습니다.', 'success');
+      await loadBriefs(true); await loadAdminOverview(); await loadAuditLog(true);
+    } catch (error) {
+      if (uploaded) { try { await db.storage.from(BRIEF_BUCKET).remove([path]); } catch (_) { /* best-effort orphan cleanup */ } }
+      message('브리프 업로드에 실패했습니다. 04_admin_project_briefs.sql과 Storage 권한을 확인하세요.\n오류: ' + String(error?.message || error), 'error');
+    } finally { button.disabled = false; button.innerHTML = '브리프 업로드 <span aria-hidden="true">↗</span>'; }
+  }
+
+  function renderAdminNotes() {
+    const host = $('devAdminNotesList');
+    if (!host || !currentMember || !isStudioAdmin(currentMember)) return;
+    const items = notes || [];
+    $('devAdminNoteModerationCount').textContent = `${items.length} RECORDS`;
+    if (!items.length) { host.innerHTML = '<div class="devEmptyState"><strong>관리할 개발 노트가 없습니다.</strong></div>'; return; }
+    host.innerHTML = items.map((note) => `<article class="devAdminModeration"><div><b>${esc(note.title)}</b><small>${esc(note.project)} · ${esc(note.category)} · ${esc(note.author_name)} · ${esc(formatDate(note.updated_at || note.created_at))}</small></div><div class="devAdminModerationActions"><button type="button" class="danger" data-admin-delete-note="${esc(note.id)}">삭제</button></div></article>`).join('');
+    host.querySelectorAll('[data-admin-delete-note]').forEach((button) => button.addEventListener('click', async () => {
+      if (!isStudioAdmin(currentMember)) return;
+      const note = notes.find((item) => item.id === button.dataset.adminDeleteNote);
+      if (!note || !window.confirm(`“${note.title}”을 관리자 권한으로 삭제할까요? 되돌릴 수 없습니다.`)) return;
+      button.disabled = true;
+      try {
+        const { error } = await db.rpc('admin_delete_dev_note', { p_note_id: note.id });
+        if (error) throw error;
+        message('관리자 권한으로 노트를 삭제했습니다.', 'success');
+        await loadNotes(true); await loadAuditLog(true); await loadAdminOverview();
+      } catch (error) { message('노트를 삭제하지 못했습니다. 04_admin_project_briefs.sql이 실행됐는지 확인하세요.\n오류: ' + String(error?.message || error), 'error'); button.disabled = false; }
+    }));
+  }
+
+  const AUDIT_LABELS = {
+    join_approved:'가입 승인', join_rejected:'가입 반려', member_updated:'팀원 권한 변경',
+    brief_uploaded:'브리프 업로드', brief_published:'브리프 공개', brief_hidden:'브리프 공개 중지',
+    brief_deleted:'브리프 삭제', note_admin_deleted:'관리자 노트 삭제'
+  };
+  function renderAuditList(hostId, items) {
+    const host = $(hostId); if (!host) return;
+    if (!items || !items.length) { host.innerHTML = '<div class="devEmptyState"><strong>표시할 관리자 로그가 없습니다.</strong>관리자 작업이 진행되면 이곳에 기록됩니다.</div>'; return; }
+    host.innerHTML = items.map((item) => `<article class="devAdminAuditItem"><time>${esc(formatDate(item.created_at))}</time><div><b>${esc(AUDIT_LABELS[item.action] || item.action || '관리자 작업')}</b><p>${esc(item.actor_name || 'JUST 관리자')} · ${esc(item.detail || item.target_title || item.target_id || '')}</p></div><span class="devBadge">${esc(item.target_type || 'SYSTEM')}</span></article>`).join('');
+  }
+  function renderAdminRecentAudit() { renderAuditList('devAdminRecentAudit', (auditLogs || []).slice(0, 5)); }
+  async function loadAuditLog(silent = false) {
+    if (!db || !currentMember || !isStudioAdmin(currentMember)) return;
+    try {
+      const { data, error } = await db.from('studio_admin_audit').select('id,actor_id,actor_name,action,target_type,target_id,target_title,detail,created_at').order('created_at', { ascending: false }).limit(80);
+      if (error) throw error;
+      auditLogs = data || [];
+      renderAuditList('devAdminAuditList', auditLogs);
+      renderAdminRecentAudit();
+    } catch (error) {
+      const msg = String(error?.message || error);
+      $('devAdminAuditList').innerHTML = `<div class="devEmptyState"><strong>감사 로그를 불러오지 못했습니다.</strong>${esc(msg)}<br>04_admin_project_briefs.sql을 실행했는지 확인하세요.</div>`;
+      $('devAdminRecentAudit').innerHTML = '<div class="devEmptyState"><strong>감사 로그 설정이 필요합니다.</strong></div>';
+      if (!silent) message('관리자 감사 로그를 불러오지 못했습니다.\n오류: ' + msg, 'error');
+    }
+  }
+
+  async function exportNotesCsv() {
+    if (!isStudioAdmin(currentMember) || !db) return;
+    const button = $('devAdminExportNotes'); button.disabled = true; button.textContent = '기록 수집 중…';
+    try {
+      const allRows = [];
+      const pageSize = 1000;
+      for (let from = 0; ; from += pageSize) {
+        const { data, error } = await db.from('dev_notes')
+          .select('id,title,project,category,status,body,author_name,created_at,updated_at')
+          .order('updated_at', { ascending: false }).range(from, from + pageSize - 1);
+        if (error) throw error;
+        allRows.push(...(data || []));
+        if (!data || data.length < pageSize) break;
+      }
+      const rows = [['id','title','project','category','status','body','author_name','created_at','updated_at'], ...allRows.map((n) => [n.id,n.title,n.project,n.category,n.status,n.body,n.author_name,n.created_at,n.updated_at])];
+      downloadCsv(`JUST-dev-notes-${new Date().toISOString().slice(0,10)}.csv`, rows);
+      message(`개발 노트 ${allRows.length}건을 CSV로 내보냈습니다.`, 'success');
+    } catch (error) { message('CSV 내보내기에 실패했습니다.\n오류: ' + String(error?.message || error), 'error'); }
+    finally { button.disabled = false; button.textContent = '개발 노트 CSV 내보내기 ↓'; }
+  }
+  function exportMembersCsv() {
+    if (!isStudioAdmin(currentMember)) return;
+    const rows = [['user_id','display_name','email','role_title','is_active','created_at'], ...adminMembers.map((m) => [m.user_id,m.display_name,m.user_email,m.role_title,m.is_active,m.created_at])];
+    downloadCsv(`JUST-team-members-${new Date().toISOString().slice(0,10)}.csv`, rows);
+    message('팀원 명단을 CSV로 내보냈습니다.', 'success');
   }
 
   if (window.supabase && typeof window.supabase.createClient === 'function') {
@@ -1712,6 +2164,36 @@ form.addEventListener('submit',async (event)=>{
   });
   $('devNoteCancel').addEventListener('click', () => { clearEditing(); message('수정을 취소했습니다.'); });
   ['devSearch','devProjectFilter','devStatusFilter','devCategoryFilter'].forEach((id) => $(id).addEventListener('input', renderNotes));
+
+  document.querySelectorAll('[data-admin-tab]').forEach((button) => button.addEventListener('click', () => {
+    if (!isStudioAdmin(currentMember)) return;
+    selectAdminTab(button.dataset.adminTab);
+  }));
+  $('devAdminRefresh').addEventListener('click', async () => {
+    if (!isStudioAdmin(currentMember)) return;
+    const button = $('devAdminRefresh'); button.disabled = true; button.textContent = '새로고침 중…';
+    try {
+      await Promise.all([loadNotes(true), loadBriefs(true), loadJoinRequests(true), loadAdminMembers(), loadAuditLog(true), loadAdminOverview()]);
+      message('관리자 데이터 새로고침을 마쳤습니다.', 'success');
+    } finally { button.disabled = false; button.textContent = '전체 새로고침 ↻'; }
+  });
+  $('devAdminReloadRequests').addEventListener('click', () => loadJoinRequests());
+  $('devAdminReloadMembers').addEventListener('click', () => loadAdminMembers());
+  $('devAdminReloadBriefs').addEventListener('click', () => loadBriefs());
+  $('devBriefLibraryRefresh').addEventListener('click', () => loadBriefs());
+  $('devAdminReloadAudit').addEventListener('click', () => loadAuditLog());
+  $('devAdminExportNotes').addEventListener('click', exportNotesCsv);
+  $('devAdminExportMembers').addEventListener('click', async () => { if (isStudioAdmin(currentMember)) { await loadAdminMembers(); exportMembersCsv(); } });
+  $('devBriefUploadForm').addEventListener('submit', uploadProjectBrief);
+  $('devAdminAnnouncement').addEventListener('click', () => {
+    if (!isStudioAdmin(currentMember)) return;
+    clearEditing(); $('devNoteProject').value = '팀 공통'; $('devNoteCategory').value = '공지'; $('devNoteStatus').value = '진행 중';
+    $('devEditorTitle').textContent = '팀 공지 작성';
+    $('devNoteTitle').placeholder = '예: 10월 정기 회의 안내';
+    $('devNoteBody').placeholder = '공지 내용, 일정, 준비물, 확인할 사항을 작성하세요.';
+    $('devNoteForm').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+    $('devNoteTitle').focus();
+  });
 })();
 </script>
 
